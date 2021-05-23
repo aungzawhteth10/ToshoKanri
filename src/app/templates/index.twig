@@ -1,0 +1,12 @@
+{% include "base.html" %}
+<script >
+    webix.ready(function () {
+        logic.init();
+    });
+    var logic = {
+        init:function() {
+            var _authKey = webix.storage.session.get("auth_key");
+            location.href= "/?auth_key=" + _authKey;
+        }
+    };
+</script>

@@ -1,0 +1,34 @@
+{% include "base.html"%}
+{% set screen_data = screen_data %}
+<script >
+  	var form = {
+		view:"form",
+		id:"form",
+		borderless:true,
+        elements:[
+        	{cols:[
+        		{},
+        		{view:"button", id:"btn_student_list", value:"学生リスト" , css:"webix_primary", height:50},
+        		{view:"button", id:"btn_seiseki_shuukei", value:"成績集計" , css:"webix_primary", height:50},
+        		{}
+        	]}
+    ]};
+    var logic = {
+		init:function() {
+			$$("btn_student_list").attachEvent("onItemClick", function(){logic.pageMove("StudentList");});
+			$$("btn_seiseki_shuukei").attachEvent("onItemClick", function(){logic.pageMove("Shuukei");});
+		},
+		pageMove:function(page) {
+			AUNG.pageMove(page);
+		}
+	};
+    webix.ready(function () {
+		webix.ui(
+			{rows:[
+				form,
+			]}
+		);
+		AUNG.init("{{session}}");
+		logic.init();
+	});
+</script>

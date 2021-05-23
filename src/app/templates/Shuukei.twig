@@ -1,0 +1,65 @@
+{% include 'base.html' %}
+<script >
+  	var form = {
+		view:"form",
+		id:"form",
+		borderless:true,
+        elements:[
+        	{view:"checkbox", id:"kihonAllSlide", value:0, label:"全て表示", width:300},
+            {view:"datatable",
+             id:"classIchiran",
+             $cssName:"datatable",
+             width:460,
+             height:300,
+             scrollY:true,
+             columns:[
+            	{id:"student_id", header:"学籍番号", width:100},
+			    {id:"name", header:"名前", width:200},
+			    {id:"seibetsu", header:"性別", width:60},
+			    {id:"birthday",header:"誕生日", width:100}
+		    ]},
+		    {view:"datatable",
+             id:"seisekiIchiran",
+             $cssName:"datatable",
+             width:460,
+             height:300,
+             scrollY:true,
+             columns:[
+             	{id:"rank", header:"順位", width:100},
+            	{id:"student_id", header:"学籍番号", width:100},
+            	{id:"name", header:"名前", width:100},
+			    {id:"math", header:"数学", width:100},
+			    {id:"english", header:"英語", width:100},
+			    {id:"japanese",header:"国語", width:100},
+			    {id:"total",header:"合計", width:100}
+		    ]}
+    ]};
+    var logic = {
+		init:function() {
+			$$("kihonAllSlide").attachEvent("onChange", logic.dataLoad);
+			logic.dataLoad();
+		},
+		dataLoad:function() {
+			var _getData = {
+				"kihonAllFlg": $$("kihonAllSlide").getValue(),
+			};
+			$.get("Api/ApiShuukei", _getData, function(data) {
+				console.log(data);
+				var obj = JSON.parse(data);
+				$$("classIchiran").clearAll();
+				$$("seisekiIchiran").clearAll();
+				$$("classIchiran").parse(obj.KIHON);
+				$$("seisekiIchiran").parse(obj.SEISEKI);
+			});
+		},
+	};
+	webix.ui(
+		{rows:[
+			form,
+		]}
+	);
+    webix.ready(function () {
+		AUNG.init("{{session}}");
+		logic.init();
+	});
+</script>

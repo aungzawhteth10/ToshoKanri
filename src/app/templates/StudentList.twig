@@ -1,0 +1,63 @@
+{% include 'base.html' %}
+<script >
+  	var form = {
+		view:"form",
+		id:"form",
+		borderless:true,
+        elements:[
+        	{view:"select", id:"class_list", name:"class_list", label:"クラス", options:"Api/cm_class_list"},
+        	{view:"checkbox", id:"kihonAllSlide", value:0, label:"全て表示", width:300},
+            {view:"datatable",
+             id:"classIchiran",
+             $cssName:"datatable",
+             width:460,
+             height:700,
+             scrollY:true,
+             columns:[
+            	{id:"student_id", header:"学籍番号", width:100},
+			    {id:"name", header:"名前", width:200},
+			    {id:"seibetsu", header:"性別", width:60},
+			    {id:"birthday",header:"誕生日", width:100}
+		    ]},
+    ]};
+    var logic = {
+		init:function() {
+			$$("kihonAllSlide").attachEvent("onChange", logic.dataLoad);
+			$$("class_list").attachEvent("onChange", logic.dataLoad);
+			$$("class_list").attachEvent("onAfterRender", function(){
+				$$("class_list").setValue("s1a");
+			});
+		},
+		dataLoad:function() {
+			var _getData = {
+				"kihonAllFlg": $$("kihonAllSlide").getValue(),
+				"class_code": $$("class_list").getValue(),
+			};
+			$.get("Api/ApiStudentList", _getData, function(data) {
+				$$("classIchiran").clearAll();
+				if (data == false) {
+					webix.alert({
+						title:"データなし",
+						ok:"OK",
+						width:300,
+						text:"対象クラスの学生は存在しません"
+					});
+					return false;
+				}
+				console.log(data);
+				var obj = JSON.parse(data);
+				console.log(obj.KIHON);
+				$$("classIchiran").parse(obj.KIHON);
+			});
+		},
+	};
+	webix.ui(
+		{rows:[
+			form,
+		]}
+	);
+    webix.ready(function () {
+    	AUNG.init("{{session}}");
+		logic.init();
+	});
+</script>
