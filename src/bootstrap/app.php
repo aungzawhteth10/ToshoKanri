@@ -22,18 +22,12 @@ $container['view'] = function ($container) {
    ));
    return $view;
 };
-$container['ApiLogin'] = function ($container) {
+$container['ApiLogin'] = function () {
    return new \App\Api\ApiLogin();
 };
-$container['RunVideo'] = function ($container) {
-   return new \App\Api\RunVideo($container->view);
+$container['ApiBookRegister'] = function () {
+   return new \App\Api\ApiBookRegister();
 };
-$container['ApiShuukei'] = function ($container) {
-   return new \App\Api\ApiShuukei();
-};
-$container['HtmlHelper'] = function ($container) {
+$container['HtmlHelper'] = function () {
    return new \App\Api\HtmlHelper();
-};
-$container['ApiStudentList'] = function ($container) {
-   return new \App\Api\ApiStudentList();
 };

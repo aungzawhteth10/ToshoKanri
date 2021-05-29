@@ -47,8 +47,8 @@ class ApiLogin
             $auth_key .= $characters[rand(0, $charactersLength - 1)];
         }
         //認証キーの有効期間を作成（有効期間：3時間）
-        $jikan_3 = time() + (3 * 60 * 60);
-        $time_limit = date('Y-m-d H:i:s', $jikan_3);
+        $jikan_24 = time() + (24 * 60 * 60);
+        $time_limit = date('Y-m-d H:i:s', $jikan_24);
         $dbUserMapper = new \App\db\DbUserMapper;
         $dmUser = new \App\model\DmUser;
         $dmUser->user_id    = $user_id;

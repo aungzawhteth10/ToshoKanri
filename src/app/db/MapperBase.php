@@ -5,7 +5,7 @@ class MapperBase
 	protected $pdo;
 	public function __construct()
 	{
-		$dsn = 'mysql:dbname=aung_gakuen;host=localhost';
+		$dsn = 'mysql:dbname=aung_library;host=localhost';
 		$servername = 'root';
 		$password = 'root';
 		$dbname = 'aung_gakuen';
@@ -179,7 +179,7 @@ class MapperBase
 			}
 		}
 		$stmt->execute($paramArr);
-		return [];
+		return 1;
 	}
 	/*
 	* INSERT SQL文を作成する。

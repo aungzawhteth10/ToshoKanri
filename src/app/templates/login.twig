@@ -1,4 +1,13 @@
 {% include 'base.html' %}
+<style>
+.library_bk{
+    background-image: url('../images/library_bk.jpg');
+    background-size: 100% 100%;
+}
+.webix_el_box{
+    color: #81F7F3 !important;
+}
+</style>
 <script >
 	var tabbar = {
 	  view:"tabbar", 
@@ -10,6 +19,7 @@
 	  ]
 	};
 	var loginForm = {
+        css:"library_bk",
 		view:"form",
 		id:"loginForm",
 		borderless:true,
@@ -21,10 +31,11 @@
 	            	{view:"text", id:"user_name", name:"user_name", label:" ", labelWidth:10},
             		{view:"label", label:"Password"},
 	            	{view:"text", id:"password", name:"password", label:" ", type:"Password", labelWidth:10},
-	            	{view:"label" , label:"<a href='https://www.google.com'>Forgot password</a>", align:"right"},
+	            	{view:"label" , label:"<a href='https://www.google.com' style='color:#C8CAF6;'>Forgot password</a>", align:"right"},
 	            	{cols:[
 	            		{view:"button", value:"Login", css:"webix_primary", id:"login", height:50, hotkey: "enter"},
 	            	]},
+                    {}
             	]},
             	{}
             ]},
@@ -34,6 +45,7 @@
         	"password":webix.rules.isNotEmpty,
     	}};
     var signUpForm = {
+        css:"library_bk",
     	view:"form",
     	id:"signUpForm",
     	hidden:true,
@@ -49,8 +61,9 @@
             		{view:"label", label:"ReType Password"},
 	            	{view:"text", id:"reg_re_password", name:"reg_re_password", label:" ", type:"Password", labelWidth:10},
 	            	{cols:[
-	            		{view:"button", id:"signUp", name:"signUp", value:"Sign Up", css:"webix_primary", height:50},
+	            		{view:"button", id:"signUp", name:"signUp", value:"Sign Up", css:"webix_primary", height:50, hotkey: "enter"},
 	            	]},
+                    {}
             	]},
             	{}
             ]},
@@ -105,7 +118,7 @@
 				}
 				var obj = JSON.parse(data);
 				webix.storage.session.put('auth_key', obj.auth_key);
-				location.href= "/Home?auth_key=" + obj.auth_key;
+				location.href= "/Menu?auth_key=" + obj.auth_key;
 			});
         },
         signUp:function() {
@@ -131,7 +144,7 @@
                 }
                 var obj = JSON.parse(data);
                 webix.storage.session.put('auth_key', obj.auth_key);
-                AUNG.pageMove("Home");
+                AUNG.pageMove("Menu");
             });
         }
     };

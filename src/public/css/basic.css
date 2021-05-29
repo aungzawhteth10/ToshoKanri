@@ -6,24 +6,11 @@ div.logo{
 	height: 50px;
 }
 h2{
+	margin: 0;
 	padding-top: 7px;
 	padding-left: 60px;
-	color: blue;
+	color: #6161A7;
 }
 div.banner{
-	background-color: greenyellow;
 	height: 50px;
 }
-/*div.webix_hcell{
-	background-color: gold !important;
-	font-size: 1.7em;
-	border-color: black;
-}
-div.active.webix_cell{
-	background-color: gold !important;
-	font-weight: bold;
-	font-size: 1.3em;
-	padding-right: 0px;
-	text-align: center;
-	text-decoration: underline;
-}*/

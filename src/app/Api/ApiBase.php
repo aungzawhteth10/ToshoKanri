@@ -2,13 +2,15 @@
 namespace App\Api;
 class ApiBase 
 {
-   public function __construct(View $views)
+   public function toError($ErrorMsg)
    {
-       return $this->views = $views;
+      http_response_code(500);
+      die($ErrorMsg);
    }
-   public function auth($request, $response)
+   public function toJson($rtnData)
    {
-      return "success";
+      http_response_code(200);
+      return json_encode($rtnData, JSON_UNESCAPED_UNICODE);
    }
 }
 ?>
