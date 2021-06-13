@@ -1,0 +1,82 @@
+{% include 'base.html' %}
+<script >
+    var form = {
+        view:"form",
+        id:"form",
+        borderless:true,
+        elements:[
+            {rows:[
+                {
+                    view:"datatable",
+                    id:"ichiran",
+                    hover:"myhover",
+                    height:790,
+                    select:true,
+                    scrollX:false,
+                    tooltip:true,
+                    columns:[
+                      {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
+                      {id:"book_name", header:["書籍名称", {content:"textFilter"}], fillspace:true},
+                      {id:"author", header:["作者", {content:"textFilter"}], width:200},
+                      {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
+                      {id:"overview", header:["概要", {content:"textFilter"}], width:200},
+                      {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
+                    ]
+            }]}
+        ]
+    };
+    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50};
+    var logic = {
+        init:function() {
+            $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu");});
+            var _session = webix.storage.session.get("session");
+            console.log(_session);
+        },
+        dataload:function() {
+            AUNG.GET("Api/ApiBookManage", {}, function(text, data, xml) {
+                if(AUNG.isAjaxError()) return false;
+                AUNG.datatable.parse("ichiran", text);
+            });
+        },
+        register:function() {
+            if(!logic.validate()) {
+                return false;
+            }
+            var _postData = {
+                "book_id": $$("book_id").getValue(),
+                "book_name": $$("book_name").getValue(),
+                "author": $$("author").getValue(),
+                "category": $$("category").getValue(),
+                "overview": $$("overview").getValue(),
+                "publisher": $$("publisher").getValue(),
+            };
+            AUNG.POST("Api/ApiBookRegister/register", _postData, function(data) {
+                if(AUNG.isAjaxError()) return false;
+                webix.message("登録しました。");
+            });
+        },
+        validate:function() {
+            if(!$$("form").validate()) {
+                AUNG.errorMessage("必須項目が不足しています。");
+                return false;
+            }
+            return true;
+        },
+        toEditBook:function(bookId) {
+            var _session = {book_id:bookId};
+            AUNG.pageMove("Menu", _session);
+        }
+    };
+    webix.ui(
+        {rows:[
+            form,
+            {},
+            footer,
+            {height:60},
+        ]}
+    );
+    webix.ready(function () {
+        AUNG.init();
+        logic.init();
+    });
+</script>

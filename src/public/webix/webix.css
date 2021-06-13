@@ -8261,8 +8261,8 @@ div.webix_inp_static,
 }
 .webix_tooltip {
   padding: 4px 8px;
-  background-color: #475466;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #000000;
   font-weight: 500;
   line-height: 20px;
   border-radius: 2px;

@@ -22,7 +22,7 @@ class MapperBase
 	{
 		// $modelPath = '\App\model\\' . $this->modelName;
 		if (is_null($model)) {
-			$model = new $this->$modelPath;
+			$model = new $this->modelPath;
 		}
 		$modelArr = $model->toArray();
 		$schema = $this->modelPath::$schema;

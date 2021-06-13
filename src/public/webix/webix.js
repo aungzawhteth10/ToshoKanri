@@ -41528,7 +41528,13 @@
       scrollX: true,
       scrollY: true,
       datafetch: 50,
-      navigation: true
+      navigation: true,
+      scheme:{
+        $change:function(item){
+          if (item.id % 2 == 0)
+          item.$css = "row_even";
+        }
+      },
     },
     $skin: function () {
       this.defaults.rowHeight = $active.rowHeight;

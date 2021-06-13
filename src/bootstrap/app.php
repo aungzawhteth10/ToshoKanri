@@ -7,10 +7,6 @@ $app = new \Slim\App([
        'displayErrorDetails' => true,
 ]
 ]);
-// $app->get('/first', function($request, $response) {
-//    return 'My first route';
-// });
-
 $container = $app->getContainer();
 $container['view'] = function ($container) {
    $view = new \Slim\Views\Twig(__DIR__ . '/../app/templates', [
@@ -22,12 +18,22 @@ $container['view'] = function ($container) {
    ));
    return $view;
 };
+$container['HtmlHelper'] = function () {
+   return new \App\Api\HtmlHelper();
+};
+$container['ApiSession'] = function () {
+   return new \App\Api\ApiSession();
+};
 $container['ApiLogin'] = function () {
    return new \App\Api\ApiLogin();
 };
 $container['ApiBookRegister'] = function () {
    return new \App\Api\ApiBookRegister();
 };
-$container['HtmlHelper'] = function () {
-   return new \App\Api\HtmlHelper();
+$container['ApiBookManage'] = function () {
+   return new \App\Api\ApiBookManage();
 };
+$container['ApiBookInfo'] = function () {
+   return new \App\Api\ApiBookInfo();
+};
+

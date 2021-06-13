@@ -2,6 +2,14 @@
 namespace App\Api;
 class ApiBase 
 {
+   protected $session;
+   protected $HtmlHelper;
+   public function __construct () {
+      $this->HtmlHelper = new \App\Api\HtmlHelper;
+      $dmSession = new \App\model\DmSession;
+      $dmSession->setModelData($_SESSION);
+      $this->session = $dmSession;
+   }
    public function toError($ErrorMsg)
    {
       http_response_code(500);
@@ -13,4 +21,3 @@ class ApiBase
       return json_encode($rtnData, JSON_UNESCAPED_UNICODE);
    }
 }
-?>

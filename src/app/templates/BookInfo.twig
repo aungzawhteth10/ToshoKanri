@@ -40,11 +40,18 @@
             "publisher":webix.rules.isNotEmpty
         }
     };
-    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50};
+    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:150, height:50};
     var logic = {
         init:function() {
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
+            logic.dataload();
+        },
+        dataload:function() {
+            AUNG.GET("Api/ApiBookInfo", {}, function(text, data, xml) {
+                if(AUNG.isAjaxError()) return false;
+                $$("form").parse(text);
+            });
         },
         register:function() {
             if(!logic.validate()) {
@@ -71,7 +78,7 @@
             return true;
         },
         toMenu:function() {
-            AUNG.pageMove("Menu");
+            AUNG.pageMove("BookManage");
         }
     };
     webix.ui(
