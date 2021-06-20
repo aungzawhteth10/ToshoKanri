@@ -73,7 +73,7 @@
             AUNG.POST("Api/ApiBookInfo", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました。");
-                dataload();
+                logic.dataload();
             });
         },
         validate:function() {
