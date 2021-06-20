@@ -126,6 +126,8 @@ class MapperBase
 			}
 		}
 		$stmt->execute($paramArr);
+		error_log('rowCount:');
+		error_log(print_r($stmt->rowCount(), true));
 		return $stmt->rowCount();
 	}
 	/*

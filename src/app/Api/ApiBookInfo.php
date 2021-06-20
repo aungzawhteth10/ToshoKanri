@@ -47,6 +47,6 @@ class ApiBookInfo extends ApiBase
         $dmBook->publisher = $postData['publisher'];
         $dmBook->rental    = $postData['rental'];
         $count = $dbBookMapper->update($dmBook);
-        return $count;
+        return parent::toJson($count);
     }
 }
