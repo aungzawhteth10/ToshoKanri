@@ -10,6 +10,7 @@ class ApiBookManage extends ApiBase
         $dbBookMapper = new \App\db\DbBookMapper;
         $book = $dbBookMapper->find();
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
+        $rental   = array_column(json_decode($this->HtmlHelper->getJson('cm_rental_condition')), 'value', 'id');
         error_log(print_r($category, true));
         error_log(print_r($category[1], true));
         $result = [];
@@ -20,7 +21,8 @@ class ApiBookManage extends ApiBase
                 'author'    => $value['author'],
                 'category'  => $category[$value['category']],
                 'overview'  => $value['overview'],
-                'publisher' => $value['publisher']
+                'publisher' => $value['publisher'],
+                'rental'    => $rental[$value['rental']],
             ];
         }
         return parent::toJson($result);

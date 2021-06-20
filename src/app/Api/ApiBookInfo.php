@@ -25,8 +25,28 @@ class ApiBookInfo extends ApiBase
             'author'    => $book[0]['author'],
             'category'  => $book[0]['category'],
             'overview'  => $book[0]['overview'],
-            'publisher' => $book[0]['publisher']
+            'publisher' => $book[0]['publisher'],
+            'rental'    => $book[0]['rental']
         ];
         return parent::toJson($result);
+    }
+    /*
+     * 書籍情報更新
+     */
+    public function update ($request, $response)
+    {   
+        $postData  = $_POST;
+        error_log(print_r($postData, true));
+        $dbBookMapper = new \App\db\DbBookMapper;
+        $dmBook = new \App\model\DmBook;
+        $dmBook->book_id   = $this->session->book_id;
+        $dmBook->book_name = $postData['book_name'];
+        $dmBook->author    = $postData['author'];
+        $dmBook->category  = $postData['category'];
+        $dmBook->overview  = $postData['overview'];
+        $dmBook->publisher = $postData['publisher'];
+        $dmBook->rental    = $postData['rental'];
+        $count = $dbBookMapper->update($dmBook);
+        return $count;
     }
 }

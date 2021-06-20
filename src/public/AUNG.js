@@ -1,9 +1,10 @@
 var AUNG = AUNG || {};
 AUNG.session = {};
 AUNG.init = function() {
-    AUNG.setSession(AUNG.session);
+    
 };
-AUNG.setSession = function(session) {
+AUNG.updateSession = function(session) {
+    AUNG.session = session;
     webix.storage.session.put('session', session);
 };
 AUNG.pageMove = function(page, session = {}) {
@@ -28,8 +29,6 @@ AUNG.errorMessage = function(message) {
     });
 };
 AUNG.GET = function(url, getData, cb) {
-    var _session = webix.storage.session.get("session");
-    // getData = $.extend({}, {session:_session}, getData);
     webix.ajax().get(url, getData, {
         error:function(text, data, xml){
             AUNG.errorMessage(text);
@@ -43,8 +42,6 @@ AUNG.GET = function(url, getData, cb) {
     });
 };
 AUNG.POST = function(url, postData, cb) {
-    var _session = webix.storage.session.get("session");
-    // postData = $.extend({}, {session:_session}, postData);
     webix.ajax().post(url, postData, {
         error:function(text, data, xml){
             AUNG.errorMessage(text);

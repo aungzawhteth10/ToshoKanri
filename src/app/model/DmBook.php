@@ -9,9 +9,9 @@ class DmBook extends DataModel
 		'category'  => 'string', //カテゴリ
 		'overview'  => 'string', //概要
 		'publisher' => 'string', //出版社
-
+		'rental'    => 'string', //レンタル状態
 	];
 	public static $primary_key = [
-		'book_id',//ユーザID
+		'book_id',//書籍ID
 	];
 }

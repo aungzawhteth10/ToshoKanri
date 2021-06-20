@@ -12,7 +12,6 @@ $app->get('/{id}', function ($request, $response, $args) {
 function _screenInit ($screenId, $auth_key, $view, $response)
 {
     if (in_array($screenId, ['Login', 'login'])) {//ログイン画面の場合
-        $_SESSION = [];
         _createSessionInfo('Login');
         $sessionArr = $_SESSION;
         $view->offsetSet('session', json_encode($sessionArr, JSON_UNESCAPED_UNICODE));

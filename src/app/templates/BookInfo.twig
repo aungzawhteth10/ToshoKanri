@@ -8,7 +8,7 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"書籍ＩＤ", width:100},
-                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}, disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"書籍名称", width:100},
@@ -29,6 +29,10 @@
                 {cols:[
                     {view:"label", label:"出版社", width:100},
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"レンタル状態", width:100},
+                    {view:"select", id:"rental", name:"rental", label:" ", options:{{HtmlHelper.getJson('cm_rental_condition')|raw}}, labelWidth:1, width:250},
                 ]},
                 {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary", width:100, height:50},
             ]}
@@ -58,16 +62,18 @@
                 return false;
             }
             var _postData = {
-                "book_id": $$("book_id").getValue(),
+                "book_id":   $$("book_id").getValue(),
                 "book_name": $$("book_name").getValue(),
-                "author": $$("author").getValue(),
-                "category": $$("category").getValue(),
-                "overview": $$("overview").getValue(),
+                "author":    $$("author").getValue(),
+                "category":  $$("category").getValue(),
+                "overview":  $$("overview").getValue(),
                 "publisher": $$("publisher").getValue(),
+                "rental":    $$("rental").getValue()
             };
-            AUNG.POST("Api/ApiBookRegister/register", _postData, function(text, data, xml) {
+            AUNG.POST("Api/ApiBookInfo", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました。");
+                dataload();
             });
         },
         validate:function() {

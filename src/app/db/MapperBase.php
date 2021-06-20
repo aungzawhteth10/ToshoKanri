@@ -126,7 +126,7 @@ class MapperBase
 			}
 		}
 		$stmt->execute($paramArr);
-		return [];
+		return $stmt->rowCount();
 	}
 	/*
 	* UPDATE SQL文を作成する。
@@ -179,7 +179,7 @@ class MapperBase
 			}
 		}
 		$stmt->execute($paramArr);
-		return 1;
+		return $stmt->rowCount();;
 	}
 	/*
 	* INSERT SQL文を作成する。

@@ -25,9 +25,8 @@
 	</div>
 </body>
 <script>
-    AUNG.session = {{session|raw}};
+    AUNG.updateSession({{session|raw}});
     console.log(AUNG.session);
-    AUNG.setSession(AUNG.session);
     var _title = "{{screen_name}}";
     var _dom = document.getElementsByClassName("title");
     _dom[0].innerHTML = _title;
