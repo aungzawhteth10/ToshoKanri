@@ -11,6 +11,6 @@ class ApiSession extends ApiBase
             $_SESSION[$key] = $value;
         }
         error_log(print_r($_SESSION, true));
-	    return parent::toJson($_SESSION);
+        return parent::toJson($_SESSION);
    }
 }

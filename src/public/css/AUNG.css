@@ -29,3 +29,11 @@ input {
 .pageMove:hover {
 	cursor: pointer;
 }
+.webix_el_select select {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+.webix_el_select select {
+	color: #475466;
+	border-color: #CCD7E6;
+}

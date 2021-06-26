@@ -5,21 +5,21 @@ class ApiLogin
 {
    public function loginAuth($request, $response)
    {
-		$user_name = $_POST['user_name'];
-		$password = $_POST['password'];
-		$dbUserMapper = new \App\db\DbUserMapper;
-		$dmUser = new \App\model\DmUser;
-		$dmUser->user_name = $user_name;
-		$dmUser->password  = $password;
-		$user = $dbUserMapper->find($dmUser);
-		if (count($user) == 0) {
-			return false;
-		}
-		$auth_key = $this->createAuthKey($user[0]['user_id']);
-		$result = [
-			'auth_key' => $auth_key,
-		];
-	    return json_encode($result, JSON_UNESCAPED_UNICODE);
+        $user_name = $_POST['user_name'];
+        $password = $_POST['password'];
+        $dbUserMapper = new \App\db\DbUserMapper;
+        $dmUser = new \App\model\DmUser;
+        $dmUser->user_name = $user_name;
+        $dmUser->password  = $password;
+        $user = $dbUserMapper->find($dmUser);
+        if (count($user) == 0) {
+            return false;
+        }
+        $auth_key = $this->createAuthKey($user[0]['user_id']);
+        $result = [
+            'auth_key' => $auth_key,
+        ];
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
    }
    public function register($request, $response)
    {

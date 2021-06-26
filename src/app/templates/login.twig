@@ -9,63 +9,63 @@
 }
 </style>
 <script >
-	var tabbar = {
-	  view:"tabbar", 
-	  id: "tabbar", 
-	  multiview:true, 
-	  options: [
-	    {value: "Login", id: "login"},
-	    {value: "Sign Up", id: "signUp"},
-	  ]
-	};
-	var loginForm = {
+    var tabbar = {
+      view:"tabbar", 
+      id: "tabbar", 
+      multiview:true, 
+      options: [
+        {value: "Login", id: "login"},
+        {value: "Sign Up", id: "signUp"},
+      ]
+    };
+    var loginForm = {
         css:"library_bk",
-		view:"form",
-		id:"loginForm",
-		borderless:true,
+        view:"form",
+        id:"loginForm",
+        borderless:true,
         elements:[
             {cols:[
-            	{},
-            	{width:340, rows:[
-            		{view:"label", label:"UserName"},
-	            	{view:"text", id:"user_name", name:"user_name", label:" ", labelWidth:10},
-            		{view:"label", label:"Password"},
-	            	{view:"text", id:"password", name:"password", label:" ", type:"Password", labelWidth:10},
-	            	{view:"label" , label:"<a href='https://www.google.com' style='color:#C8CAF6;'>Forgot password</a>", align:"right"},
-	            	{cols:[
-	            		{view:"button", value:"Login", css:"webix_primary", id:"login", height:50, hotkey: "enter"},
-	            	]},
+                {},
+                {width:340, rows:[
+                    {view:"label", label:"UserName"},
+                    {view:"text", id:"user_name", name:"user_name", label:" ", labelWidth:10},
+                    {view:"label", label:"Password"},
+                    {view:"text", id:"password", name:"password", label:" ", type:"Password", labelWidth:10},
+                    {view:"label" , label:"<a href='https://www.google.com' style='color:#C8CAF6;'>Forgot password</a>", align:"right"},
+                    {cols:[
+                        {view:"button", value:"Login", css:"webix_primary", id:"login", height:50, hotkey: "enter"},
+                    ]},
                     {}
-            	]},
-            	{}
+                ]},
+                {}
             ]},
         ],
         rules:{
-        	"user_name":webix.rules.isNotEmpty,
-        	"password":webix.rules.isNotEmpty,
-    	}};
+            "user_name":webix.rules.isNotEmpty,
+            "password":webix.rules.isNotEmpty,
+        }};
     var signUpForm = {
         css:"library_bk",
-    	view:"form",
-    	id:"signUpForm",
-    	hidden:true,
-    	borderless:true,
+        view:"form",
+        id:"signUpForm",
+        hidden:true,
+        borderless:true,
         elements:[
-        	{cols:[
-            	{},
-            	{width:340, rows:[
-            		{view:"label", label:"UserName"},
-	            	{view:"text", id:"reg_user_name", name:"reg_user_name", label:" ", labelWidth:10},
-            		{view:"label", label:"Password"},
-	            	{view:"text", id:"reg_password", name:"reg_password", label:" ", type:"Password", labelWidth:10},
-            		{view:"label", label:"ReType Password"},
-	            	{view:"text", id:"reg_re_password", name:"reg_re_password", label:" ", type:"Password", labelWidth:10},
-	            	{cols:[
-	            		{view:"button", id:"signUp", name:"signUp", value:"Sign Up", css:"webix_primary", height:50, hotkey: "enter"},
-	            	]},
+            {cols:[
+                {},
+                {width:340, rows:[
+                    {view:"label", label:"UserName"},
+                    {view:"text", id:"reg_user_name", name:"reg_user_name", label:" ", labelWidth:10},
+                    {view:"label", label:"Password"},
+                    {view:"text", id:"reg_password", name:"reg_password", label:" ", type:"Password", labelWidth:10},
+                    {view:"label", label:"ReType Password"},
+                    {view:"text", id:"reg_re_password", name:"reg_re_password", label:" ", type:"Password", labelWidth:10},
+                    {cols:[
+                        {view:"button", id:"signUp", name:"signUp", value:"Sign Up", css:"webix_primary", height:50, hotkey: "enter"},
+                    ]},
                     {}
-            	]},
-            	{}
+                ]},
+                {}
             ]},
         ],
         rules:{
@@ -73,66 +73,66 @@
             "reg_password":webix.rules.isNotEmpty,
             "reg_re_password":webix.rules.isNotEmpty
         }};
-	webix.ui(
+    webix.ui(
         {rows:[
-			tabbar,
-			loginForm,
-			signUpForm
-		]}
-	);
+            tabbar,
+            loginForm,
+            signUpForm
+        ]}
+    );
     webix.ready(function () {
-    	AUNG.init();
+        AUNG.init();
         logic.init();
     });
     var logic = {
         init:function() {
-        	$$("tabbar").attachEvent("onItemClick", logic.changeTab);
-			$$("login").attachEvent("onItemClick", logic.login);
-			$$("signUp").attachEvent("onItemClick", logic.signUp);
+            $$("tabbar").attachEvent("onItemClick", logic.changeTab);
+            $$("login").attachEvent("onItemClick", logic.login);
+            $$("signUp").attachEvent("onItemClick", logic.signUp);
         },
         changeTab:function() {
-        	var click = $$("tabbar").getValue();
-			if(click == "login"){
-				$$("signUpForm").hide();
-				$$("loginForm").show();
-			}else if(click == "signUp"){
-				$$("loginForm").hide();
-				$$("signUpForm").show();
-			}
+            var click = $$("tabbar").getValue();
+            if(click == "login"){
+                $$("signUpForm").hide();
+                $$("loginForm").show();
+            }else if(click == "signUp"){
+                $$("loginForm").hide();
+                $$("signUpForm").show();
+            }
         },
         login:function() {
-        	if (!$$("loginForm").validate()) {
-				AUNG.errorMessage("ユーザ名とパスワードを入力してください！");
-				return false;
-			}
-        	var _user     = $$("user_name").getValue();
-			var _password = $$("password").getValue();
-			var post_data = {
-				"user_name": _user,
-				"password":_password
-			};
-			$.post("Api/ApiLogin/loginAuth", post_data, function(data) {
-				if (data == false) {
-					AUNG.errorMessage("ユーザ名またはパスワードが間違っています。");
-					return false;
-				}
-				var obj = JSON.parse(data);
-				webix.storage.session.put('auth_key', obj.auth_key);
-				location.href= "/Menu?auth_key=" + obj.auth_key;
-			});
+            if (!$$("loginForm").validate()) {
+                AUNG.errorMessage("ユーザ名とパスワードを入力してください！");
+                return false;
+            }
+            var _user     = $$("user_name").getValue();
+            var _password = $$("password").getValue();
+            var post_data = {
+                "user_name": _user,
+                "password":_password
+            };
+            $.post("Api/ApiLogin/loginAuth", post_data, function(data) {
+                if (data == false) {
+                    AUNG.errorMessage("ユーザ名またはパスワードが間違っています。");
+                    return false;
+                }
+                var obj = JSON.parse(data);
+                webix.storage.session.put('auth_key', obj.auth_key);
+                location.href= "/Menu?auth_key=" + obj.auth_key;
+            });
         },
         signUp:function() {
             var _reg_user_name    = $$("reg_user_name").getValue();
-			var _reg_password    = $$("reg_password").getValue();
-			var _reg_re_password = $$("reg_re_password").getValue();
+            var _reg_password    = $$("reg_password").getValue();
+            var _reg_re_password = $$("reg_re_password").getValue();
             if (!$$("signUpForm").validate()) {
                 AUNG.errorMessage("全部入力する必要があります。");
                 return false;
             }
-			if (_reg_password != _reg_re_password) {
+            if (_reg_password != _reg_re_password) {
                 AUNG.errorMessage("パスワードが一致しません。");
                 return false;
-			}
+            }
             var post_data = {
                 "reg_user_name": _reg_user_name,
                 "reg_password":_reg_password,

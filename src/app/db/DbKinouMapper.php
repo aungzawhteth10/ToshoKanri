@@ -2,6 +2,6 @@
 namespace App\db;
 class DbKinouMapper extends MapperBase 
 {
-	protected $tableName = 'kinou';
-	protected $modelPath = '\App\model\DmKinou';
+    protected $tableName = 'kinou';
+    protected $modelPath = '\App\model\DmKinou';
 }
