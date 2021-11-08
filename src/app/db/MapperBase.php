@@ -5,10 +5,10 @@ class MapperBase
     protected $pdo;
     public function __construct()
     {
-        $dsn = 'mysql:dbname=au460610115_ToshoKanri;host=92.249.44.52';
-        $servername = 'u460610115_ToshoKanri';
+        $dsn = 'mysql:dbname=u460610115_ToshoKanri;host=92.249.44.52';
+        $servername = 'u460610115_Toshokanri';
         $password = 'Pglk1234';
-           try {
+        try {
             $this->pdo = new \PDO($dsn, $servername, $password);
         } catch (\PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
