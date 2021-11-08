@@ -5,10 +5,9 @@ class MapperBase
     protected $pdo;
     public function __construct()
     {
-        $dsn = 'mysql:dbname=aung_library;host=localhost';
-        $servername = 'root';
-        $password = 'root';
-        $dbname = 'aung_gakuen';
+        $dsn = 'mysql:dbname=au460610115_ToshoKanri;host=92.249.44.52';
+        $servername = 'u460610115_ToshoKanri';
+        $password = 'Pglk1234';
            try {
             $this->pdo = new \PDO($dsn, $servername, $password);
         } catch (\PDOException $e) {
