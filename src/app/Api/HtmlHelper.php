@@ -42,6 +42,7 @@ class HtmlHelper
         $dmCmTable = new \App\model\DmCmTable;
         $dmCmTable->bunrui_id = $bunrui;
         $cmTable = $dbCmTableMapper->find($dmCmTable);
+        $result = [];
         foreach ($cmTable as $key => $value) {
             $result[] = [
                 'id'    => $value['id'],

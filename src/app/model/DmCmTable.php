@@ -8,7 +8,7 @@ class DmCmTable extends DataModel
         'name'      => 'string', //名称
     ];
     public static $primary_key = [
-        'user_id',//ユーザID
-        'id'  => 'string', //ユーザ名
+        'bunrui_id',//分類ID
+        'id',//コードID
     ];
 }
