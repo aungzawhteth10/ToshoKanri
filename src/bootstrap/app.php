@@ -24,9 +24,6 @@ $container['HtmlHelper'] = function () {
 $container['ApiSession'] = function () {
    return new \App\Api\ApiSession();
 };
-$container['ApiLogin'] = function () {
-   return new \App\Api\ApiLogin();
-};
 $container['ApiBookRegister'] = function () {
    return new \App\Api\ApiBookRegister();
 };
