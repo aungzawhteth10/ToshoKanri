@@ -12,6 +12,10 @@ class ApiBookRegister extends ApiBase
     }
     public function register ($request, $response)
     {   
+     /* $kainn_id   = $_POST['kainn_id'];
+        $Borrow_date   = $_POST['Borrow_date'];
+        $usage_period   = $_POST['usage_period'];*/
+    
         $book_id   = $_POST['book_id'];
         $book_name = $_POST['book_name'];
         $author    = $_POST['author'];
@@ -23,6 +27,11 @@ class ApiBookRegister extends ApiBase
         }
         $dbBookMapper = new \App\db\DbBookMapper;
         $dmBook = new \App\model\DmBook;
+
+    /*  $dmBook->kainn_id   = $kainn_id;
+        $dmBook->Borrow_date   = $Borrow_date;
+        $dmBook->usage_period   = $usage_period;  */
+
         $dmBook->book_id   = $book_id;
         $dmBook->book_name = $book_name;
         $dmBook->author    = $author;

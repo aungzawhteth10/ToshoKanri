@@ -17,7 +17,7 @@
           columns:[
             {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
             {id:"book_name", head :["書籍名称", {content:"textFilter"}], minWidth:200, fillspace:true},
-            {id:"rental", header:["レンタル状態", {content:"selectFilter"}], width:100},
+            {id:"rental", header:["レンタル状態", {content:"selectFilter"}], options:{{HtmlHelper.getJsonKara('cm_rental_condition')|raw}}, width:100},
             {id:"author", header:["作者", {content:"textFilter"}], width:200},
             {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
             {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},

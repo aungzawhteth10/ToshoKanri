@@ -8,4 +8,4 @@ $app->get('/Api/ApiBookInfo', 'ApiBookInfo:init');
 $app->post('/Api/ApiBookInfo', 'ApiBookInfo:update');
 $app->get('/Api/ApiBookRyoukinn', '\App\Api\ApiBookRyoukinn:init');
 $app->post('/Api/ApiBookRyoukinn', '\App\Api\ApiBookRyoukinn:update');
-$app->get('/Api/ApiBookRentalfee', '\App\Api\ApiBookRentalfee:init');
+$app->get('/Api/ApiBookRental', 'ApiBookRental:init');

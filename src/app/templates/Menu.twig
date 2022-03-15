@@ -8,13 +8,13 @@
         elements:[
             {cols:[
                 {},
-                {view:"button", id:"btn_book_register", value:"書籍登録" , css:"webix_primary", height:50},
-                {view:"button", id:"btn_book_manage", value:"書籍管理" , css:"webix_primary", height:50},
-                {view:"button", id:"btn_book_rental", value:"レンタル情報" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_book_register", value:"新規図書情報登録画面" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_book_manage", value:"図書情報管理画面" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_book_rental", value:"図書レンタル管理" , css:"webix_primary", height:50},
                 {view:"button", id:"btn_book_ryoukinn", value:"料金案内" , css:"webix_primary", height:50},
                 {}
             ]}
-    ]};
+    ]}; 
     var logic = {
         init:function() {
             $$("btn_book_register").attachEvent("onItemClick", function(){logic.pageMove("BookRegister");});

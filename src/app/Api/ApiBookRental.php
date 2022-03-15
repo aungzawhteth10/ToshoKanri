@@ -10,6 +10,7 @@ class ApiBookRental extends ApiBase
         $dbBookMapper = new \App\db\DbBookMapper;
         $book = $dbBookMapper->find();
         error_log(print_r($book, true));
+
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
         $rental   = array_column(json_decode($this->HtmlHelper->getJson('cm_rental_condition')), 'value', 'id');
         error_log(print_r($category, true));
@@ -23,13 +24,7 @@ class ApiBookRental extends ApiBase
                 'category'  => $category[$value['category']] ?? '',
                 'overview'  => $value['overview'],
                 'publisher' => $value['publisher'],
-                'book_ryoukinn'  => $value['ryoukinn'],
-                'book_rental'    => $value['rental']
-                
-                $date = new DateTime('2022-03-15');
-                $date->modify('+1 week');
-                echo $date->format('Y-m-d'); 
-
+                'rental'    => $rental[$value['rental']],
             ];
         }
         return parent::toJson($result);

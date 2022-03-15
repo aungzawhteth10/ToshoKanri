@@ -1,56 +1,113 @@
 {% include 'base.html' %}
 <script >
-  var footer = {
-    cols:[
-      {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50},
-      {}
-    ]
-  };
-  var form = {
-    view:"form",
-    id:"form",
-    scroll:true,
-    borderless:true,
-    elements:[
-      {rows: [
-        {view:"cust_datatable",
-          id:"ichiran",
-          hover:"myhover",
-          select:true,
-          rowHeight:60,
-          yCount:12,
-          tooltip:true,
-          columns:[
-            {id:"book_id", header:"レンタル書籍ID" , width:200},
-            {id:"book_name", header:"レンタル書籍名", width:200},
-            {id:"book_", header:"レンタル時間", width:200},
-          ]
+    var form = {
+        view:"form",
+        id:"form",
+        borderless:true,
+        elements:[
+            {rows:[
+                {cols:[
+                    {view:"label", label:"利用者ID", width:100},
+                    {view:"text", id:"kainn_id", name:"kainn_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                ]},
+                {cols:[
+                    {view:"label", label:"借用日付", width:100},
+                    {view:"text", id:"Borrow_date", name:"Borrow_date", label:" ", labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"利用期間", width:100},
+                    {view:"select", id:"usage_period", name:"usage_period", label:" ",  options:{{HtmlHelper.getJsonKara('cm_book_rental')|raw}}, labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"書籍ＩＤ", width:100},
+                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                ]},
+                {cols:[
+                    {view:"label", label:"書籍名称", width:100},
+                    {view:"text", id:"book_name", name:"book_name", label:" ", labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"作者名", width:100},
+                    {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250},
+                ]},
+                 {cols:[
+                    {view:"label", label:"カテゴリ", width:100},
+                    {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"概要", width:100},
+                    {view:"text", id:"overview", name:"overview", label:" ", labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"出版社", width:100},
+                    {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
+                ]},
+                {view:"button", id:"btn_register", name:"btn_register", value:"情報の登録", css:"webix_primary", width:100, height:50},
+            ]}
+          //      {view:"button", id:"btn_register", name:"btn_register", value:"情報の編集", css:"webix_primary", width:100, height:50},
+         //   ]}
+        ],
+        rules:{
+            /*
+            "book_id":webix.rules.isNotEmpty,
+            "book_name":webix.rules.isNotEmpty,
+            "author":webix.rules.isNotEmpty,
+            "publisher":webix.rules.isNotEmpty
+            */
+            "kainn_id":webix.rules.isNotEmpty,
+            "Borrow_date":webix.rules.isNotEmpty,
+            "usage_period":webix.rules.isNotEmpty,
+        }
+    };
+    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50};
+    var logic = {
+        init:function() {
+            $$("btn_register").attachEvent("onItemClick", logic.register);
+            $$("btn_back").attachEvent("onItemClick", logic.toMenu);
         },
-      ]}
-    ]
-  };
-  
-  var logic = {
-    init:function() {
-      $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
-      logic.dataload();
-    },
-    dataload:function() {
-      AUNG.GET("Api/ApiBookRyoukinn", function(text, data, xml) {
-        if(AUNG.isAjaxError()) return false;
-        AUNG.datatable.parse("ichiran", text);
-      });
-    }
-  };
-  webix.ui(
-    {rows:[
-      form,
-      footer,
-      {height:60},
-    ]}
-  );
-  webix.ready(function () {
-    AUNG.init();
-    logic.init();
-  });
+        register:function() {
+            if(!logic.validate()) {
+                return false;
+            }
+            var _postData = {
+                "book_id": $$("book_id").getValue(),
+                "book_name": $$("book_name").getValue(),
+                "author": $$("author").getValue(),
+                "category": $$("category").getValue(),
+                "overview": $$("overview").getValue(),
+                "publisher": $$("publisher").getValue(),
+                "ryoukinn": $$("ryoukinn").getValue(),
+                "rental":   $$("rental").getValue(),
+                "kainn_id": $$("kainn_id").getValue(),
+                "Borrow_date": $$("Borrow_date").getValue(),
+                "usage_period": $$("usage_period").getValue(),
+            };
+            AUNG.POST("Api/ApiBookManage/manage", _postData, function(text, data, xml) {
+                if(AUNG.isAjaxError()) return false;
+                webix.message("登録しました。");
+            });
+        },
+        validate:function() {
+            if(!$$("form").validate()) {
+                AUNG.errorMessage("必須項目が不足しています。");
+                return false;
+            }
+            return true;
+        },
+        toMenu:function() {
+            AUNG.pageMove("Menu");
+        }
+    };
+    webix.ui(
+        {rows:[
+            form,
+            {},
+            footer,
+            {height:60}
+        ]}
+    );
+    webix.ready(function () {
+        AUNG.init();
+        logic.init();
+    });
 </script>
