@@ -12,13 +12,14 @@
           hover:"myhover",
           select:true,
           rowHeight:60,
-          yCount:12,
+          yCount:8,
           tooltip:true,
           columns:[
             {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
-            {id:"book_name", header:["書籍名称", {content:"textFilter"}], minWidth:200, fillspace:true},
+            {id:"book_name", head :["書籍名称", {content:"textFilter"}], minWidth:200, fillspace:true},
             {id:"rental", header:["レンタル状態", {content:"selectFilter"}], width:100},
             {id:"author", header:["作者", {content:"textFilter"}], width:200},
+            {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
             {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
             {id:"overview", header:["概要", {content:"textFilter"}], width:200},
             {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
@@ -26,9 +27,9 @@
       }]}
     ]
   };
-  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50};
+  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50}
   var logic = {
-    init:function() {
+     init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
       logic.dataload();
     },
@@ -38,15 +39,10 @@
         AUNG.datatable.parse("ichiran", text);
       });
     },
-    toEditBook:function(bookId) {
-      var _session = {book_id:bookId};
-      AUNG.pageMove("BookInfo", _session);
-    }
   };
-  webix.ui(
+   webix.ui(
     {rows:[
       form,
-      {},
       footer,
       {height:60},
     ]}

@@ -29,6 +29,8 @@ class ApiBookRegister extends ApiBase
         $dmBook->category  = $category;
         $dmBook->overview  = $overview;
         $dmBook->publisher = $publisher;
+        $dmBook->ryoukinn  = $_POST['ryoukinn'];
+        $dmBook->rental    = $_POST['rental'];
         $result = $dbBookMapper->insert($dmBook);
         return parent::toJson($result);
     }

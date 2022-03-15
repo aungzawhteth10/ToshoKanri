@@ -26,7 +26,8 @@ class ApiBookInfo extends ApiBase
             'category'  => $book[0]['category'],
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
-            'rental'    => $book[0]['rental']
+            'rental'    => $book[0]['rental'],
+            'ryoukinn'  => $book[0]['ryoukinn']
         ];
         return parent::toJson($result);
     }
@@ -46,6 +47,7 @@ class ApiBookInfo extends ApiBase
         $dmBook->overview  = $postData['overview'];
         $dmBook->publisher = $postData['publisher'];
         $dmBook->rental    = $postData['rental'];
+        $dmBook->ryoukinn  = $postData['ryoukinn'];
         $count = $dbBookMapper->update($dmBook);
         return parent::toJson($count);
     }

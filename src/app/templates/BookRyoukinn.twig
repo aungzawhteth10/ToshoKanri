@@ -1,0 +1,56 @@
+{% include 'base.html' %}
+<script >
+  var footer = {
+    cols:[
+      {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50},
+      {}
+    ]
+  };
+  var form = {
+    view:"form",
+    id:"form",
+    scroll:true,
+    borderless:true,
+    elements:[
+      {rows: [
+        {view:"cust_datatable",
+          id:"ichiran",
+          hover:"myhover",
+          select:true,
+          rowHeight:60,
+          yCount:12,
+          tooltip:true,
+          columns:[
+            {id:"book_id", header:"書籍ID" , width:200},
+            {id:"book_name", header:"書籍名", width:200},
+            {id:"book_ryoukinn", header:"料金", width:200},
+          ]
+        },
+      ]}
+    ]
+  };
+  
+  var logic = {
+    init:function() {
+      $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
+      logic.dataload();
+    },
+    dataload:function() {
+      AUNG.GET("Api/ApiBookRyoukinn", function(text, data, xml) {
+        if(AUNG.isAjaxError()) return false;
+        AUNG.datatable.parse("ichiran", text);
+      });
+    }
+  };
+  webix.ui(
+    {rows:[
+      form,
+      footer,
+      {height:60},
+    ]}
+  );
+  webix.ready(function () {
+    AUNG.init();
+    logic.init();
+  });
+</script>

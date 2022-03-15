@@ -33,4 +33,7 @@ $container['ApiBookManage'] = function () {
 $container['ApiBookInfo'] = function () {
    return new \App\Api\ApiBookInfo();
 };
+$container['ApiBooRyoukinn'] = function () {
+   return new \App\Api\ApiBookRyoukinn();
+};
 

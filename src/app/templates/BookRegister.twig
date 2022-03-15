@@ -19,6 +19,14 @@
                     {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250},
                 ]},
                 {cols:[
+                    {view:"label", label:"料金", width:100},
+                    {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"レンタル", width:100},
+                    {view:"select", id:"rental", name:"rental", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_rental')|raw}}, labelWidth:1, width:250},
+                ]},
+                {cols:[
                     {view:"label", label:"カテゴリ", width:100},
                     {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},
                 ]},
@@ -57,6 +65,8 @@
                 "category": $$("category").getValue(),
                 "overview": $$("overview").getValue(),
                 "publisher": $$("publisher").getValue(),
+                "ryoukinn": $$("ryoukinn").getValue(),
+                "rental":   $$("rental").getValue(),
             };
             AUNG.POST("Api/ApiBookRegister/register", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
