@@ -18,11 +18,9 @@ class ApiBookManage extends ApiBase
         $result = [];
         foreach ($book as $key => $value) {
             $result[] = [
-
              /* "kainn_id" => $value['kainn_id'],
                 "Borrow_date" => $value['Borrow_date'],
                 "usage_period" => $value['usage_period'], */
-
                 'book_id'   => $value['book_id'],
                 'book_name' => '<span class="pageMove" onclick="logic.toEditBook('. $value['book_id'] .')">' . $value['book_name']. '</span>',
                 'author'    => $value['author'],
