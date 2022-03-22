@@ -33,7 +33,11 @@ $container['ApiBookManage'] = function () {
 $container['ApiBookInfo'] = function () {
    return new \App\Api\ApiBookInfo();
 };
-$container['ApiBooRyoukinn'] = function () {
-   return new \App\Api\ApiBookRyoukinn();
+$container['ApiRentalRegister'] = function () {
+   return new \App\Api\ApiRentalRegister();
 };
+$container['ApiRentalManage'] = function () {
+   return new \App\Api\ApiRentalManage();
+};
+
 

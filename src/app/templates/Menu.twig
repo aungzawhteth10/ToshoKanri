@@ -10,8 +10,8 @@
                 {},
                 {view:"button", id:"btn_book_register", value:"新規図書情報登録画面" , css:"webix_primary", height:50},
                 {view:"button", id:"btn_book_manage", value:"図書情報管理画面" , css:"webix_primary", height:50},
-                {view:"button", id:"btn_book_rental", value:"図書レンタル管理" , css:"webix_primary", height:50},
-                {view:"button", id:"btn_book_ryoukinn", value:"料金案内" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_rental_register", value:"図書レンタル管理" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_rental_manage", value:"レンタル情報管理画面" , css:"webix_primary", height:50},
                 {}
             ]}
     ]}; 
@@ -19,8 +19,8 @@
         init:function() {
             $$("btn_book_register").attachEvent("onItemClick", function(){logic.pageMove("BookRegister");});
             $$("btn_book_manage").attachEvent("onItemClick", function(){logic.pageMove("BookManage");});
-            $$("btn_book_rental").attachEvent("onItemClick", function(){logic.pageMove("BookRental");});
-            $$("btn_book_ryoukinn").attachEvent("onItemClick", function(){logic.pageMove("BookRyoukinn");});
+            $$("btn_rental_register").attachEvent("onItemClick", function(){logic.pageMove("RentalRegister");});
+            $$("btn_rental_manage").attachEvent("onItemClick", function(){logic.pageMove("RentalManage");});
         },
         pageMove:function(page) {
             AUNG.pageMove(page);

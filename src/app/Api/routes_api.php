@@ -6,6 +6,7 @@ $app->post('/Api/ApiBookRegister/register', 'ApiBookRegister:register');
 $app->get('/Api/ApiBookManage', 'ApiBookManage:init');
 $app->get('/Api/ApiBookInfo', 'ApiBookInfo:init');
 $app->post('/Api/ApiBookInfo', 'ApiBookInfo:update');
-$app->get('/Api/ApiBookRyoukinn', '\App\Api\ApiBookRyoukinn:init');
-$app->post('/Api/ApiBookRyoukinn', '\App\Api\ApiBookRyoukinn:update');
-$app->get('/Api/ApiBookRental', 'ApiBookRental:init');
+$app->get('/Api/ApiRentalManage', '\App\Api\ApiRentalManage:init');
+$app->post('/Api/ApiRentalRegister', '\App\Api\ApiRentalRegister:update');
+
+
