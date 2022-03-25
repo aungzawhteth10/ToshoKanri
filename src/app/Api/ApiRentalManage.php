@@ -28,10 +28,10 @@ class ApiRentalManage extends ApiBase
                 'publisher' => $value['publisher'],//出版社
 
                 //レンタル情報を追加する。
-                'user_id'   => $rental[$value['book_id']]['user_id'] ?? '',//利用者ID
-                'Borrow_date'=> $rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
+                'user_id'      => $rental[$value['book_id']]['user_id'] ?? '',//利用者ID
+                'Borrow_date'  => $rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
                 'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
-                'ryoukinn'  => $rental[$value['book_id']]['ryoukinn'] ?? '', //料金
+                'ryoukinn'     => $rental[$value['book_id']]['ryoukinn'] ?? '', //料金
 
             ];
         }

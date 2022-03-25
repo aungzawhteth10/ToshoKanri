@@ -21,15 +21,14 @@
     ]
   };
   var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50}
-  var logic = {
+ var logic = {
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
-      $$("btn_rental_choice").attachEvent("onItemClick", function(){logic.pageMove("RentalChoie");});
       logic.dataload();
-    //  $$("ichiran").on_click.pageMove  = logic.toEditBook;
+      $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
-      AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
+      AUNG.GET("Api/ApiRentalManage", {}, function(text, data, xml) {
         if(AUNG.isAjaxError()) return false;
         AUNG.datatable.parse("ichiran", text);
       });
@@ -37,7 +36,7 @@
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
        var _session = {book_id:_item.book_id};
-      AUNG.pageMove("BookInfo", _session); 
+      AUNG.pageMove("BookInfo", _session);
     }
   };
    webix.ui(
