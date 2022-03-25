@@ -13,7 +13,7 @@ class ApiRentalManage extends ApiBase
         //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();
-        $rental = array_column($rental, null, 'book1_id') ;
+        $rental = array_column($rental, null, 'book_id') ;
 
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
         //  error_log(print_r($category, true));

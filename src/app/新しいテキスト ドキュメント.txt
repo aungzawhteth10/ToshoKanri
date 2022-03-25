@@ -1,0 +1,1 @@
+               {id:"book_name", header:"本", minWidth: 200, fillspace:true, sort:"string", template:"<span class='pageMove'>#name#</span>" },

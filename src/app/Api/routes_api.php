@@ -8,5 +8,4 @@ $app->get('/Api/ApiBookInfo', 'ApiBookInfo:init');
 $app->post('/Api/ApiBookInfo', 'ApiBookInfo:update');
 $app->get('/Api/ApiRentalManage', '\App\Api\ApiRentalManage:init');
 $app->post('/Api/ApiRentalRegister', '\App\Api\ApiRentalRegister:update');
-
-
+$app->get('/Api/ApiRentalChoie', '\App\Api\ApiRentalChoie:init');
