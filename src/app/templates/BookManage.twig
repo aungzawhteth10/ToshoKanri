@@ -32,7 +32,7 @@
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
       logic.dataload();
-       $$("ichiran").on_click.pageMove  = logic.toEditBook;
+      $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
       AUNG.GET("Api/ApiBookManage", {}, function(text, data, xml) {
@@ -42,7 +42,7 @@
     },
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
-      var _session = {book_id:_item.book_id};
+       var _session = {book_id:_item.book_id};
       AUNG.pageMove("BookInfo", _session);
     }
   };

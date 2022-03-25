@@ -16,7 +16,7 @@
           tooltip:true,
           columns:[
             {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
-            {id:"book_name", header :["書籍名称", {content:"textFilter"}],  width:200},
+            {id:"book_name", header:"書籍名", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
             {id:"user_id", header:["利用者ID", {content:"textFilter"}], width:100},
             {id:"Borrow_date", header :["借用日付", {content:"textFilter"}],  width:200},
             {id:"usage_period", header :["利用期間", {content:"textFilter"}],  width:200},
@@ -34,6 +34,7 @@
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
       logic.dataload();
+      $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
       AUNG.GET("Api/ApiRentalManage", {}, function(text, data, xml) {
@@ -41,8 +42,9 @@
         AUNG.datatable.parse("ichiran", text);
       });
     },
-      toEditBook:function(bookId) {
-      var _session = {book_id:bookId};
+    toEditBook:function(e, id, trg) {
+       var _item = $$("ichiran").getItem(id);
+       var _session = {book_id:_item.book_id};
       AUNG.pageMove("BookInfo", _session);
     }
   };
