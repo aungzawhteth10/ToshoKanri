@@ -10,17 +10,20 @@ class ApiRentalRegister extends ApiBase
         }
         return 'OK';
     }
+
+    //レンタル登録入力画面
     public function update ($request, $response)
     {   
         $user_id     = $_POST['user_id'];
         $Borrow_date = $_POST['Borrow_date'];   
         $usage_period = $_POST['usage_period'];
-        $rental_id   = $_POST['rental_id'];
-        $rental_name = $_POST['rental_name'];
+        $book_id   = $_POST['book_id'];
+        $book_name = $_POST['book_name'];
         $author      = $_POST['author'];
         $category    = $_POST['category'];
         $overview    = $_POST['overview'];
         $publisher   = $_POST['publisher'];
+        $ryoukinn    = $_POST['ryoukinn'];
         if ($this->_isRentalIdDuplicate($rental_id)) {
             return parent::toError('書籍IDが重複しています。');
         }
@@ -30,12 +33,13 @@ class ApiRentalRegister extends ApiBase
         $dmRental->user_id   = $user_id;
         $dmRental->Borrow_date  = $Borrow_date;
         $dmRental->usage_period = $usage_period;  
-        $dmRental->rental_id   = $rental_id;
-        $dmRental->rental_name = $rental_name;
+        $dmRental->book_id   = $book_id;
+        $dmRental->book_name = $book_name;
         $dmRental->author    = $author;
         $dmRental->category  = $category;
         $dmRental->overview  = $overview;
         $dmRental->publisher = $publisher;
+        $dmRental->ryoukinn  = $ryoukinn;
         $result = $dbRentalMapper->insert($dmRental);
         return parent::toJson($result);
     }

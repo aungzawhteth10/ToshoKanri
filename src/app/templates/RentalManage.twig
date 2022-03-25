@@ -41,6 +41,10 @@
         AUNG.datatable.parse("ichiran", text);
       });
     },
+      toEditBook:function(bookId) {
+      var _session = {book_id:bookId};
+      AUNG.pageMove("BookInfo", _session);
+    }
   };
    webix.ui(
     {rows:[

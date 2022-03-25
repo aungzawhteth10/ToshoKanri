@@ -4,4 +4,5 @@ class DbRentalMapper extends MapperBase
 {
     protected $tableName = 'rental';
     protected $modelPath = '\App\model\DmRental';
+
 }

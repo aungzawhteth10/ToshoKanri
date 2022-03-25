@@ -7,41 +7,35 @@ class ApiRentalManage extends ApiBase
      */
     public function init ($request, $response)
     {   
+        //図書情報を取得する
+        $DbBookMapper = new \App\db\DbBookMapper;
+        $book = $DbBookMapper->find();
+        //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();
-        error_log(print_r($rental, true));
-        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_rental_category')), 'value', 'id');
+        $rental = array_column($rental, null, 'book1_id') ;
+
+        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
         //  error_log(print_r($category, true));
         $result = [];
-        foreach ($rental as $key => $value) {
+        foreach ($book as $key => $value) {
             $result[] = [
-                'rental_id'   => $value['rental_id'], //書籍ID
-                'rental_name' => $value['rental_name'],//書籍名前
-                'user_id'   => $value['user_id'],//利用者ID
-                'Borrow_date'=> $value['Borrow_date'], //借用日付
-                'usage_period' => $value['usage_period'], //利用期間  
+                'book_id'   => $value['book_id'], //書籍ID
+                'book_name' => $value['book_name'],//書籍名前
                 'author'    => $value['author'], //作者
                 'category'  => $category[$value['category']] ?? '',//カテゴリ
                 'overview'  => $value['overview'], //概要
                 'publisher' => $value['publisher'],//出版社
-                'ryoukinn'  => $value['ryoukinn'], //料金
+
+                //レンタル情報を追加する。
+                'user_id'   => $rental[$value['book_id']]['user_id'] ?? '',//利用者ID
+                'Borrow_date'=> $rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
+                'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
+                'ryoukinn'  => $rental[$value['book_id']]['ryoukinn'] ?? '', //料金
+
             ];
         }
         return parent::toJson($result);
     }
 
 }
-
-/*
-rental_id
-rental_name
-user_id
-Borrow_date
-usage_period
-author
-category
-overview
-publisher
-ryoukinn
-rental
-*/

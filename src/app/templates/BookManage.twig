@@ -14,9 +14,10 @@
           rowHeight:60,
           yCount:8,
           tooltip:true,
+
           columns:[
             {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
-            {id:"book_name", header :["書籍名称", {content:"textFilter"}],  width:200},
+            {id:"book_name", header:"書籍名", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
             {id:"author", header:["作者", {content:"textFilter"}], width:200},
             {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
             {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
@@ -31,6 +32,7 @@
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
       logic.dataload();
+       $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
       AUNG.GET("Api/ApiBookManage", {}, function(text, data, xml) {
@@ -38,10 +40,16 @@
         AUNG.datatable.parse("ichiran", text);
       });
     },
+    toEditBook:function(e, id, trg) {
+       var _item = $$("ichiran").getItem(id);
+      var _session = {book_id:_item.book_id};
+      AUNG.pageMove("BookInfo", _session);
+    }
   };
    webix.ui(
     {rows:[
       form,
+      {},
       footer,
       {height:60},
     ]}
