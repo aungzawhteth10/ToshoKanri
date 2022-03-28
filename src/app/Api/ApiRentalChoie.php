@@ -7,12 +7,17 @@ class ApiRentalChoie extends ApiBase
      */
     public function init ($request, $response)
     {   
-        //図書の情報を取得する
+        //図書情報を取得する
+        $DbBookMapper = new \App\db\DbBookMapper;
+        $book = $DbBookMapper->find();
+        //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();
-
+        $rental = array_column($rental, null, 'book_id') ;
+        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
+        //  error_log(print_r($category, true));
         $result = [];
-        foreach ($rental as $key => $value) {
+        foreach ($book as $key => $value) {
             $result[] = [
                 'book_id'   => $value['book_id'], //書籍ID
                 'book_name' => $value['book_name'],//書籍名前

@@ -2,7 +2,7 @@
 namespace App\Api;
 class ApiRentalRegister extends ApiBase
 {
-    public function chkDuplicate ($request, $response)
+    public function chekDuplicate ($request, $response)
     {   
         $bookID = $_GET['book_id'];
         if ($this->_isRentalIdDuplicate($bookId)) {

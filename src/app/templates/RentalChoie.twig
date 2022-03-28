@@ -15,7 +15,7 @@
           yCount:8,
           tooltip:true,
           columns:[
-            {id:"book_name", header:"本を選ぶ", width: 200, ksort:"string", template:"<span class='pageMove'>#book_name#</span>"},
+            {id:"book_name", header:"本を選ぶ", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
           ]
       }]}
     ]
@@ -28,7 +28,7 @@
       $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
-      AUNG.GET("Api/ApiRentalManage", {}, function(text, data, xml) {
+      AUNG.GET("Api/ApiRentalChoie", {}, function(text, data, xml) {
         if(AUNG.isAjaxError()) return false;
         AUNG.datatable.parse("ichiran", text);
       });
@@ -36,7 +36,7 @@
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
        var _session = {book_id:_item.book_id};
-      AUNG.pageMove("RentalInfo", _session);
+      AUNG.pageMove("BookInfo", _session);
     }
   };
    webix.ui(
