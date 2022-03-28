@@ -15,7 +15,17 @@
           yCount:8,
           tooltip:true,
           columns:[
-            {id:"book_name", header:"本を選ぶ", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
+            {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
+            {id:"book_name", header:"本の名", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
+            {id:"Rental", header:["レンタル情報", {content:"selectFilter"}], width:150},
+            {id:"user_id", header:["利用者ID", {content:"textFilter"}], width:150},
+            {id:"Borrow_date", header :["借用日付", {content:"textFilter"}],  width:200},
+            {id:"usage_period", header :["利用期間", {content:"textFilter"}],  width:200},
+            {id:"author", header:["作者", {content:"textFilter"}], width:200},
+            {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
+            {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
+            {id:"overview", header:["概要", {content:"textFilter"}], width:200},
+            {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
           ]
       }]}
     ]
@@ -36,7 +46,7 @@
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
        var _session = {book_id:_item.book_id};
-      AUNG.pageMove("BookInfo", _session);
+      AUNG.pageMove("RentalRegister", _session);
     }
   };
    webix.ui(

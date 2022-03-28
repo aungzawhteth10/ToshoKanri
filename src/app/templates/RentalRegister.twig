@@ -46,20 +46,28 @@
                     {view:"label", label:"出版社", width:100},
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
                 ]},
-                 {view:"button", id:"btn_register", name:"btn_register", value:"情報の登録", css:"webix_primary", width:100, height:50},
+                 {view:"button", id:"btn_Register", name:"btn_Register", value:"情報の登録", css:"webix_primary", width:100, height:50},
             ]}
 
         ],
         rules:{
         }
     };
-    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50};
+   var footer = {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:150, height:50};
     var logic = {
         init:function() {
-            $$("btn_register").attachEvent("onItemClick", logic.register);
+            logic.dataLoad();
+            $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
         },
-        register:function() {
+        dataLoad:function() {
+            AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
+                if(AUNG.isAjaxError()) return false;
+                console.log(text);
+                $$("form").parse(text);
+            });
+        },
+        Register:function() {
             if(!logic.validate()) {
                 return false;
             }
@@ -67,7 +75,7 @@
              AUNG.POST("Api/ApiRentalRegister", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました。");
-                {# logic.dataload(); #}
+                { logic.dataload(); }
             });
         },
         validate:function() {
@@ -78,7 +86,7 @@
             return true;
         },
         toMenu:function() {
-            AUNG.pageMove("Menu");
+            AUNG.pageMove("RentalChoie");
         }
     };
     webix.ui(
