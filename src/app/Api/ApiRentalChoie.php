@@ -14,8 +14,12 @@ class ApiRentalChoie extends ApiBase
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $Rental = $DbRentalMapper->find();
         $Rental = array_column($Rental, null, 'book_id') ;
+        
+   //     $rental = array_column(json_decode($this->HtmlHelper->getJson('cm_Rental_category')), 'value', 'id');
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
-        //  error_log(print_r($category, true));
+       
+        error_log(print_r($category, true));
+
         $result = [];
         foreach ($book as $key => $value) {
             $result[] = [
@@ -26,11 +30,12 @@ class ApiRentalChoie extends ApiBase
                 'overview'  => $value['overview'], //概要
                 'publisher' => $value['publisher'],//出版社
                 'ryoukinn'  => $value['ryoukinn'], //料金
-
                 //レンタル情報を追加する。
                 'user_id'      => $Rental[$value['book_id']]['user_id'] ?? '',//利用者ID
                 'Borrow_date'  => $Rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
                 'usage_period' => $Rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
+                'Rental'       => $Rental[$value['book_id']]['Rental'] ?? '', //利用期間  
+                
             ];
         }
         return parent::toJson($result);

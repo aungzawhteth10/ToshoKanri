@@ -23,7 +23,6 @@ class ApiBookManage extends ApiBase
                 'overview'  => $value['overview'], //概要
                 'publisher' => $value['publisher'],//出版社
                 'ryoukinn'  => $value['ryoukinn'], //料金
-                'rental'    => $value['rental'], //レンタル
             ];
         }
         return parent::toJson($result);

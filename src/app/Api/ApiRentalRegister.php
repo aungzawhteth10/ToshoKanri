@@ -17,9 +17,9 @@ class ApiRentalRegister extends ApiBase
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;
         $dmRental->book_id   = $this->session->book_id;
-        $rentl = $dbRentalMapper->find($dmRental);
+        $Rental = $dbRentalMapper->find($dmRental);
         error_log(print_r('aaaaaaa', true));
-        error_log(print_r($rentl, true));
+        error_log(print_r($Rental, true));
 
         $result = [];
         // if (count($book) != 1) {
@@ -32,12 +32,12 @@ class ApiRentalRegister extends ApiBase
             'category'  => $book[0]['category'],
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
-            'rental'    => $book[0]['rental'],
             'ryoukinn'  => $book[0]['ryoukinn'],
             //利用者の情報追加
-            'user_id'      => $rentl[0]['user_id'] ?? '',//利用者ID
-            'Borrow_date'  => $rentl[0]['Borrow_date'] ?? '', //借用日付
-            'usage_period' => $rentl[0]['usage_period'] ?? '', //利用期間  
+            'user_id'      => $Rental[0]['user_id'] ?? '',//利用者ID
+            'Borrow_date'  => $Rental[0]['Borrow_date'] ?? '', //借用日付
+            'usage_period' => $Rental[0]['usage_period'] ?? '', //利用期間  
+            'Rental'       => $Rental[0]['Rental'] ?? '', //レンタル  
         ];
         return parent::toJson($result);
     }
