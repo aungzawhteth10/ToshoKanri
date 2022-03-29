@@ -34,10 +34,7 @@
                     {view:"label", label:"料金", width:100},   //料金入力画面追加
                     {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
                 ]},
-                {cols:[
-                    {view:"label", label:"レンタル", width:100},
-                    {view:"select", id:"Rental", name:"Rental", label:" ", options:{{HtmlHelper.getJsonKara('cm_Rental_rental')|raw}}, labelWidth:1, width:250},
-                ]},
+
                  {cols:[
                     {view:"label", label:"カテゴリ", width:100},
                     {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},

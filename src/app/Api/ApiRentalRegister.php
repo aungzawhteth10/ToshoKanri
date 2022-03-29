@@ -17,14 +17,14 @@ class ApiRentalRegister extends ApiBase
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;
         $dmRental->book_id   = $this->session->book_id;
-        $Rental = $dbRentalMapper->find($dmRental);
+        $rental = $dbRentalMapper->find($dmRental);
         error_log(print_r('aaaaaaa', true));
-        error_log(print_r($Rental, true));
+        error_log(print_r($rental, true));
 
-        $result = [];
-        // if (count($book) != 1) {
-        //     return parent::toError('書籍情報が不正です。');
-        // }
+    /*    $result = [
+            echo date('Y-m-d H:i:s', strtotime('now'));
+            ];
+*/
         $result = [
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
@@ -34,10 +34,10 @@ class ApiRentalRegister extends ApiBase
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
             //利用者の情報追加
-            'user_id'      => $Rental[0]['user_id'] ?? '',//利用者ID
-            'Borrow_date'  => $Rental[0]['Borrow_date'] ?? '', //借用日付
-            'usage_period' => $Rental[0]['usage_period'] ?? '', //利用期間  
-            'Rental'       => $Rental[0]['Rental'] ?? '', //レンタル  
+            'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
+            'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
+            'usage_period' => $rental[0]['usage_period'] ?? '', //利用期間  
+            'ryoukinn_time'=> $this->util->date($ryoukinn_time),
         ];
         return parent::toJson($result);
     }
@@ -52,8 +52,8 @@ class ApiRentalRegister extends ApiBase
         // $dmRental->book_id   = $postData['book_id'];
         // $count = $dbRentalMapper->delete($dmRental);
         $dmRental = new \App\model\DmRental;
-        $dmRental->book_id        = $postData['book_id'];
-        $dmRental->user_id        = $postData['user_id'];
+        $dmRental->book_id          = $postData['book_id'];
+        $dmRental->user_id          = $postData['user_id'];
         $dmRental->Borrow_date      = $postData['Borrow_date'];
         $dmRental->usage_period     = $postData['usage_period'];
 
@@ -62,3 +62,4 @@ class ApiRentalRegister extends ApiBase
         return parent::toJson($count);
     }
 }
+    //  $starttime  = date('Y-m-d H:i:s','Borrow_date');

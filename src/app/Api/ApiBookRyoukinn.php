@@ -5,12 +5,14 @@ class ApiBookRyoukinn extends ApiBase
     /*
      * 初期化
      */
-     
     public function init ($request, $response)
     {   
-        $dbBookMapper = new \App\db\DbBookMapper;
-        $book = $dbBookMapper->find();
-        error_log(print_r($book, true));
+         //レンタル情報を取得する
+        $dbRentalMapper = new \App\db\DbRentalMapper;
+        $rental = $dbRentalMapper->find();
+        error_log(print_r($rental, true));
+
+
         $result = [];
         foreach ($book as $key => $value) {
             $result[] = [
