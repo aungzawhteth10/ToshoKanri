@@ -29,7 +29,7 @@ class ApiSyainnRegister extends ApiBase
             'ryoukinn'  => $book[0]['ryoukinn'],
             //社員の情報追加画面
             'syainn_id'  => $syainn[0]['syainn_id'] ?? '',//社員ID
-            'syainn_name'=> $syainn[0]['syainn_name'] ?? '', //社員名 
+            'syainn_name'=> $syainn[0]['syainn_name'] ?? '', //社員名
             'syainn_sex' => $syainn[0]['syainn_sex'] ?? '', //社員性別
         ];
         return parent::toJson($result);
@@ -46,7 +46,6 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn->syainn_id      = $postData['syainn_id'];
         $dmSyainn->syainn_name    = $postData['syainn_name'];
         $dmSyainn->syainn_sex     = $postData['syainn_sex'];
-
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);
     }
