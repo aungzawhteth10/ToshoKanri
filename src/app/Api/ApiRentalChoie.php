@@ -10,6 +10,7 @@ class ApiRentalChoie extends ApiBase
         //図書情報を取得する
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();
+        
         //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();
@@ -31,7 +32,7 @@ class ApiRentalChoie extends ApiBase
                 'user_id'      => $rental[$value['book_id']]['user_id'] ?? '',//利用者ID
                 'Borrow_date'  => $rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
                 'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
-                'Rental'       => $rental[$value['book_id']]['Rental'] ?? '', //利用期間
+                'Rental'       => $rental[$value['book_id']]['Rental'] ?? '', //レンタル
                 'isRentalZumi' => isset($rental[$value['book_id']]) ? '〇' : '×', //〇×をつける
             ];
         }

@@ -1,6 +1,6 @@
 <?php
 namespace App\Api;
-class ApiRentalManage extends ApiBase
+class ApiSyainnManage extends ApiBase
 {
     /*
      * 初期化
@@ -10,13 +10,13 @@ class ApiRentalManage extends ApiBase
         //図書情報を取得する
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();
-        //レンタル情報を取得する
-        $DbRentalMapper = new \App\db\DbRentalMapper;
-        $Rental = $DbRentalMapper->find();
-        $Rental = array_column($Rental, null, 'book_id') ;
-
+        //社員情報を取得する
+        $DbSyainnMapper = new \App\db\DbSyainnMapper;
+        $syainn = $DbSyainnMapper->find();
+        $syainn = array_column($syainn, null, 'book_id') ;        
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
-        //  error_log(print_r($category, true));
+        error_log(print_r($category, true));
+
         $result = [];
         foreach ($book as $key => $value) {
             $result[] = [
@@ -26,13 +26,11 @@ class ApiRentalManage extends ApiBase
                 'category'  => $category[$value['category']] ?? '',//カテゴリ
                 'overview'  => $value['overview'], //概要
                 'publisher' => $value['publisher'],//出版社
-
-                //レンタル情報を追加する。
-                'user_id'      => $Rental[$value['book_id']]['user_id'] ?? '',//利用者ID
-                'Borrow_date'  => $Rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
-                'usage_period' => $Rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
-                'ryoukinn'     => $Rental[$value['book_id']]['ryoukinn'] ?? '', //料金
-
+                'ryoukinn'  => $value['ryoukinn'], //料金
+                //社員情報を表示する。
+                'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '',//社員ID
+                'syainn_name'  => $syainn[$value['book_id']]['syainn_name'] ?? '', //社員名
+                'syainn_sex'   => $syainn[$value['book_id']]['syainn_sex'] ?? '', //社員性別  
             ];
         }
         return parent::toJson($result);

@@ -7,11 +7,6 @@ class ApiRentalRegister extends ApiBase
      */
     public function init ($request, $response)
     {   
-        //料金スタート時間を取得する
-  /*    $dbRyoukinnMapper = new \app\db\DbRyoukinnlMapper;
-        $dmRyoukinn = new \app\model\DmRyoukinn;
-        $dmRyoukinn->book_id   = $this->session->book_id;
-        $book = $dbRyoukinnMapper->find($dmBook);          */
 
         //図書情報を取得する
         $dbBookMapper = new \App\db\DbBookMapper;
@@ -26,7 +21,8 @@ class ApiRentalRegister extends ApiBase
         error_log(print_r('aaaaaaa', true));
         error_log(print_r($rental, true));
 
-   
+       // echo Borrow_date("Y/m/d H:i:s");
+
         $result = [
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
@@ -39,7 +35,6 @@ class ApiRentalRegister extends ApiBase
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
             'usage_period' => $rental[0]['usage_period'] ?? '', //利用期間  
-            'ryoukinn_time'=> $rental[0]['ryoukinn_time'] ?? '', //時間
         ];
         return parent::toJson($result);
     }

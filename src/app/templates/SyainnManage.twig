@@ -16,28 +16,28 @@
           tooltip:true,
           columns:[
             {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
+            {id:"syainn_id", header:["社員ID", {content:"textFilter"}], width:150},
             {id:"book_name", header:"書籍名", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
-            {id:"user_id", header:["利用者ID", {content:"textFilter"}], width:100},
-            {id:"Borrow_date", header :["借用日付", {content:"textFilter"}],  width:200},
-            {id:"usage_period", header :["利用期間", {content:"textFilter"}],  width:200},
+            {id:"syainn_name", header :["社員名", {content:"textFilter"}],  width:200},
+            {id:"syainn_sex", header :["社員性別", {content:"textFilter"}],  width:200},
             {id:"author", header:["作者", {content:"textFilter"}], width:200},
             {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
             {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
             {id:"overview", header:["概要", {content:"textFilter"}], width:200},
             {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
           ]
-      }]}
+      }]} 
     ]
   };
   var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50}
-  var logic = {
+ var logic = {
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
       logic.dataload();
       $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
     dataload:function() {
-      AUNG.GET("Api/ApiRentalManage", {}, function(text, data, xml) {
+      AUNG.GET("Api/ApiSyainnManage", {}, function(text, data, xml) {
         if(AUNG.isAjaxError()) return false;
         AUNG.datatable.parse("ichiran", text);
       });
@@ -45,7 +45,7 @@
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
        var _session = {book_id:_item.book_id};
-      AUNG.pageMove("BookInfo", _session);
+      AUNG.pageMove("SyainnRegister", _session);
     }
   };
    webix.ui(
