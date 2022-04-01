@@ -10,9 +10,7 @@ class ApiSyainnRegister extends ApiBase
         $dbSyainnMapper = new \App\db\DbSyainnMapper;
         $dmSyainn = new \App\model\DmSyainn;
         $syainn = $dbSyainnMapper->find($dmSyainn);
-        
         $result = [
-        
         ];
         return parent::toJson($result);
     }
@@ -29,6 +27,7 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn->syainn_sex            = $postData['syainn_sex'];
         $dmSyainn->syainn_age            = $postData['syainn_age'];
         $dmSyainn->syainn_Occupation     = $postData['syainn_Occupation'];
+        $dmSyainn->furigana              = $postData['furigana'];
       
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);
