@@ -7,6 +7,11 @@ class ApiSyainnManage extends ApiBase
      */
     public function init ($request, $response)
     {   
+        //レンタル情報を取得する
+        $DbRentalMapper = new \App\db\DbRentalMapper;
+        $rental = $DbRentalMapper->find();
+
+
         //社員情報を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
         $syainn = $DbSyainnMapper->find();

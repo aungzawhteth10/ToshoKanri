@@ -30,7 +30,6 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn->furigana              = $postData['furigana'];
         $dmSyainn->tel_no                = $postData['tel_no'];
         $dmSyainn->moblie_no             = $postData['moblie_no'];
-
       
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);
