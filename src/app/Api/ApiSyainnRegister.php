@@ -24,10 +24,13 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn = new \App\model\dmSyainn;
         $dmSyainn->syainn_id             = $postData['syainn_id'];
         $dmSyainn->syainn_name           = $postData['syainn_name'];
-        $dmSyainn->syainn_sex            = $postData['syainn_sex'];
-        $dmSyainn->syainn_age            = $postData['syainn_age'];
+        $dmSyainn->mail_address          = $postData['mail_address'];
+        $dmSyainn->keiyaku_jikan         = $postData['keiyaku_jikan'];
         $dmSyainn->syainn_Occupation     = $postData['syainn_Occupation'];
         $dmSyainn->furigana              = $postData['furigana'];
+        $dmSyainn->tel_no                = $postData['tel_no'];
+        $dmSyainn->moblie_no             = $postData['moblie_no'];
+
       
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);

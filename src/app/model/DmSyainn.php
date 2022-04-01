@@ -6,9 +6,11 @@ class DmSyainn extends DataModel
         'syainn_id'          => 'string', //社員ID
         'syainn_name'        => 'string', //社員名
         'syainn_Occupation'  => 'string', //職種
-        'syainn_sex'         => 'string', //社員性別
-        'syainn_age'         => 'string', //社員年齢
+        'mail_address'       => 'string', //メールアドレス
+        'keiyaku_jikan'      => 'string', //契約時間
         'furigana'           => 'string', //フリガナ
+        'tel_no'             => 'string', //電話番号
+        'moblie_no'          => 'string', //携帯番号
     ];
     public static $primary_key = [
         'syainn_id',//社員ID

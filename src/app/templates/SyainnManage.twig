@@ -11,16 +11,18 @@
           id:"ichiran",
           hover:"myhover",
           select:true,
-          rowHeight:60,
+          rowHeight:60, 
           yCount:8,
           tooltip:true,
           columns:[
             {id:"syainn_id", header:["社員ID", {content:"textFilter"}], width:150},
             {id:"syainn_name", header:"社員名",width: 200, sort:"string", template:"<span class='pageMove'>#syainn_name#</span>"},
             {id:"furigana", header:["フリガナ", {content:"textFilter"}], width:200},
-            {id:"syainn_sex", header :["社員性別", {content:"textFilter"}],  width:200},
-            {id:"syainn_age", header :["社員年齢", {content:"textFilter"}],  width:200},
+            {id:"tel_no", header:["電話番号", {content:"textFilter"}], width:200},
+            {id:"moblie_no", header :["携帯番号", {content:"textFilter"}],  width:200},
             {id:"syainn_Occupation", header :["職種", {content:"selectFilter"}], width:200},
+            {id:"mail_address", header :["メールアドレス", {content:"textFilter"}],  width:200},
+            {id:"keiyaku_jikan", header :["契約時間", {content:"textFilter"}],  width:200},
           ]
       }]} 
     ]

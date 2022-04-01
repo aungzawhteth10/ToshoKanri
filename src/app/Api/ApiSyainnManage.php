@@ -18,13 +18,14 @@ class ApiSyainnManage extends ApiBase
         foreach ($syainn as $key => $value) {
             $result[] = [
                 //社員情報を表示する。
-                'syainn_id'     => $value['syainn_id'] ?? '',   //社員ID
-                'syainn_name'   => $value['syainn_name'] ?? '', //社員名
-                'furigana'      => $value['furigana'] ?? '',    //フリガナ
-                'syainn_sex'    => $value['syainn_sex'] ?? '',  //社員性別  
-                'syainn_age'    => $value['syainn_age'] ?? '',  //社員年齢
-                'syainn_Occupation' => $value['syainn_Occupation'] ?? '', //職種
-
+                'syainn_id'          => $value['syainn_id'] ?? '',   //社員ID
+                'syainn_name'        => $value['syainn_name'] ?? '', //社員名
+                'furigana'           => $value['furigana'] ?? '',    //フリガナ
+                'syainn_Occupation'  => $value['syainn_Occupation'] ?? '', //職種
+                'tel_no'             => $value['tel_no'] ?? '',  //電話番号
+                'moblie_no'          => $value['moblie_no'] ?? '', //携帯番号
+                'mail_address'       => $value['mail_address'] ?? '', //メールアドレス
+                'keiyaku_jikan'      => $value['keiyaku_jikan'] ?? '', //契約時間
             ];
         }
         return parent::toJson($result);

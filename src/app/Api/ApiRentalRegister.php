@@ -21,8 +21,6 @@ class ApiRentalRegister extends ApiBase
         error_log(print_r('aaaaaaa', true));
         error_log(print_r($rental, true));
 
-       // echo Borrow_date("Y/m/d H:i:s");
-
         $result = [
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
