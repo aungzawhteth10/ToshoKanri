@@ -15,16 +15,11 @@
           yCount:8,
           tooltip:true,
           columns:[
-            {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80},
             {id:"syainn_id", header:["社員ID", {content:"textFilter"}], width:150},
-            {id:"book_name", header:"書籍名", width: 200, sort:"string", template:"<span class='pageMove'>#book_name#</span>"},
-            {id:"syainn_name", header :["社員名", {content:"textFilter"}],  width:200},
+            {id:"syainn_name", header:["社員名", {content:"textFilter"}], width:200},
             {id:"syainn_sex", header :["社員性別", {content:"textFilter"}],  width:200},
-            {id:"author", header:["作者", {content:"textFilter"}], width:200},
-            {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
-            {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
-            {id:"overview", header:["概要", {content:"textFilter"}], width:200},
-            {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
+            {id:"syainn_age", header :["社員年齢", {content:"textFilter"}],  width:200},
+             {id:"syainn_Occupation", header :["職種", {content:"selectFilter"}],  width:200},
           ]
       }]} 
     ]
@@ -44,7 +39,7 @@
     },
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
-       var _session = {book_id:_item.book_id};
+       var _session = {syainn_id:_item.syainn_id};
       AUNG.pageMove("SyainnRegister", _session);
     }
   };

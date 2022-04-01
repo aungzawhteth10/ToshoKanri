@@ -19,32 +19,12 @@
                     {view:"text", id:"syainn_sex", name:"syainn_sex", label:" ", labelWidth:1, width:250},
                 ]},
                 {cols:[
-                    {view:"label", label:"書籍ＩＤ", width:100},   // 書籍ＩＤ入力
-                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"label", label:"社員年齢", width:100},   //社員年齢入力
+                    {view:"text", id:"syainn_age", name:"syainn_age", label:" ", labelWidth:1, width:250},
                 ]},
                 {cols:[
-                    {view:"label", label:"書籍名称", width:100}, //書籍名称入力
-                    {view:"text", id:"book_name", name:"book_name", label:" ", labelWidth:1, width:250},
-                ]},
-                {cols:[
-                    {view:"label", label:"作者名", width:100}, //作者名入力
-                    {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250},
-                ]},
-                {cols:[
-                    {view:"label", label:"料金", width:100},   //料金入力
-                    {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
-                ]},
-                 {cols:[
-                    {view:"label", label:"カテゴリ", width:100}, //カテゴリ入力
-                    {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},
-                ]},
-                {cols:[
-                    {view:"label", label:"概要", width:100},    //概要入力
-                    {view:"text", id:"overview", name:"overview", label:" ", labelWidth:1, width:250},
-                ]},
-                {cols:[
-                    {view:"label", label:"出版社", width:100},  //出版社入力
-                    {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
+                    {view:"label", label:"職種", width:100},   //社員職種入力
+                    {view:"select", id:"syainn_Occupation", name:"syainn_Occupation", label:" ", options:{{HtmlHelper.getJsonKara('cm_syainn_category')|raw}}, labelWidth:1, width:250}, 
                 ]},
                  {view:"button", id:"btn_Register", name:"btn_Register", value:"登録", css:"webix_primary", width:100, height:50},
             ]}
