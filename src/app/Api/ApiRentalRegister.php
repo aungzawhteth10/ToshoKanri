@@ -1,13 +1,12 @@
 <?php
 namespace App\Api;
 class ApiRentalRegister extends ApiBase
-{
+{   
     /*
      * 初期化
      */
     public function init ($request, $response)
     {   
-
         //図書情報を取得する
         $dbBookMapper = new \App\db\DbBookMapper;
         $dmBook = new \App\model\DmBook;
@@ -34,8 +33,7 @@ class ApiRentalRegister extends ApiBase
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
-
-            'syainnid'  => $syainn[0]['syainn_id'] ?? '', //スタッフコード
+            'syainnid'  => $syainn[0]['syainn_id'] ?? '', //スタッフコード 
             //利用者の情報追加
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
@@ -51,12 +49,12 @@ class ApiRentalRegister extends ApiBase
         $postData  = $_POST;
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;
-        $dmRental->book_id          = $postData['book_id'];
-        $dmRental->user_id          = $postData['user_id'];
-        $dmRental->Borrow_date      = $postData['Borrow_date'];
-        $dmRental->usage_period     = $postData['usage_period'];
+        $dmRental->book_id       = $postData['book_id'];
+        $dmRental->user_id       = $postData['user_id'];
+        $dmRental->Borrow_date   = $postData['Borrow_date'];
+        $dmRental->usage_period  = $postData['usage_period'];
         
-        $dmRental->syainn_id        = $postData['syainn_id'];
+        $dmRental->syainn_id     = $postData['syainn_id'];
         $count = $dbRentalMapper->insert($dmRental);
         return parent::toJson($count);
     }

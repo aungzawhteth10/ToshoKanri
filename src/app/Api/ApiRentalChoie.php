@@ -36,12 +36,12 @@ class ApiRentalChoie extends ApiBase
                 //レンタル情報を追加する。
                 'user_id'      => $rental[$value['book_id']]['user_id'] ?? '',//利用者ID
                 'Borrow_date'  => $rental[$value['book_id']]['Borrow_date'] ?? '', //借用日付
-                'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間  
+                'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間
                 'Rental'       => $rental[$value['book_id']]['Rental'] ?? '', //レンタル
                 'isRentalZumi' => isset($rental[$value['book_id']]) ? '〇' : '×', //〇×をつける
                 //スタッフコード情報を追加する
-                'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '', //スタッフコード
-            ];
+                'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '', //スタッフコード rental
+            ]; 
         }
         return parent::toJson($result);
     }
