@@ -34,6 +34,7 @@ class ApiRentalRegister extends ApiBase
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
             //社員の情報
+            'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
             'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //スタッフコード
             //利用者の情報
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
@@ -55,6 +56,7 @@ class ApiRentalRegister extends ApiBase
         $dmRental->Borrow_date   = $postData['Borrow_date'];
         $dmRental->usage_period  = $postData['usage_period'];
         $dmRental->syainn_id     = $postData['syainn_id'];
+        $dmRental->syainn_name   = $postData['syainn_name'];
         $count = $dbRentalMapper->insert($dmRental);
         return parent::toJson($count);
     }

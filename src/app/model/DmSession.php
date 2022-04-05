@@ -5,6 +5,7 @@ class DmSession extends DataModel
     public static $schema = [
         'screen_name' => 'string',//画面名称
         'book_id'     => 'string',//書籍ＩＤ
+        'syainn_id'   => 'string', //社員ID
     ];
     public function getSessionArr ()
     {

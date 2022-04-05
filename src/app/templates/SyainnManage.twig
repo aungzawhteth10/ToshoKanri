@@ -42,8 +42,8 @@
     },
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
-       var _session = {syainn_id:_item.syainn_id};
-      AUNG.pageMove("SyainnRegister", _session);
+       var _session = {book_id:_item.syainn_id};
+      AUNG.pageMove("SyainnFix", _session);
     }
     
   };

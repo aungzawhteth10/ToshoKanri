@@ -7,6 +7,11 @@ class ApiSyainnManage extends ApiBase
      */
     public function init ($request, $response)
     {   
+         //図書情報を取得する
+         $DbBookMapper = new \App\db\DbBookMapper;
+         $book = $DbBookMapper->find();
+ 
+        
         //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();

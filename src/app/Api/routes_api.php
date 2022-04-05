@@ -12,3 +12,5 @@ $app->get('/Api/ApiRentalChoie', '\App\Api\ApiRentalChoie:init');
 $app->get('/Api/ApiSyainnRegister', '\App\Api\ApiSyainnRegister:init');
 $app->post('/Api/ApiSyainnRegister', '\App\Api\ApiSyainnRegister:update');
 $app->get('/Api/ApiSyainnManage', '\App\Api\ApiSyainnManage:init');
+$app->get('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:init');
+$app->post('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:update');
