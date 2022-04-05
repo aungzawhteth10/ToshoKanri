@@ -152,7 +152,7 @@ class MapperBase
         }
         return $sql;
     }
-    /*
+   /*
     * INSERT DB登録処理
     */
     public function insert($model = NULL)
@@ -180,7 +180,7 @@ class MapperBase
             }
         }
         $stmt->execute($paramArr);
-        return $stmt->rowCount();;
+        return $stmt->rowCount();
     }
     /*
     * INSERT SQL文を作成する。

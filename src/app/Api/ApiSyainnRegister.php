@@ -11,6 +11,14 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn = new \App\model\DmSyainn;
         $syainn = $dbSyainnMapper->find($dmSyainn);
         $result = [
+            'syainn_id'          => $value['syainn_id'] ?? '',   //スタッフコード
+            'syainn_name'        => $value['syainn_name'] ?? '', //社員名
+            'furigana'           => $value['furigana'] ?? '',    //フリガナ
+            'syainn_Occupation'  => $value['syainn_Occupation'] ?? '', //職種
+            'tel_no'             => $value['tel_no'] ?? '',  //電話番号
+            'moblie_no'          => $value['moblie_no'] ?? '', //携帯番号
+            'mail_address'       => $value['mail_address'] ?? '', //メールアドレス
+            'keiyaku_jikan'      => $value['keiyaku_jikan'] ??  '', //契約時間
         ];
         return parent::toJson($result);
     }
@@ -30,19 +38,7 @@ class ApiSyainnRegister extends ApiBase
         $dmSyainn->furigana              = $postData['furigana'];
         $dmSyainn->tel_no                = $postData['tel_no'];
         $dmSyainn->moblie_no             = $postData['moblie_no'];
-      
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);
-    }
-    private function _isSyainnIdDuplicate ($syainnId)
-    {
-        $dbSyainnMapper = new \App\db\DbSyainnMapper;
-        $dmSyainn = new \App\model\dmSyainn;
-        $dmSyainn->syainn_id = $syainnid;
-        $syainn = $dbSyainnMapper->find($dmSyainn);
-        if (count($syainn) != 0) {
-            return true;
-        }
-        return false;
     }
 }
