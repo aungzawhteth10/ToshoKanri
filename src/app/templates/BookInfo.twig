@@ -62,16 +62,7 @@
             if(!logic.validate()) {
                 return false;
             }
-            var _postData = {
-                "book_id":   $$("book_id").getValue(),
-                "book_name": $$("book_name").getValue(),
-                "author":    $$("author").getValue(),
-                "category":  $$("category").getValue(),
-                "overview":  $$("overview").getValue(),
-                "publisher": $$("publisher").getValue(),
-                "rental":    $$("rental").getValue(),
-                "ryoukinn":  $$("ryoukinn").getValue(),
-            };
+            var _postData = $$("form").getValues();
             AUNG.POST("Api/ApiBookInfo", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました。");

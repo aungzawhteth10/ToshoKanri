@@ -34,7 +34,7 @@ class ApiRentalRegister extends ApiBase
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
             //社員の情報
-            'syainn_id'  => $syainn[0]['syainn_id'] ?? '', //スタッフコード
+            'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //スタッフコード
             //利用者の情報
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
