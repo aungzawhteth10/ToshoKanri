@@ -41,6 +41,7 @@ class ApiRentalChoie extends ApiBase
                 'isRentalZumi' => isset($rental[$value['book_id']]) ? '〇' : '×', //〇×をつける
                 //スタッフコード情報を追加する
                 'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '', //スタッフコード rental
+                'syainn_name'  => $syainn[$value['book_id']]['syainn_name'] ?? '', //スタッフコード rental
             ]; 
         }
         return parent::toJson($result);

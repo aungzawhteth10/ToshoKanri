@@ -12,9 +12,6 @@ class ApiRentalRegister extends ApiBase
         $dmBook = new \App\model\DmBook;
         $dmBook->book_id   = $this->session->book_id;
         $book = $dbBookMapper->find($dmBook);
-        
-        
-        
         //レンタル情報を取得する
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;
@@ -24,10 +21,11 @@ class ApiRentalRegister extends ApiBase
         error_log(print_r($rental, true));
         //スタッフ名称を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
-        $ｘｘｘ = new \App\model\ｘｘｘ
-        $ｘｘｘ->syainn_id = $rental[0]['syainn_id'];
-        $syainn = $DbSyainnMapper->find($ｘｘｘ);
+        $dmSyainn = new \App\model\DmSyainn;
+        $dmSyainn->syainn_id = $rental[0]['syainn_id'];
+        $syainn = $dbSyainnMapper->find($dmSyainn);
         $result = [
+            'syainnid'  => $syainn[0]['syainn_id'] ?? '', //スタッフコード 
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
             'author'    => $book[0]['author'],
@@ -35,7 +33,7 @@ class ApiRentalRegister extends ApiBase
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
-            'syainnid'  => $syainn[0]['syainn_id'] ?? '', //スタッフコード 
+            
             //利用者の情報追加
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
@@ -55,7 +53,6 @@ class ApiRentalRegister extends ApiBase
         $dmRental->user_id       = $postData['user_id'];
         $dmRental->Borrow_date   = $postData['Borrow_date'];
         $dmRental->usage_period  = $postData['usage_period'];
-        
         $dmRental->syainn_id     = $postData['syainn_id'];
         $count = $dbRentalMapper->insert($dmRental);
         return parent::toJson($count);
