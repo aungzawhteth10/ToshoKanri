@@ -198,4 +198,59 @@ class MapperBase
         }
         return $sql;
     }
+    /*
+    * DELETE DB削除処理
+    *
+    * @param object model データモデル
+    * @return int 処理件数
+    */
+    public function delete($model = NULL)
+    {
+        if (is_null($model)) {
+            $model = new $this->modelPath;
+        }
+        $modelArr = $model->toArray();
+        $schema = $this->modelPath::$schema;
+        $sql = $this->_createDeleteSqlStatement($modelArr);
+        $stmt = $this->pdo->prepare($sql);
+        error_log(print_r('$stmt', true));
+        error_log(print_r($stmt, true));
+        $paramArr = [];
+        $pk = $this->modelPath::$primary_key;
+        foreach ($pk as $key => $value) {
+            if (!isset($modelArr[$value])) {
+                return 0;
+            }
+            switch ($schema[$value]) {
+                case 'integer':
+                    $paramArr[$key] = (int)$modelArr[$value];
+                    break;
+                case 'string':
+                default:
+                    $paramArr[$key] = (string)$modelArr[$value];
+                    break;
+            }
+        }
+        error_log(print_r($paramArr, true));
+        $stmt->execute($paramArr);
+        return $stmt->rowCount();
+    }
+    /*
+    * DELETE SQL文を作成する。
+    *
+    * @param array modelArr データモデルの配列 
+    * @return string 削除用SQL文
+    *
+    */
+    public function _createDeleteSqlStatement($modelArr)
+    {
+        $sql  = 'DELETE FROM ' . $this->tableName;
+        $jouken = [];
+        $pk = $this->modelPath::$primary_key;
+        foreach ($pk as $key => $value) {
+            $jouken[] = $value . ' = ?';
+        }
+        $sql .= ' WHERE ' . join(' AND ', $jouken);
+        return $sql;
+    }
 }

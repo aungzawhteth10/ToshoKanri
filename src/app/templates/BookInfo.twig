@@ -34,10 +34,7 @@
                     {view:"label", label:"出版社", width:100},
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
                 ]},
-                {cols:[
-                    {view:"label", label:"レンタル状態", width:100},
-                    {view:"select", id:"rental", name:"rental", label:" ", options:{{HtmlHelper.getJson('cm_rental_condition')|raw}}, labelWidth:1, width:250},
-                ]},
+               
                 {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary", width:100, height:50},
             ]}
         ],

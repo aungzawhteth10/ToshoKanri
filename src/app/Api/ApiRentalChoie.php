@@ -11,7 +11,7 @@ class ApiRentalChoie extends ApiBase
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();
 
-        //スタッフ情報を取得する
+        //社員情報を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
         $syainn = $DbSyainnMapper->find();
         $syainn = array_column($syainn, null, 'user_id') ;  
@@ -39,9 +39,9 @@ class ApiRentalChoie extends ApiBase
                 'usage_period' => $rental[$value['book_id']]['usage_period'] ?? '', //利用期間
                 'Rental'       => $rental[$value['book_id']]['Rental'] ?? '', //レンタル
                 'isRentalZumi' => isset($rental[$value['book_id']]) ? '〇' : '×', //〇×をつける
-                //スタッフコード情報を追加する
-                'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '', //スタッフコード rental
-                'syainn_name'  => $syainn[$value['book_id']]['syainn_name'] ?? '', //スタッフコード rental
+                //社員情報を追加する
+                'syainn_id'    => $syainn[$value['book_id']]['syainn_id'] ?? '', //スタッフコード 
+                'syainn_name'  => $syainn[$value['book_id']]['syainn_name'] ?? '', //社員名 
             ]; 
         }
         return parent::toJson($result);
