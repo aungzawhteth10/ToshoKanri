@@ -2,11 +2,23 @@
 namespace App\Api;
 class ApiRentalRegister extends ApiBase
 {   
+     /**
+     * 書籍ID（PK）
+     */
+    private $book_id = null;
+    /**
+     * レンタルID（PK）
+     */
+    private $rental_id = null;
+    /**
+     * スタッフコードID（PK）
+     */
+    private $syainn_id   = null;
     /*
      * 初期化
      */
-    public function init ($request, $response)
-    {   
+    public function init ( $request,  $response)
+    {      
         //図書情報を取得する
         $dbBookMapper = new \App\db\DbBookMapper;
         $dmBook = new \App\model\DmBook;
@@ -20,6 +32,7 @@ class ApiRentalRegister extends ApiBase
         $rental = $dbRentalMapper->find($dmRental);
         error_log(print_r('aaaaaaa', true));
         error_log(print_r($rental, true));
+
         //スタッフ名称を取得する
         $dbSyainnMapper = new \App\db\DbSyainnMapper;
         $dmSyainn = new \App\model\DmSyainn;

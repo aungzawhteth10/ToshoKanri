@@ -7,8 +7,22 @@
         elements:[
             {rows:[
                 {cols:[
+                    {view:"combo", name:"rental_id", id:"rental_id", label:" 本の情報", width:500, labelWidth:65, labelAlign:"right",
+                        dispV:"name", returnV:"id", value:"-H",
+                         param:{
+                          rental_id:"レンタルの情報",
+                          syainn_id:"社員の情報",
+                          flg:"0",
+                          rental_id:"$$rental_id"
+              },
+          ajax:function(v,p,cb){sub_logic_CMLIG2000.getValue(v,p,cb)},
+          ajaxPop:function(p,cb){sub_logic_CMLIG2000.show(p,cb)}
+        },
+        {}
+                ]},
+                {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},},
+                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"借用日付", width:100},   //借用日付入力画面追加
@@ -27,7 +41,7 @@
                     {view:"text", id:"syainn_id", name:"syainn_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"社員名", width:100},   //社員ID入力
+                    {view:"label", label:"社員名", width:100},   //社員名入力
                     {view:"text", id:"syainn_name", name:"syainn_name", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
@@ -66,6 +80,7 @@
             logic.dataLoad();
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
+            $$("rental_id").attachEvent("onChange", logic.dataLoad);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
@@ -73,6 +88,13 @@
                 console.log(text);
                 $$("form").parse(text);
             });
+
+        Combo.ajax.get("/api/ApiRentalRegisetr", postData, function (text, xml, http) {
+        if(Combo.ajax.isError(text))return false;
+        var json = xml.json();
+        Combo.datatable.parse("ichiran", json);
+          },{date:$$("rental_id").getValue()});
+
         },
         Register:function() {
             if(!logic.validate()) {
