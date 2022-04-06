@@ -8,7 +8,7 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},},
                 ]},
                 {cols:[
                     {view:"label", label:"借用日付", width:100},   //借用日付入力画面追加
@@ -20,40 +20,39 @@
                 ]},
                 {cols:[
                     {view:"label", label:"書籍ＩＤ", width:100},   // 書籍ＩＤ入力
-                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフコード", width:100},   //社員ID入力
-                    {view:"text", id:"syainn_id", name:"syainn_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"syainn_id", name:"syainn_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"社員名", width:100},   //社員ID入力
-                    {view:"text", id:"syainn_name", name:"syainn_name", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"syainn_name", name:"syainn_name", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"書籍名称", width:100}, //書籍名称入力
-                    {view:"text", id:"book_name", name:"book_name", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"book_name", name:"book_name", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"作者名", width:100}, //作者名入力
-                    {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"料金", width:100},   //料金入力
-                    {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
-
                  {cols:[
                     {view:"label", label:"カテゴリ", width:100}, //カテゴリ入力
-                    {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},
+                    {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"概要", width:100},    //概要入力
-                    {view:"text", id:"overview", name:"overview", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"overview", name:"overview", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"出版社", width:100},  //出版社入力
-                    {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                  {view:"button", id:"btn_Register", name:"btn_Register", value:"情報の登録", css:"webix_primary", width:100, height:50},
             ]}
