@@ -7,6 +7,7 @@ class ApiRentalChoie extends ApiBase
      */
     public function init ($request, $response)
     {   
+        
         //図書情報を取得する
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();

@@ -14,11 +14,16 @@ class ApiRentalRegister extends ApiBase
      * スタッフコードID（PK）
      */
     private $syainn_id   = null;
+     /**
+     * 給付本の情報ID
+     */
+    private $kyuufu_rental_id = null;
     /*
      * 初期化
      */
-    public function init ( $request,  $response)
+    public function init ( $request, $response)
     {      
+        
         //図書情報を取得する
         $dbBookMapper = new \App\db\DbBookMapper;
         $dmBook = new \App\model\DmBook;
@@ -48,7 +53,7 @@ class ApiRentalRegister extends ApiBase
             'ryoukinn'  => $book[0]['ryoukinn'],
             //社員の情報
             'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
-            'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //スタッフコード
+            'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //社員名
             //利用者の情報
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
