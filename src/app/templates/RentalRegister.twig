@@ -1,5 +1,17 @@
 {% include 'base.html' %}
 <script >
+    var window = {
+        view:"window",
+        id:"iid",
+        head:"RentalChoie",
+        width:800,
+        height:500,
+        position:"center",
+        hidden:true,
+        body:{
+            template:"Some text"
+        }
+    };
     var form = {
         view:"form",
         id:"form",
@@ -7,18 +19,8 @@
         elements:[
             {rows:[
                 {cols:[
-                    {view:"combo", name:"rental_id", id:"rental_id", label:" 本の情報", width:500, labelWidth:65, labelAlign:"right",
-                        dispV:"name", returnV:"id", value:"-H",
-                         param:{
-                          rental_id:"レンタルの情報",
-                          syainn_id:"社員の情報",
-                          flg:"0",
-                          rental_id:"$$rental_id"
-              },
-          ajax:function(v,p,cb){sub_logic_CMLIG2000.getValue(v,p,cb)},
-          ajaxPop:function(p,cb){sub_logic_CMLIG2000.show(p,cb)}
-        },
-        {}
+                    {view:"label", label:"本の情報", width:100},   //利用者ID入力画面追加
+                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}, disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
@@ -80,7 +82,7 @@
             logic.dataLoad();
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("rental_id").attachEvent("onChange", logic.dataLoad);
+            $$("rental_id").attachEvent("onItemClick", function(){alert("rental id clicked");});
         },
       dataLoad: function(){
       var postData = {
@@ -121,15 +123,16 @@
             AUNG.pageMove("RentalChoie");
         }
     };
-    webix.ui(
-        {rows:[
-            form,
-            {},
-            footer,
-            {height:60}
-        ]}
-    );
     webix.ready(function () {
+        webix.ui(
+            {rows:[
+                form,
+                {},
+                footer,
+                {height:60}
+            ]}
+        );
+        webix.ui(window);
         AUNG.init();
         logic.init();
     });
