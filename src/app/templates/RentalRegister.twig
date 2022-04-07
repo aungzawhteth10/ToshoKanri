@@ -13,7 +13,7 @@
         }
     };
     var options = [
-        { iid:"form", value:"rental_id" },
+        { iid:"form", value:"本を選択してください。" },
 ];
     var form = {
         view:"form",
@@ -22,7 +22,7 @@
         elements:[
             {rows:[
                 {cols:[
-                    {view:"label", label:"本の情報", width:100},   //利用者ID入力画面追加
+                    {view:"label", label:"本の情報", width:150},   //本の情報選択画面
                     {view:"richselect", id:"rental_id", name:"rental_id", label:" ",  value:1, options:options, icon:"mdi-chevron-down"},
                 ]},
                 {cols:[

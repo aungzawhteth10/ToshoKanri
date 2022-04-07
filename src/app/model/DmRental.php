@@ -8,7 +8,7 @@ class DmRental extends DataModel
         'Borrow_date'    => 'string', //借用日付
         'usage_period'   => 'string', //利用期間  ]
         'syainn_id'      => 'string', //スタッフコード
-  //    'syainn_name'    => 'string', //社員名
+        'rental_id'      => 'string',//本の情報
     ];
     public static $primary_key = [
         'book_id',//書籍ID
