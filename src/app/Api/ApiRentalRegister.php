@@ -25,6 +25,7 @@ class ApiRentalRegister extends ApiBase
         $dmSyainn = new \App\model\DmSyainn;
         $dmSyainn->syainn_id = $this->session->book_id;
         $syainn = $dbSyainnMapper->find($dmSyainn);
+
         $result = [
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
@@ -48,6 +49,7 @@ class ApiRentalRegister extends ApiBase
      */
     public function update ($request, $response)
     {   
+     
         $postData  = $_POST;
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;

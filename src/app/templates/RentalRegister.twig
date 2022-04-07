@@ -12,6 +12,9 @@
             template:"Some text"
         }
     };
+    var options = [
+        { iid:"form", value:"rental_id" },
+];
     var form = {
         view:"form",
         id:"form",
@@ -20,7 +23,7 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"本の情報", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"richselect", id:"rental_id", name:"rental_id", label:" ",  value:1, options:options, icon:"mdi-chevron-down"},
                 ]},
                 {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
@@ -82,8 +85,7 @@
             logic.dataLoad();
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-  //        $$("rental_id").attachEvent("onItemClick", function(){alert("rental id clicked");});
-            $$("rental_id").attachEvent("onChange", logic.toMenu);
+            $$("rental_id").attachEvent("onChange", logic.dataLoad);
         },
       dataLoad: function(){
       var postData = {
