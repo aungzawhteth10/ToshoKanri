@@ -2,25 +2,7 @@
 namespace App\Api;
 class ApiRentalRegister extends ApiBase
 {   
-     /**
-     * 書籍ID（PK）
-     */
-    private $book_id = null;
-    /**
-     * レンタルID（PK）
-     */
-    private $rental_id = null;
-    /**
-     * スタッフコードID（PK）
-     */
-    private $syainn_id   = null;
-     /**
-     * 給付本の情報ID
-     */
-    private $kyuufu_rental_id = null;
-    /*
-     * 初期化
-     */
+
     public function init ( $request, $response)
     {      
         

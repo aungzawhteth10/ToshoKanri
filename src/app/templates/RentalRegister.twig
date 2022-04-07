@@ -20,11 +20,11 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"本の情報", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
+                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
                 ]},
                 {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}},
+                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150,},
                 ]},
                 {cols:[
                     {view:"label", label:"借用日付", width:100},   //借用日付入力画面追加
@@ -82,17 +82,13 @@
             logic.dataLoad();
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("rental_id").attachEvent("onItemClick", function(){alert("rental id clicked");});
+  //        $$("rental_id").attachEvent("onItemClick", function(){alert("rental id clicked");});
+            $$("rental_id").attachEvent("onChange", logic.toMenu);
         },
       dataLoad: function(){
       var postData = {
-        kyuufu_rental_id:$$("rental_id").getValue(),
+        rental_id:$$("rental_id").getValue(),
       };
-      Combo.ajax.get("/Api/ApiRentalRegister", postData, function (text, xml, http) {
-        if(Combo.ajax.isError(text))return false;
-        var json = xml.json();
-        Combo.datatable.parse("ichiran", json);
-      },{date:$$("rental_id").getValue()});
     },
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
@@ -122,6 +118,7 @@
         toMenu:function() {
             AUNG.pageMove("RentalChoie");
         }
+        
     };
     webix.ready(function () {
         webix.ui(
