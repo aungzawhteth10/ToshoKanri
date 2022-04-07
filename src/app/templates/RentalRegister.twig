@@ -25,7 +25,7 @@
                     {view:"label", label:"本の情報", width:150},   //本の情報選択画面
                     {view:"richselect", id:"rental_id", name:"rental_id", label:" ",  value:1, options:options, icon:"mdi-chevron-down"},
                 ]},
-                {cols:[
+                {cols:[ 
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
                     {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150,},
                 ]},
@@ -86,11 +86,18 @@
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("rental_id").attachEvent("onChange", logic.dataLoad);
+            $$("ichiran").on_Change.pageMove  = logic.toEditBook;
+            
         },
       dataLoad: function(){
+          
       var postData = {
         rental_id:$$("rental_id").getValue(),
       };
+        AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
+        if(AUNG.isAjaxError()) return false;
+        AUNG.datatable.parse("ichiran", text);
+        });   
     },
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
@@ -120,7 +127,6 @@
         toMenu:function() {
             AUNG.pageMove("RentalChoie");
         }
-        
     };
     webix.ready(function () {
         webix.ui(
