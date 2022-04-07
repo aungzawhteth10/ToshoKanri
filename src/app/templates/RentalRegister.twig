@@ -20,7 +20,7 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"本の情報", width:100},   //利用者ID入力画面追加
-                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6}, disabled:true},
+                    {view:"text", id:"rental_id", name:"rental_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
@@ -92,7 +92,7 @@
         if(Combo.ajax.isError(text))return false;
         var json = xml.json();
         Combo.datatable.parse("ichiran", json);
-      },{date:$$("teikyou_month").getValue()});
+      },{date:$$("rental_id").getValue()});
     },
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
