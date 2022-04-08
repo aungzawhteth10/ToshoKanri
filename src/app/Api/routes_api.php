@@ -14,3 +14,5 @@ $app->post('/Api/ApiSyainnRegister', '\App\Api\ApiSyainnRegister:update');
 $app->get('/Api/ApiSyainnManage', '\App\Api\ApiSyainnManage:init');
 $app->get('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:init');
 $app->post('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:update');
+$app->get('/Api/ApiBookSelect', '\App\Api\ApiBookSelect:init');
+$app->post('/Api/ApiBookSelect', '\App\Api\ApiBookSelect:update');

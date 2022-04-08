@@ -1,30 +1,16 @@
 {% include 'base.html' %}
 <script >
-    var window = {
-        view:"window",
-        id:"iid",
-        head:"RentalChoie",
-        width:800,
-        height:500,
-        position:"center",
-        hidden:true,
-        body:{
-            template:"Some text"
-        }
-    };
-    var options = [
-        { iid:"form", value:"aaaa" },
-];  
     var form = {
         view:"form",
         id:"form",
+        select:true,
         borderless:true,
         elements:[
             {rows:[
                 {cols:[
-                    {view:"label", label:"本の情報", width:150},   //本の情報選択画面
-                    {view:"richselect", id:"rental_id", name:"rental_id", label:" ",  value:1, options:options, icon:"mdi-chevron-down"},
-                ]},
+                    {view:"label", width:1},   //本の選択画面追加
+                    {view:"button", id:"btn_book_select", name:"btn_book_select", label:"本を選択一覧", css:"webix_primary",labelWidth:1, width:150},
+              ]},   
                 {cols:[ 
                     {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
                     {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150,},
@@ -80,25 +66,56 @@
         }
     };
    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:150, height:50};
+        //弹出窗口
+    var popup_win_book_select = {
+        view:"window",
+        id:"winbookselect",
+        modal:true,
+        width:600,
+        move:true,
+        position:"center",
+        head:{
+            view:"toolbar",
+            cols:[
+            {view: "label", label: "本の情報", css:"F2", width:200}
+            ]
+        },
+            body:{
+                view:"nccform",
+                id:"sub_ikkatsu_form",
+                elements:[
+                {margin:1, cols:[
+                    {rows:[
+                    {view:"checkbox", id:"sub_ikkatsu_tassei_jiki_chk", name:"sub_ikkatsu_tassei_jiki_chk", labelRight:"達成時期", width:300, labelWidth:10, value:0},
+                    {view:"label", css:"tableColor_1", label:"<div>達成時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,8'></span></div>", align:"center"},
+                    {view:"ncctextarea", id:"sub_ikkatsu_tassei_jiki_text", name:"sub_ikkatsu_tassei_jiki_text", height:80, labelWidth:0, maxLength:300, max:40}
+                    ]},
+                ]},
+                {cols:[
+                    {view:"label", label:"※チェックありの項目のみ反映します", css:"textColor_red"},
+                    {view:"button", id:"btnWinIkkatsuSettei", label:"完了", width:100},
+                    {view:"button", id:"btnWinIkkatsuClose", label:"閉じる", width:100}
+                ]}
+                ],
+            }
+    };
     var logic = {
         init:function() {
             logic.dataLoad();
+            //イベント
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("rental_id").attachEvent("onChange", logic.dataLoad);
-            $$("ichiran").on_Change.pageMove  = logic.toEditBook;
-            
+            $$("btn_book_select").attachEvent("onItemClick", logic.BookSelect);
         },
-      dataLoad: function(){
-          
-      var postData = {
-        rental_id:$$("rental_id").getValue(),
-      };
-        AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
-        if(AUNG.isAjaxError()) return false;
-        AUNG.datatable.parse("ichiran", text);
-        });   
-    },
+
+        BookSelect:function() {
+            AUNG.GET("Api/ApiBookSelect", {}, function(text, data, xml) {
+                if(AUNG.isAjaxError()) return false;
+                console.log(text);
+                $$("form").parse(text);
+            });
+        },
+
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
@@ -126,19 +143,17 @@
         },
         toMenu:function() {
             AUNG.pageMove("RentalChoie");
-        }
+        },
     };
-    webix.ready(function () {
-        webix.ui(
-            {rows:[
-                form,
-                {},
-                footer,
-                {height:60}
-            ]}
-        );
-        webix.ui(window);
-        AUNG.init();
-        logic.init();
-    });
+  webix.ui(
+    {rows:[
+      form,
+      footer,
+      {height:60},
+    ]}
+  );
+  webix.ready(function () {
+    AUNG.init();
+    logic.init();
+  });
 </script>
