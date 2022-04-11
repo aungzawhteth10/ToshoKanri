@@ -113,17 +113,21 @@
             if(AUNG.isAjaxError()) return false;
             AUNG.datatable.parse("sub_book_select_ichiran", text);
         });
-         $$("BtnBookSelectSettei").attachEvent("onItemClick", logic_book_select.BookSelectSettei);// 完了ボタン
+         $$("BtnBookSelectSettei").attachEvent("onItemClick", logic_book_select.bookSelectSettei);// 完了ボタン
          $$("BtnBookSelectClose").attachEvent("onItemClick", function(){$$("winBookSelect").hide();});// 閉じるボタン
         },
         show:function(){
+      //   $$("sub_book_select_ichiran").setValues(logic_book_select.default);
          $$("winBookSelect").show();
         },
-        BookSelectSettei:function(){
-            
-
-
-        },
+        //book_id情報取る
+        bookSelectSettei:function(){
+            var item = $$("sub_book_select_ichiran").getSelectedItem();
+            {# var postData = {
+               logic_book_select: $$("book_id").getValue(),
+            }; #}
+            console.log(item.book_id);
+        }
     };
     var logic = {
         init:function() {

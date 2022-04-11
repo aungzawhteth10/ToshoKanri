@@ -4,8 +4,6 @@ class ApiRentalRegister extends ApiBase
 {   
     public function init ( $request, $response)
     {      
-  //      $this->rental_id    = $data['rental_id'];//
-
         //図書情報を取得する
         $dbBookMapper = new \App\db\DbBookMapper;
         $dmBook = new \App\model\DmBook;
@@ -33,14 +31,11 @@ class ApiRentalRegister extends ApiBase
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
-
              //本の情報
             'rental_id'  => $book[0]['book_name'],
-            
             //社員の情報
             'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
             'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //社員名
-
             //利用者の情報
             'user_id'      => $rental[0]['user_id'] ?? '',//利用者ID
             'Borrow_date'  => $rental[0]['Borrow_date'] ?? '', //借用日付
