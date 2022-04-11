@@ -67,14 +67,21 @@
     };
    var footer = {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:150, height:50};
         //弹出窗口
+    var sub_footer = {height:50, cols:[
+        {},
+        {view:"button", id:"BtnBookSelectSettei", name:"BtnBookSelectSettei", label:"設定", css:"webix_primary", width:100},
+        {width:20},
+        {view:"button", id:"BtnBookSelectClose", name:"BtnBookSelectClose", label:"閉じる", css:"webix_primary", width:100}
+    ]};
     var popup_btn_book_select = {
         view:"window",
         id:"winBookSelect",
         modal:true,
-        width:1000,
-        height: 500,
+        width:900,
+        height:500,
         move:true,
         position:"center",
+        select:"row",
         head:{
             view:"toolbar",
             cols:[
@@ -82,17 +89,22 @@
             ]
         },
         body:{
-            view:"cust_datatable",
-            id:"sub_book_select_ichiran",
-            columns:[
-                {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80,template:"<span class='pageMove'>#book_#</span>"},
-                {id:"book_name", header:"書籍名", width: 200, sort:"string"},
-                {id:"author", header:["作者", {content:"textFilter"}], width:200},
-                {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
-                {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
-                {id:"overview", header:["概要", {content:"textFilter"}], width:200},
-                {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
-            ]
+            view:"form",
+            elements:[
+              {rows:[
+                {   view:"cust_datatable",
+                    id:"sub_book_select_ichiran",
+                    select:"row",
+                    columns:[
+                        {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:200},
+                        {id:"book_name", header:["書籍ID", {content:"textFilter"}], width:200},
+                        {id:"author", header:["作者", {content:"textFilter"}], width:200},
+                        {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
+                    ]
+                },
+                sub_footer
+              ]}
+            ],
         }
     };
     var logic_book_select = {
@@ -101,10 +113,17 @@
             if(AUNG.isAjaxError()) return false;
             AUNG.datatable.parse("sub_book_select_ichiran", text);
         });
-       },
-       show:function(){
+         $$("BtnBookSelectSettei").attachEvent("onItemClick", logic_book_select.BookSelectSettei);// 完了ボタン
+         $$("BtnBookSelectClose").attachEvent("onItemClick", function(){$$("winBookSelect").hide();});// 閉じるボタン
+        },
+        show:function(){
          $$("winBookSelect").show();
-       }
+        },
+        BookSelectSettei:function(){
+            
+
+
+        },
     };
     var logic = {
         init:function() {

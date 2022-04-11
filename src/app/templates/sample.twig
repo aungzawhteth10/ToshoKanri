@@ -1,0 +1,730 @@
+{# 画面名：サービス等利用計画,ID:SSSDG1000 #}
+{# ベースとなるテンプレートを継承 #}
+{% extends "base.html" %}
+{% block css %}
+{# ここにはＣＳＳを定義します #}
+<style>
+  .multiline{
+    line-height: 1.5em !important;
+  }
+  .saiyouLabel{
+    color: red;
+  }
+  .bigbox .webix_custom_checkbox{
+    left: 15px;
+    right: 15px;
+    width: 1.5em;
+    height: 1.5em;
+  }
+  .chkarea{
+    border-style: solid;
+    border-width: 1px !important;
+  }
+</style>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+//UI定義
+var main_footer   = {
+  cols:[
+    { view:"button", label:"一覧へ戻る", id:"btnIchiranBack", type:"prev", css:"B6", width:CONST.BTN.W1, height:CONST.BTN.H1 },
+    {},
+    { view:"label", label: "各種設定「帳票出力方法」画面より帳票タイトル・フッター内容の設定ができます。", css:"textColor_red", width:470},
+    NCC.btn.B4("サービス等利用計画", "btnPrint"),
+    NCC.btn.B3("登録", "btnSave")
+  ]
+};
+var ui_scheme = {
+  rows: [
+    {
+      view:"nccform",
+      id:"newForm",
+      hidden:true,
+      elements:[
+        {cols:[
+          NCC.btn.B6("新規作成", "btnNewDataSave", "", {height:CONST.BTN.H3, width:CONST.BTN.W1, css:"B7"}),
+          NCC.btn.B1("履歴取込", "btnNewRirekiTorikomi", "", {height:CONST.BTN.H3, width:CONST.BTN.W1}),
+          {}
+        ]},
+        {}
+      ]
+    },
+    { id:"updateForm", padding:0, hidden:false, rows:[
+      { view:"nccform", paddingY:0, height:40,
+        cols:[
+          { view:"ncccombo", name:"select_rireki", id:"select_rireki", label:"履歴選択", width:400, labelWidth:90, labelAlign:"right",
+            value:"{{HtmlHelper.getValueNewestOrSaiyouRireki('rireki_sentaku_soudan_riyou_keikaku', true)}}",
+            dispV:"rireki_name", returnV:"id",
+              param:{
+                sub_torihiki_id:"CMLIG9019",
+                okyakusama_id:"{{okyakusama_id}}",
+                eigyousho_id:"{{eigyousho_id}}"
+              },
+            ajax:function(v, p, cb){
+              sub_logic_CMLIG9000.getValue(v, p, cb);
+            },
+            ajaxPop:function(p, cb){
+              sub_logic_CMLIG9000.show(p, cb);
+            }
+          },
+          { id:"saiyouSpace", width:100 },
+          { view:"checkbox", id:"saiyou", labelRight:"採用", width:100, labelWidth:0, value:0, hidden:true },
+          { view:"label", id:"saiyou_label", label:"採用", width:100, css:"saiyouLabel", hidden:true },//採用履歴なら表示
+          NCC.btn.B6("複写作成", "btnHukusha", "", {height:CONST.BTN.H3, width:CONST.BTN.W1, css:"B7"}),
+          NCC.btn.B6("新規作成", "btnNew", "", {height:CONST.BTN.H3, width:CONST.BTN.W1, css:"B7"}),
+          NCC.btn.B6("履歴削除", "btnDel", "", {height:CONST.BTN.H3, width:CONST.BTN.W1, css:"B7"}),
+          {},
+          NCC.btn.B1("履歴取込", "btnRirekiTorikomi", "", {height:CONST.BTN.H3, width:CONST.BTN.W1})
+        ]
+      },
+      { view:"tabview",
+        cells:[
+        {
+          header:"基本情報",
+          body:{
+            id:"SSSDG1000_tab1",
+            view:"nccform",
+            scroll:true,
+            elements:[
+              { view:"radio", id:"keikakusho_kubun", name:"keikakusho_kubun", label:"計画書区分", labelWidth:180, labelAlign:"right", inputWidth:400, value:"0", options:{{HtmlHelper.getJson('ss_keikakusho_kubun_keikaku')|raw}} },
+              { view:"nccdatepicker", id:"keikaku_creation_date", name:"keikaku_creation_date", label:"計画作成日", labelWidth:180, inputWidth:400, labelAlign:"right", stringResult:true,  value:"{{loginDate}}" },
+              { view:"ncctext", id: "rireki_name", name: "rireki_name", label: "履歴名", labelWidth:180, inputWidth:500, labelAlign:"right", maxLength:30, required:true },
+              { view:"nccseltext", name:"keikaku_sakuseisha", id:"keikaku_sakuseisha", label:"計画作成担当者", inputWidth:500, labelWidth:180, labelAlign:"right", maxLength:50,
+                returnV:"name",
+                  param:{
+                    sub_torihiki_id:"CMLIG1000",
+                    eigyousho_id:"{{eigyousho_id}}",
+                    flg:"0"
+                  },
+                ajax:function(v, p, cb){
+                  sub_logic_CMLIG1000.getValue(v, p, cb);
+                },
+                ajaxPop:function(p, cb){
+                  sub_logic_CMLIG1000.show(p, cb);
+                }
+              },
+              { view:"radio", id:"shougaisha_shougaiji_kubun", name:"shougaisha_shougaiji_kubun", label:"障害者／障害児", labelWidth:180, labelAlign:"right", inputWidth:450, value:"0", options:{{HtmlHelper.getJson('ss_shougaisha_shougaiji_kubun')|raw}} },
+              { view:"nccdatepicker", id:"shougaisha_tekiyou_month", name:"shougaisha_tekiyou_month", value:"{{date}}", label:"障害者福祉情報の適用年月", labelWidth:180, inputWidth:400, labelAlign:"right", type:"month" },
+              { cols:[
+                { view:"ncctext", id:"jukyuushashou_no", name:"jukyuushashou_no", label:"受給者証番号", labelAlign:"right", labelWidth:180, inputWidth:350, width:360, readonly:true },
+                { view:"ncctext", id:"shougai_shien_kubun", name:"shougai_shien_kubun", label:"障害支援区分", labelAlign:"right", labelWidth:100, inputWidth:200, width:210, readonly:true },
+                { view:"ncctext", id:"riyousha_futan_jougen_getsugaku", name:"riyousha_futan_jougen_getsugaku", label:"利用者負担上限額", labelAlign:"right", labelWidth:120, inputWidth:230, width:250, readonly:true },
+                {}
+              ]},
+              { cols:[
+                { view:"ncctext", id:"hogosha_koukennin", name:"hogosha_koukennin", label:"保護者(児童)または後見人", labelAlign:"right", labelWidth:180, inputWidth:350, width:360, readonly:true },
+                { view:"ncctext", id:"zokugara", name:"zokugara", label:"本人との続柄", labelAlign:"right", labelWidth:100, inputWidth:200, readonly:true, width:210 },
+                {}
+              ]},
+              { rows:[
+                { height:40, cols:[
+                  { view:"label", label:"モニタリング実施月", width:180, align:"right"},
+                  { view:"label", css:"tableColor_1", label:"1月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"2月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"3月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"4月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"5月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"6月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"7月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"8月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"9月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"10月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"11月", align:"center", width:50 },
+                  { view:"label", css:"tableColor_1", label:"12月", align:"center", width:50 },
+                  {}
+                ]},
+                { cols:[
+                  { width:180 },
+                  { view:"checkbox", id:"monitoring_month_01", name:"monitoring_month_01", width:49, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_02", name:"monitoring_month_02", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_03", name:"monitoring_month_03", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_04", name:"monitoring_month_04", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_05", name:"monitoring_month_05", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_06", name:"monitoring_month_06", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_07", name:"monitoring_month_07", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_08", name:"monitoring_month_08", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_09", name:"monitoring_month_09", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_10", name:"monitoring_month_10", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_11", name:"monitoring_month_11", width:50, value:0, css:"chkarea bigbox" },
+                  { view:"checkbox", id:"monitoring_month_12", name:"monitoring_month_12", width:49, value:0, css:"chkarea bigbox" },
+                  {}
+                ]}
+              ]},
+              { view:"ncctext", id:"riyousha_doui_shomei", name:"riyousha_doui_shomei", label:"利用者同意署名欄", labelWidth:180, inputWidth:500, labelAlign:"right", maxLength:50 },
+              { view:"nccdatepicker", id:"shokai_monitoring_month", name:"shokai_monitoring_month", value:"", label:"初回モニタリング実施月", labelWidth:180, inputWidth:400, labelAlign:"right", type:"month", icons:true},
+              {view:"nccdatepicker", id:"start_month", name:"start_month", value:"", label:"開始年月", labelWidth:180, inputWidth:400, labelAlign:"right", type:"month", icons:true},
+              {view:"nccdatepicker", id:"end_month", name:"end_month", value:"", label:"終了年月", labelWidth:180, inputWidth:400, labelAlign:"right", last:true, type:"month", icons:true},
+              { view:"label", label:"<div class='subSubTitle'>利用者及びその家族の生活に対する意向（希望する生活）</div>"},
+              { cols:[
+                NCC.btn.B1("申請者の現状から取込", "btnGenjoTorikomi", "", {height:CONST.BTN.H2, width:150, css:"B7"}),
+                {}
+              ]},
+              {view:"ncctextarea", id:"honnin_seikatsu_ikou", name:"honnin_seikatsu_ikou", label:"本人<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,1'></span>", height:90, labelWidth:180, labelAlign:"right", maxLength:1000, max:400},
+              {view:"ncctextarea", id:"kazoku_seikatsu_ikou", name:"kazoku_seikatsu_ikou", label:"家族<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,2'></span>", height:72, labelWidth:180, labelAlign:"right", maxLength:500, max:300},
+              { view:"label", label:"<div class='subSubTitle'>総合的な援助の方針（本人がめざす生活に沿った支援の方針）</div>"},
+              {view:"ncctextarea", id:"sougouteki_enjo_houshin", name:"sougouteki_enjo_houshin", label:"総合的な援助の方針<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,3'></span>", height:72, labelWidth:180, labelAlign:"right", maxLength:500, max:300},
+              {view:"ncctextarea", id:"chouki_mokuhyou", name:"chouki_mokuhyou", label:"<div>長期目標<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,4'></span></div>", height:72, labelWidth:180, labelAlign:"right", maxLength:500, max:300},
+              {view:"ncctextarea", id:"tanki_mokuhyou", name:"tanki_mokuhyou", label:"<div>短期目標<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,5'></span></div>", height:72, labelWidth:180, labelAlign:"right", maxLength:500, max:300}
+            ],
+            on:{
+              onValidationError:NCC.validationError
+            }
+          }
+        },
+        {
+          header:"解決すべき課題",
+          body:{
+            id:"SSSDG1000_tab2",
+            view:"nccform",
+            elements:[
+              { cols:[
+                NCC.btn.B1("新規追加", "btnNew_ichiran", "", {height:CONST.BTN.H3, width:CONST.BTN.W1}),
+                { view:"label", label:"ドラッグ＆ドロップによる行移動操作で、優先順位の高いものを上から順に並び替えをしてください",width:600, labelAlign:"right", css:"textColor_red" },
+                {},
+                {view:"button", id:"btnIkkatsu", label:"時期一括設定", width:120}
+              ]},
+              {
+                view:"nccdatatable",
+                id:"kadai_ichiran",
+                scroll:true,
+                rowHeight:120,
+                headerRowHeight:CONST.CELL.H3,
+                rowLineHeight:25,
+                fixedRowHeight:false,
+                drag:"order",
+                css:"stripe",
+                columns:[
+                  { id:"id", header:"ID", hidden:true},
+                  { id:"row_edit", header:"", width:45, css:"adjust", template:"<div class='webix_icon fa-pencil cssIcon'></div>" },
+                  { id:"kaiketsu_kadai", header:"解決すべき課題", width:150, css:"pre"},
+                  { id:"shien_mokuhyou", header:"支援目標", width:150, css:"pre"},
+                  { id:"tassei_jiki", header:"達成時期", width:80, css:"pre"},
+                  { id:"shurui_naiyou_ryou", header:[{text:"課題解決のための関係者の役割", colspan:2}, {text:"種類・内容・量"}], width:110, css:"pre"},
+                  { id:"teikyou_jigyousha_name", header:[null, {text:"提供事業者名", css:"headermulti"}], width:110, css:"pre"},
+                  { id:"honnin_yakuwari", header:{text:"課題解決のための本人の役割", css:"headermulti"}, width:150, css:"pre"},
+                  { id:"hyouka_jiki", header:"評価時期", width:80, css:"pre"},
+                  { id:"ryuui_jikou", header:{text:"その他留意事項及び評価時期の設定理由", css:"headermulti"}, minWidth:150, fillspace:true, css:"pre" },
+                  { id:"row_delete", header: "削除", width:50, css:"adjust", template:"{common.trashIcon()}" }
+                ]
+              }
+            ]
+          }
+        }
+      ]},
+    ]},
+    main_footer
+  ]
+};
+
+//一覧入力ウィンドウ
+var sub_footer_SSSDG1000   = {
+  cols:[
+    {},
+    { view:"button", id:"btnUpdate", label:"更新", width: CONST.BTN.W1, height: CONST.BTN.H3, css:"B1", align:"right"},
+    { view:"button", id:"sub_bntClose_SSSDG1000", label:"閉じる", width:120, click:function(){$$("winSSSDG1000").hide();} }
+  ]
+};
+//一覧入力ウィンドウ
+var sub_scheme_SSSDG1000 = {
+  view:"window",
+  id:"winSSSDG1000",
+  modal:true,
+  width:960,
+  move:true,
+  head:{
+    view:"toolbar",
+    cols:[
+      { view: "label", label: "解決すべき課題", css:"F2", width:200}
+    ]
+  },
+  position:function(state){
+    state.top = $$("app").$height - this.$height;//下に合わせる
+  },
+  body:{
+    view:"nccform",
+    id:"sub_form",
+    paddingY:0,
+    elements:[
+      { margin:1, cols:[
+        { rows:[
+          { view:"label", id:"kaiketsu_kadai_label", css:"tableColor_1", label:"<div>解決すべき課題<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,6'></span></div>", align:"center", height:35 },
+          {view:"ncctextarea", id:"kaiketsu_kadai_text", name:"kaiketsu_kadai_text", height:72, maxLength:300, max:300}
+        ]},
+        { rows:[
+          { view:"label", id:"shien_mokuhyou_label", css:"tableColor_1", label:"<div>支援目標<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,7'></span></div>", align:"center", height:35 },
+          {view:"ncctextarea", id:"shien_mokuhyou_text", name:"shien_mokuhyou_text", height:72, maxLength:300, max:300}
+        ]},
+        { rows:[
+          { view:"label", id:"tassei_jiki_label", css:"tableColor_1", align:"center", height:35, label:"<div>達成時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,8'></span></div>", width:180},
+          {view:"ncctextarea", id:"tassei_jiki_text", name:"tassei_jiki_text", height:72, maxLength:300, max:40, width:180}
+        ]}
+      ]},
+      { margin:1, cols:[
+        { rows:[
+          { view:"label", id:"shurui_naiyou_ryou_label", css:"tableColor_1", label:"<div class='multiline'>課題解決のための関係者の役割<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,9'></span><span class='webix_icon fa-pencil'></span><br>種類・内容・量(頻度・時間)</div>", align:"center", height:45 },
+          {view:"ncctextarea", id:"shurui_naiyou_ryou_text", name:"shurui_naiyou_ryou_text", height:90, maxLength:300, max:300}
+        ]},
+        { rows:[
+          { view:"label", id:"teikyou_jigyousha_name_label", css:"tableColor_1", label:"<div class='multiline'>課題解決のための関係者の役割<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,10'></span><span class='webix_icon fa-pencil'></span><br>提供事業者名(担当者名・電話)</div>", align:"center", height:45, width:240 },
+          {view:"ncctextarea", id:"teikyou_jigyousha_name_text", name:"teikyou_jigyousha_name_text", height:90, maxLength:300, max:70, width:240}
+        ]},
+        { rows:[
+          { view:"label", id:"honnin_yakuwari_label", css:"tableColor_1", label:"<div>課題解決のための本人の役割<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,11'></span></div>", align:"center", height:45 },
+          {view:"ncctextarea", id:"honnin_yakuwari_text", name:"honnin_yakuwari_text", height:90, maxLength:300, max:300}
+        ]},
+        { rows:[
+          { view:"label", id:"hyouka_jiki_label", css:"tableColor_1", label:"<div class='multiline'>評価時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,12'></span><br>(ﾓﾆﾀﾘﾝｸﾞ実施月)</div>", align:"center", height:45, width:180 },
+          {view:"ncctextarea", id:"hyouka_jiki_text", name:"hyouka_jiki_text", height:90, maxLength:300, max:40, width:180}
+        ]}
+      ]},
+      { rows:[
+        { view:"label", id:"ryuui_jikou_label", css:"tableColor_1", label:"<div>その他留意事項及び評価時期の設定理由<span class='webix_icon fa-book' data-param='CMCMG0210,2,1013,13'></span></div>", align:"center", height:35 },
+        {view:"ncctextarea", id:"ryuui_jikou_text", name:"ryuui_jikou_text", height:54, maxLength:300, max:300}
+      ]},
+      sub_footer_SSSDG1000
+    ]
+  }
+};
+//時期一括設定  
+var popup_win_ikkatsu = {
+  view:"window",
+  id:"winIkkatsu",
+  modal:true,
+  width:600,
+  move:true,
+  position:"center",
+  head:{
+    view:"toolbar",
+    cols:[
+      {view: "label", label: "時期一括設定", css:"F2", width:200}
+    ]
+  },
+  body:{
+    view:"nccform",
+    id:"sub_ikkatsu_form",
+    elements:[
+      {margin:1, cols:[
+        {rows:[
+          {view:"checkbox", id:"sub_ikkatsu_tassei_jiki_chk", name:"sub_ikkatsu_tassei_jiki_chk", labelRight:"達成時期", width:300, labelWidth:10, value:0},
+          {view:"label", css:"tableColor_1", label:"<div>達成時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,8'></span></div>", align:"center"},
+          {view:"ncctextarea", id:"sub_ikkatsu_tassei_jiki_text", name:"sub_ikkatsu_tassei_jiki_text", height:80, labelWidth:0, maxLength:300, max:40}
+        ]},
+        {rows:[
+          {view:"checkbox", id:"sub_ikkatsu_hyouka_jiki_chk", name:"sub_ikkatsu_hyouka_jiki_chk", labelRight:"評価時期", width:300, labelWidth:10, value:0},
+          {view:"label", css:"tableColor_1", label:"<div>評価時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,12'></span></div>", align:"center"},
+          {view:"ncctextarea", id:"sub_ikkatsu_hyouka_jiki_text", name:"sub_ikkatsu_hyouka_jiki_text", height:80, labelWidth:0, maxLength:300, max:40}
+        ]},
+      ]},
+      {cols:[
+        {view:"label", label:"※チェックありの項目のみ反映します", css:"textColor_red"},
+        {view:"button", id:"btnWinIkkatsuSettei", label:"完了", width:100},
+        {view:"button", id:"btnWinIkkatsuClose", label:"閉じる", width:100}
+      ]}
+    ],
+  }
+};
+var logic_win_ikkatsu = {
+  default:{//初期値
+    sub_ikkatsu_tassei_jiki_chk :0,
+    sub_ikkatsu_hyouka_jiki_chk :0,
+    sub_ikkatsu_tassei_jiki_text:"",
+    sub_ikkatsu_hyouka_jiki_text:""
+  },
+  init:function(){
+    $$("btnWinIkkatsuSettei").attachEvent("onItemClick", logic_win_ikkatsu.ikkatsuSettei);// 完了ボタン
+    $$("btnWinIkkatsuClose").attachEvent("onItemClick", function(){$$("winIkkatsu").hide();});// 閉じるボタン
+  },
+  show:function(){
+    $$("sub_ikkatsu_form").setValues(logic_win_ikkatsu.default);
+    $$("winIkkatsu").show();
+  },
+  ikkatsuSettei:function(){//一括設定
+    NCC.message("CM00177", function(result){//処理を続行してもよろしいですか？
+      if(result != "0") return false;
+      var _form = $$("sub_ikkatsu_form").getValues();
+      if(_form.sub_ikkatsu_tassei_jiki_chk != 1 && _form.sub_ikkatsu_hyouka_jiki_chk != 1){// 達成時期と評価時期両方チェックされていない場合
+        $$("winIkkatsu").hide();
+        return false;
+      };
+      var _ikkatsuObj = {};//一括設定情報
+      if(_form.sub_ikkatsu_tassei_jiki_chk == 1){// 達成時期にチェックありの場合
+        _ikkatsuObj.tassei_jiki = _form.sub_ikkatsu_tassei_jiki_text;
+      };
+      if(_form.sub_ikkatsu_hyouka_jiki_chk == 1){// 評価時期にチェックありの場合
+        _ikkatsuObj.hyouka_jiki = _form.sub_ikkatsu_hyouka_jiki_text;
+      };
+      var _parseItem = [];//一覧情報
+      $.each(NCC.datatable.getItemAll("kadai_ichiran"), function(index, val) {
+        _parseItem.push($.extend({}, val, _ikkatsuObj));
+      });
+      NCC.datatable.parse("kadai_ichiran", _parseItem);
+      $$("winIkkatsu").hide();
+    });
+  }
+};
+//ロジック定義
+var logic = {
+  newIchiranRow:{
+    id:"",
+    kaiketsu_kadai:"",
+    shien_mokuhyou:"",
+    tassei_jiki:"",
+    shurui_naiyou_ryou:"",
+    teikyou_jigyousha_name:"",
+    honnin_yakuwari:"",
+    hyouka_jiki:"",
+    ryuui_jikou:""
+  },
+  itemGroup:{
+    dispNewForm:["newForm"],
+    dispUpdateForm:["updateForm", "btnPrint", "btnSave"],
+    dispSaiyouSpace:["saiyouSpace"],
+    dispNotSaiyou:["saiyou"],
+    dispSaiyou:["saiyou_label"]
+  },
+  init:function(){
+    logic.dataLoad();
+    //イベント
+    $$("btnNewDataSave").attachEvent("onItemClick", logic.newDataSave);//新規作成ボタン(履歴0件)
+    $$("btnNewRirekiTorikomi").attachEvent("onItemClick", logic.dispCMLIGE000);//履歴取込ボタン(履歴0件)
+    $$("select_rireki").attachEvent("onChange", logic.rirekiKousinLoad);//履歴選択
+    $$("btnRirekiTorikomi").attachEvent("onItemClick", logic.dispCMLIGE000);//履歴取込
+    $$("btnHukusha").attachEvent("onItemClick", logic.copySave);//複写作成
+    $$("btnNew").attachEvent("onItemClick", logic.newSave);//新規作成
+    $$("btnDel").attachEvent("onItemClick", logic.validateDelete);//履歴削除
+    $$("shougaisha_shougaiji_kubun").attachEvent("onChange", logic.getShougaiJohou);//障害者障害児区分
+    $$("shougaisha_tekiyou_month").attachEvent("onChange", logic.getShougaiJohou);//障害者福祉の適用年月
+    $$("btnGenjoTorikomi").attachEvent("onItemClick", logic.genjouTorikomi);//申請者の現状から取込
+    $$("btnNew_ichiran").attachEvent("onItemClick", logic.newAddRow);//一覧行新規作成
+    $$("btnIkkatsu").attachEvent("onItemClick", logic_win_ikkatsu.show);//時期一括設定ボタン
+    $$("btnIchiranBack").attachEvent("onItemClick", logic.returnIchiarn);//一覧へ戻るボタン
+    $$("btnPrint").attachEvent("onItemClick", logic.print);//サービス等利用計画帳票出力
+    $$("btnSave").attachEvent("onItemClick", logic.update);//登録ボタン
+    $$("btnUpdate").attachEvent("onItemClick", function(){//一覧子画面更新ボタン
+      logic.updateSubForm();
+      $$("winSSSDG1000").hide();
+    });
+    // 課題一覧アイコン
+    $$("kadai_ichiran").on_click["fa-trash"]  = logic.deleteRow;//一覧ゴミ箱アイコン
+    $$("kadai_ichiran").on_click["fa-pencil"] = logic.updateRow;//一覧鉛筆アイコン
+    // 文章事例
+    $$("honnin_seikatsu_ikou").on_click["fa-book"]         = logic.IconBook;//利用者及びその家族の生活に対する意向 本人bookアイコン
+    $$("kazoku_seikatsu_ikou").on_click["fa-book"]         = logic.IconBook;//利用者及びその家族の生活に対する意向 家族bookアイコン
+    $$("sougouteki_enjo_houshin").on_click["fa-book"]      = logic.IconBook;//総合的な援助の方針bookアイコン
+    $$("chouki_mokuhyou").on_click["fa-book"]              = logic.IconBook;//長期目標bookアイコン
+    $$("tanki_mokuhyou").on_click["fa-book"]               = logic.IconBook;//短期目標bookアイコン
+    $$("kaiketsu_kadai_label").on_click["fa-book"]         = logic.IconBook;//解決すべき課題bookアイコン
+    $$("shien_mokuhyou_label").on_click["fa-book"]         = logic.IconBook;//支援目標bookアイコン
+    $$("tassei_jiki_label").on_click["fa-book"]            = logic.IconBook;//達成時期bookアイコン
+    $$("shurui_naiyou_ryou_label").on_click["fa-book"]     = logic.IconBook;//種類・内容・量（頻度・時間）bookアイコン
+    $$("teikyou_jigyousha_name_label").on_click["fa-book"] = logic.IconBook;//提供事業者名（担当者名・電話）bookアイコン
+    $$("honnin_yakuwari_label").on_click["fa-book"]        = logic.IconBook;//課題解決のための本人の役割bookアイコン
+    $$("hyouka_jiki_label").on_click["fa-book"]            = logic.IconBook;//評価時期bookアイコン
+    $$("ryuui_jikou_label").on_click["fa-book"]            = logic.IconBook;//その他留意事項及び評価時期の設定理由bookアイコン
+    // 入力補助ペンシルアイコン
+    $$("shurui_naiyou_ryou_label").on_click["fa-pencil"]     = logic.dispWin;//種類・内容・量（頻度・時間）
+    $$("teikyou_jigyousha_name_label").on_click["fa-pencil"] = logic.dispWin;//提供事業者名（担当者名・電話）
+  },
+  //履歴選択変更
+  rirekiKousinLoad:function(){
+    var _rirekiNo = $$("select_rireki").getValue();
+    if(!_rirekiNo) return false;
+    logic.dataLoad(_rirekiNo);
+  },
+  //データロード
+  dataLoad:function(rirekiNo){
+    if(!rirekiNo) rirekiNo = $$("select_rireki").getValue();
+    var initData = {
+      riyou_keikaku_id: rirekiNo
+    };
+    NCC.ajax.get("/api/ApiSSSDG1000", initData,{
+      success:function(text, xml, xhr){
+        if(NCC.ajax.isError(text))return false;
+        var json  = xml.json();
+        NCC.showItem(true, "dispUpdateForm", logic.itemGroup);
+        NCC.showItem(false, "dispNewForm", logic.itemGroup);
+        $$("SSSDG1000_tab1").parse(json.C_KIHON);
+        $$("saiyou").setValue(json.C_KIHON.saiyou);
+        NCC.datatable.parse("kadai_ichiran", json.C_ICHIRAN);
+        logic.saiyouShowHide();
+      },
+      error:function(text, xml, xhr){//履歴が0件
+        if(NCC.ajax.isError(text))return false;
+        var json  = xml.json();
+        NCC.showItem(true, "dispNewForm", logic.itemGroup);
+        NCC.showItem(false, "dispUpdateForm", logic.itemGroup);
+      }
+    });
+  },
+  saiyouShowHide:function(){
+    var _saiyou = $$("saiyou").getValue();
+    NCC.showItem((_saiyou == "1"), "dispSaiyou", logic.itemGroup);
+    NCC.showItem((_saiyou != "1"), "dispNotSaiyou", logic.itemGroup);
+    NCC.showItem(false, "dispSaiyouSpace", logic.itemGroup);
+  },
+  //障害者情報取得
+  getShougaiJohou:function(){
+    var postData = {
+      shougaisha_shougaiji_kubun: $$("shougaisha_shougaiji_kubun").getValue(),
+      shougaisha_tekiyou_month:   $$("shougaisha_tekiyou_month").getValue()
+    };
+    NCC.ajax.get("/api/ApiSSSDG1000/getShougaishaJouhou", postData, function(text, xml, xhr){
+      if(NCC.ajax.isError(text))return false;
+      var json  = xml.json();
+      $$("jukyuushashou_no").setValue(json.C_KIHON.jukyuushashou_no);
+      $$("shougai_shien_kubun").setValue(json.C_KIHON.shougai_shien_kubun);
+      $$("hogosha_koukennin").setValue(json.C_KIHON.hogosha_koukennin);
+      $$("zokugara").setValue(json.C_KIHON.zokugara);
+      $$("riyousha_futan_jougen_getsugaku").setValue(json.C_KIHON.riyousha_futan_jougen_getsugaku);
+    });
+  },
+  //新規作成ボタン(履歴0件)
+  newDataSave:function(){
+    logic.save("newAdd");
+  },
+  //新規作成ボタン
+  newSave:function(){
+    if(!logic.validate()) return false;
+    NCC.message("KS00034", function(result){//新規履歴を作成します。<br>このまま処理を続行してもよろしいですか？
+      if(result != "0") return false;
+      logic.save("newAdd");
+    });
+  },
+  //複写作成ボタン
+  copySave:function(){
+    if(!logic.validate()) return false;
+    NCC.message("KS00033", function(result){//現在表示している履歴を複写し、新規履歴を作成します。<br>このまま処理を続行してもよろしいですか？
+      if(result != "0") return false;
+      logic.save("hukusha");
+    });
+  },
+  //削除ボタン 削除前チェック
+  validateDelete:function(){
+    var _saiyou = ($$("select_rireki").getValues()).saiyou;
+    if(_saiyou == "1"){
+      NCC.ajax.get("/api/ApiSSSDG1000/rirekiKensuu", null, {//履歴件数チェック
+        success:function(text, xml, xhr){//履歴が1件
+          logic.rirekiDelete();
+        },
+        error:function(text, xml, xhr){//履歴が2件以上
+          NCC.message("KS00012");//採用履歴のため削除できません。
+          return false;
+        }
+      });
+    } else {
+      logic.rirekiDelete();
+    }
+  },
+  // 削除ボタン
+  rirekiDelete:function(){
+    NCC.message("VL10009", function(result){
+      if (result != "0") return false;
+      NCC.ajax.del("/api/ApiSSSDG1000", {riyou_keikaku_id:$$("select_rireki").getValue()}, function(text, xml, xhr){
+        NCC.pageMove("", false);
+      });
+    });
+  },
+  // 履歴取込
+  dispCMLIGE000:function(){
+    var param = {
+      eigyousho_id:     "{{eigyousho_id}}",
+      okyakusama_id:    "{{okyakusama_id}}"
+    };
+    var cb = logic.rtnCMLIGE000;//コールバック処理
+    sub_logic_CMLIGE000.show(param, cb);
+  },
+  rtnCMLIGE000:function(result){
+    if (result == false) return false;// 取込失敗した場合、何もしない
+    NCC.pageMove("", false);// 画面再表示
+  },
+  //申請者の現状から取込
+  genjouTorikomi:function(){
+    NCC.message("SS00073", function(result){//申請者の現状から本人／家族の主訴（意向・希望）を取り込みます。<br>よろしいですか？
+      if(result != "0") return false;
+      NCC.ajax.get("/api/ApiSSSDG1000/genjouTorikomi", {}, function(text, xml, xhr){
+        if(NCC.ajax.isError(text))return false;
+        var json = xml.json();
+        NCC.form.parse("SSSDG1000_tab1", json.C_KIHON, true);
+      });
+    });
+  },
+  //登録ボタン
+  update:function(){
+    if(!logic.validate()) return false;
+    logic.save("update");
+  },
+  save:function(_flg, CB){
+    var postData = {
+      flg:              _flg,
+      riyou_keikaku_id: $$("select_rireki").getValue(),
+      saiyou:           $$("saiyou").getValue(),
+      C_KIHON:          $$("SSSDG1000_tab1").getValues(),
+      C_ICHIRAN:        NCC.datatable.getItemAll("kadai_ichiran", true)
+    };
+    NCC.ajax.post("/api/ApiSSSDG1000", postData, function(text, xml, xhr){
+      if(is("Function", CB)) CB();
+      if(_flg == "update"){//登録,帳票ボタン 画面保持 現在履歴再読み込み
+        webix.message(CONST.MSG.VL10000);
+        logic.dataLoad(postData.riyou_keikaku_id);//再読み込み,採用状態反映
+      } else {//新規履歴 画面再読み込み
+        NCC.pageMove("", false);
+      }
+    });
+  },
+  //一覧新規追加ボタン
+  newAddRow: function(){
+    $$("kadai_ichiran").unselect();
+    var _item = $.extend(true, {}, logic.newIchiranRow);
+    logic._setSubForm(_item);
+  },
+  //一覧編集アイコン
+  updateRow: function(e, id, trg){
+    var _item = $.extend(true, {}, $$("kadai_ichiran").getItem(id));
+    logic._setSubForm(_item);
+  },
+  _setSubForm:function(_item){
+    $$("kaiketsu_kadai_text").setValue(_item.kaiketsu_kadai);
+    $$("shien_mokuhyou_text").setValue(_item.shien_mokuhyou);
+    $$("tassei_jiki_text").setValue(_item.tassei_jiki);
+    $$("shurui_naiyou_ryou_text").setValue(_item.shurui_naiyou_ryou);
+    $$("teikyou_jigyousha_name_text").setValue(_item.teikyou_jigyousha_name);
+    $$("honnin_yakuwari_text").setValue(_item.honnin_yakuwari);
+    $$("hyouka_jiki_text").setValue(_item.hyouka_jiki);
+    $$("ryuui_jikou_text").setValue(_item.ryuui_jikou);
+    $$("winSSSDG1000").show();
+  },
+  //編集画面更新ボタン処理
+  updateSubForm:function(){
+    var _item = $$("kadai_ichiran").getSelectedItem();
+    var _id  = (!_item) ? "" : _item.id;
+    var _parseData = {
+      id:                     _id,
+      kaiketsu_kadai:         $$("kaiketsu_kadai_text").getValue(),
+      shien_mokuhyou:         $$("shien_mokuhyou_text").getValue(),
+      tassei_jiki:            $$("tassei_jiki_text").getValue(),
+      shurui_naiyou_ryou:     $$("shurui_naiyou_ryou_text").getValue(),
+      teikyou_jigyousha_name: $$("teikyou_jigyousha_name_text").getValue(),
+      honnin_yakuwari:        $$("honnin_yakuwari_text").getValue(),
+      hyouka_jiki:            $$("hyouka_jiki_text").getValue(),
+      ryuui_jikou:            $$("ryuui_jikou_text").getValue()
+    };
+    NCC.datatable.parse("kadai_ichiran", _parseData, true);
+    $$("winSSSDG1000").hide();
+  },
+  //行削除ボタン
+  deleteRow:function(e, id, trg){
+    NCC.message("VL10003", function(result){
+      if(result != "0") return false;
+      var _item = $$("kadai_ichiran").getItem(id.row);
+      NCC.datatable.del("kadai_ichiran", _item);
+    });
+  },
+  // 文書事例アイコンクリック
+  IconBook:function(e, id, trg){
+    var trgArr = $($$(id).getNode()).find(".fa-book").data("param").split(",");
+    var id = id.replace( /_label/g , "_text");//ラベルIDに対応したテキストIDを指定する
+    $$(id).focus();
+    var param = {
+      gyoumu_shubetsu_id:trgArr[1],//業務
+      kinou_id:          trgArr[2],//機能
+      koumoku_id:        trgArr[3]//項目
+    };
+    if(trgArr[0] == "CMCMG0210"){
+      webix.ui(SUBWIN.CMCMG0210.layout(param, id)).show(e);
+    } else if(trgArr[0] == "CMCMG0200"){
+      webix.ui(SUBWIN.CMCMG0200.layout(param, id)).show(e);
+    }
+  },
+  // 編集画面のペンシルアイコンクリック
+  dispWin:function(e, id){
+    switch(id){
+      case "shurui_naiyou_ryou_label":
+        logic.dispCMLIG6000();
+        break;
+      case "teikyou_jigyousha_name_label":
+        logic.dispCMLIG4000();
+        break;
+      default:
+        break;
+    }
+  },
+  // サービス選択画面表示
+  dispCMLIG6000:function(){
+    var param = {
+      sub_torihiki_id: "CMLIG6006",
+      flg:             "0"
+    };
+    var cb = logic.rtnCMLIG6000;//コールバック処理
+    sub_logic_CMLIG6000.show(param, cb);
+  },
+  rtnCMLIG6000:function(item){
+    var _setData = $$("shurui_naiyou_ryou_text").getValue() + item.service_shurui + "　" + item.service_ryakushou;
+    $$("shurui_naiyou_ryou_text").setValue(_setData);
+  },
+  // サービス事業所選択（障福）画面表示
+  dispCMLIG4000:function(){
+    var param = {
+      sub_torihiki_id: "CMLIG4016",
+      flg:             "0"
+    };
+    var cb = logic.rtnCMLIG4000;//コールバック処理
+    sub_logic_CMLIG4000.show(param, cb);
+  },
+  rtnCMLIG4000:function(item){
+    var _jigyoushoName = $$("teikyou_jigyousha_name_text").getValue() + item.jigyousho_name + "　" + item.tel_no;
+    $$("teikyou_jigyousha_name_text").setValue(_jigyoushoName);
+  },
+  //帳票出力ボタン サービス等利用計画
+  print:function(){
+    if(!logic.validate()) return false;
+    var _obj = [{
+      okyakusama_id:    "{{okyakusama_id}}",// お客様ID
+      riyou_keikaku_id: $$("select_rireki").getValue()// 利用計画ID
+    }];
+    var sendData = {
+      tokumei_flag: NCC.XLS.getTokumei(),// 匿名フラグ
+      data:         JSON.stringify(NCC.arrColObj2(_obj, ["okyakusama_id", "riyou_keikaku_id"]))// お客様データ
+    };
+    logic.save("update", function(){
+      NCC.XLS.print("SSSDE0001", sendData);
+    });
+  },
+  //一覧へ戻るボタン
+  returnIchiarn:function(){
+    NCC.pageMove.return();
+  },
+  validate:function(){
+    webix.editStop();
+    if(!$$("SSSDG1000_tab1").validate()){
+      webix.message(CONST.MSG.VL10001);
+      return false;
+    }
+    return true;
+  }
+};
+//メソッド呼び出し
+webix.ready(function () {
+  //UI設定
+  webix.ui({
+    id:"app",
+    container:"layout_div",
+    cols:[
+      NCC.treeMenu.layout,
+      ui_scheme
+    ]
+  });
+  webix.ui(sub_scheme_SSSDG1000);
+  webix.ui(popup_win_ikkatsu);
+  //共通初期化処理
+  NCC.init();
+  //logic設定
+  logic.init();
+  logic_win_ikkatsu.init();
+});
+</script>
+{% include 'CMLIG1000.twig' with {'sub_torihiki_id': 'CMLIG1000'} %}
+{% include 'CMLIG4000.twig' with {'sub_torihiki_id': 'CMLIG4016'} %}
+{% include 'CMLIG6000.twig' with {'sub_torihiki_id': 'CMLIG6006'} %}
+{% include 'CMLIG9000.twig' with {'sub_torihiki_id': 'CMLIG9019'} %}
+{% include 'CMLIGE000.twig' with {'sub_torihiki_id': 'CMLIGE003'} %}
+{% endblock %}
