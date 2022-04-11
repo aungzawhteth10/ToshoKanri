@@ -83,61 +83,9 @@
             body:{
                 view:"form",
                 id:"sub_book_select_form",
-                elements:[
-                {margin:1, cols:[
-                    {rows:[
-                    {view:"checkbox", id:"sub_book_select_tassei_jiki_chk", name:"sub_book_select_tassei_jiki_chk", labelRight:"達成時期", width:300, labelWidth:10, value:0},
-                    {view:"label", css:"tableColor_1", label:"<div>達成時期<span class='webix_icon fa-book' data-param='CMCMG0200,2,1013,8'></span></div>", align:"center"},
-                    {view:"textarea", id:"sub_book_select_tassei_jiki_text", name:"sub_book_select_tassei_jiki_text", height:80, labelWidth:0, maxLength:300, max:40}
-                    ]},
-                ]},
-                {cols:[
-                    {view:"label", label:"※チェックありの項目のみ反映します", css:"textColor_red"},
-                    {view:"button", id:"btnwinbookselect", label:"完了", width:100},
-                    {view:"button", id:"btnwinbookselect", label:"閉じる", width:100}
-                ]}
-                ],
             }
     };
 
-    var logic_win_book_select = {
-        default:{//初期値
-            sub_ikkatsu_tassei_jiki_chk :0,
-            sub_ikkatsu_tassei_jiki_text:"",
-  },    
-
-     init:function(){
-    $$("BtnWinBookSelect").attachEvent("onItemClick", logic_win_book_select.bookselectSettei);// 完了ボタン
-    $$("BtnWinBookSelect").attachEvent("onItemClick", function(){$$("winBookSelect").hide();});// 閉じるボタン
-  },
-  show:function(){
-    $$("sub_bookselect_form").setValues(logic_win_book_select.default);
-    $$("winBookSelect").show();
-  },
-  bookselectSettei:function(){//bookselect設定
-    message("CM00177", function(result){//処理を続行してもよろしいですか？
-      if(result != "0") return false;
-      var _form = $$("sub_book_select_form").getValues();
-      if(_form.sub_book_select_tassei_jiki_chk != 1 && _form.sub_book_select_hyouka_jiki_chk != 1){// 達成時期と評価時期両方チェックされていない場合
-        $$("winBookSelect").hide();
-        return false;
-      };
-      var _book_selectObj = {};//一括設定情報
-      if(_form.sub_book_select_tassei_jiki_chk == 1){// 達成時期にチェックありの場合
-        _book_selectObj.tassei_jiki = _form.sub_book_select_tassei_jiki_text;
-      };
-      if(_form.sub_book_select_hyouka_jiki_chk == 1){// 評価時期にチェックありの場合
-        _book_selectObj.hyouka_jiki = _form.sub_book_select_tassei_jiki_text;
-      };
-      var _parseItem = [];//一覧情報
-      $.each(datatable.getItemAll("kadai_ichiran"), function(index, val) {
-        _parseItem.push($.extend({}, val, _book_selectObj));
-      });
-      datatable.parse("kadai_ichiran", _parseItem);
-      $$("winBookSelect").hide();
-    });
-  }
-};
 
     var logic = {
         init:function() {
