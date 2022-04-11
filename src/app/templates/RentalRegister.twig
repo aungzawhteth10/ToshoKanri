@@ -71,37 +71,48 @@
         view:"window",
         id:"winBookSelect",
         modal:true,
-        width:600,
+        width:1000,
+        height: 500,
         move:true,
         position:"center",
         head:{
             view:"toolbar",
             cols:[
-            {view: "label", label: "本の情報", css:"F2", width:200}
+            {view: "label", label: "本の情報", width:200}
             ]
         },
-            body:{
-                view:"form",
-                id:"sub_book_select_form",
-            }
+        body:{
+            view:"cust_datatable",
+            id:"sub_book_select_ichiran",
+            columns:[
+                {id:"book_id", header:["書籍ID", {content:"textFilter"}], width:80,template:"<span class='pageMove'>#book_#</span>"},
+                {id:"book_name", header:"書籍名", width: 200, sort:"string"},
+                {id:"author", header:["作者", {content:"textFilter"}], width:200},
+                {id:"ryoukinn", header:["料金", {content:"textFilter"}], width:200},
+                {id:"category", header:["カテゴリ", {content:"selectFilter"}], width:200},
+                {id:"overview", header:["概要", {content:"textFilter"}], width:200},
+                {id:"publisher", header:["出版社", {content:"textFilter"}], width:200}
+            ]
+        }
     };
-
-
+    var logic_book_select = {
+        init:function(){
+        AUNG.GET("Api/ApiBookSelect", {}, function(text, data, xml) {
+            if(AUNG.isAjaxError()) return false;
+            AUNG.datatable.parse("sub_book_select_ichiran", text);
+        });
+       },
+       show:function(){
+         $$("winBookSelect").show();
+       }
+    };
     var logic = {
         init:function() {
             logic.dataLoad();
             //イベント
             $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("btn_book_select").attachEvent("onItemClick", logic.BookSelect);
-        },
-
-        BookSelect:function() {
-            AUNG.GET("Api/ApiBookSelect", {}, function(text, data, xml) {
-                if(AUNG.isAjaxError()) return false;
-                console.log(text);
-                $$("form").parse(text);
-            });
+            $$("btn_book_select").attachEvent("onItemClick", logic_book_select.show);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiRentalRegister", {}, function(text, data, xml) {
@@ -139,8 +150,10 @@
       {height:60},
     ]}
   );
+  webix.ui(popup_btn_book_select);
   webix.ready(function () {
     AUNG.init();
     logic.init();
+    logic_book_select.init();
   });
 </script>
