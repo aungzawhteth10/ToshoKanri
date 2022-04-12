@@ -7,23 +7,12 @@ class ApiSyainnManage extends ApiBase
      */
     public function init ($request, $response)
     {   
-         //図書情報を取得する
-         $DbBookMapper = new \App\db\DbBookMapper;
-         $book = $DbBookMapper->find();
- 
-        
-        //レンタル情報を取得する
-        $DbRentalMapper = new \App\db\DbRentalMapper;
-        $rental = $DbRentalMapper->find();
-
-
         //社員情報を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
         $syainn = $DbSyainnMapper->find();
         $syainn = array_column($syainn, null, 'syainn_id') ;        
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_syainn_category')), 'value', 'id');
         error_log(print_r($category, true));
-
         $result = [];
         foreach ($syainn as $key => $value) {
             $result[] = [

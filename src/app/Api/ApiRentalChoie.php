@@ -7,7 +7,6 @@ class ApiRentalChoie extends ApiBase
      */
     public function init ($request, $response)
     {   
-        
         //図書情報を取得する
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();
@@ -15,12 +14,12 @@ class ApiRentalChoie extends ApiBase
         //社員情報を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
         $syainn = $DbSyainnMapper->find();
-        $syainn = array_column($syainn, null, 'syainn_id') ;  
+        $syainn = array_column($syainn, null, 'syainn_id') ;
 
         //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();
-        $rental = array_column($rental, null, 'book_id') ;        
+        $rental = array_column($rental, null, 'book_id') ;
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_book_category')), 'value', 'id');
         error_log(print_r($category, true));
 

@@ -38,7 +38,7 @@
                     {view:"label", label:"職種", width:100},   //社員職種入力
                     {view:"select", id:"syainn_Occupation", name:"syainn_Occupation", label:" ", options:{{HtmlHelper.getJsonKara('cm_syainn_category')|raw}}, labelWidth:1, width:250}, 
                 ]},
-                 {view:"button", id:"btn_Register", name:"btn_Register", value:"修正", css:"webix_primary", width:100, height:50},
+                 {view:"button", id:"btn_register", name:"btn_register", value:"修正", css:"webix_primary", width:100, height:50},
             ]}
         ],
         rules:{
@@ -48,7 +48,7 @@
     var logic = {
         init:function() {
             logic.dataLoad();
-            $$("btn_Register").attachEvent("onItemClick", logic.Register);
+            $$("btn_register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
         },
         dataLoad:function() {

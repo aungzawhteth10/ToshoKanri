@@ -7,56 +7,54 @@
         borderless:true,
         elements:[
             {rows:[
-                {cols:[
-                    {view:"label", width:1},   //本の選択画面追加
-                    {view:"button", id:"btn_syainn_select", name:"btn_syainn_select", label:"本を選択一覧", css:"webix_primary",labelWidth:1, width:150},
-              ]},   
                 {cols:[ 
-                    {view:"label", label:"利用者ID", width:100},   //利用者ID入力画面追加
+                    {view:"label", label:"利用者ID", width:105},   //利用者ID入力画面追加
                     {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150,},
                 ]},
                 {cols:[
-                    {view:"label", label:"借用日付", width:100},   //借用日付入力画面追加
+                    {view:"label", label:"借用日付", width:105},   //借用日付入力画面追加
                     {view:"text", id:"Borrow_date", name:"Borrow_date", label:" ", labelWidth:1, width:250},
                 ]},
                 {cols:[
-                    {view:"label", label:"利用期間", width:100},   //利用期間入力画面追加
+                    {view:"label", label:"利用期間", width:105},   //利用期間入力画面追加
                     {view:"text", id:"usage_period", name:"usage_period", label:" ", labelWidth:1, width:250},
                 ]},
                 {cols:[
-                    {view:"label", label:"書籍ＩＤ", width:100},   // 書籍ＩＤ入力
+                    {view:"label", label:"書籍ＩＤ", width:105},   // 書籍ＩＤ入力
                     {view:"text", id:"book_id", name:"book_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"スタッフコード", width:100},   //社員ID入力
+                    {view:"label", label:"スタッフコード",width:105},   //社員ID入力
                     {view:"text", id:"syainn_id", name:"syainn_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
+                    {view:"label", width:1},   //スタッフ選択画面追加
+                    {view:"button", id:"btn_syainn_select", name:"btn_syainn_select", label:"選択", css:"webix_primary",labelWidth:1, width:100},
                 ]},
                 {cols:[
-                    {view:"label", label:"社員名", width:100},   //社員名入力
+                    {view:"label", label:"社員名", width:105},   //社員名入力
                     {view:"text", id:"syainn_name", name:"syainn_name", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"書籍名称", width:100}, //書籍名称入力
+                    {view:"label", label:"書籍名称", width:105}, //書籍名称入力
                     {view:"text", id:"book_name", name:"book_name", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"作者名", width:100}, //作者名入力
+                    {view:"label", label:"作者名", width:105}, //作者名入力
                     {view:"text", id:"author", name:"author", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"料金", width:100},   //料金入力
+                    {view:"label", label:"料金", width:105},   //料金入力
                     {view:"text", id:"ryoukinn", name:"ryoukinn", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
                 ]},
                  {cols:[
-                    {view:"label", label:"カテゴリ", width:100}, //カテゴリ入力
+                    {view:"label", label:"カテゴリ", width:105}, //カテゴリ入力
                     {view:"select", id:"category", name:"category", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"概要", width:100},    //概要入力
+                    {view:"label", label:"概要", width:105},    //概要入力
                     {view:"text", id:"overview", name:"overview", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"出版社", width:100},  //出版社入力
+                    {view:"label", label:"出版社", width:105},  //出版社入力
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
                  {view:"button", id:"btn_Register", name:"btn_Register", value:"情報の登録", css:"webix_primary", width:100, height:50},
@@ -117,14 +115,16 @@
         show:function(){
          $$("winSyainnSelect").show();
         },
-        //社員情報取る
+        //社員情報
         syainnSelectSettei:function(){
             var item = $$("sub_syainn_select_ichiran").getSelectedItem();
-            {# var postData = {
-               logic_syainn_select: $$("syainn_id").getValue(),
-            }; #}
-            console.log(item.syainn_id);
-        }
+            if(!item || item.syainn_id == ""){
+                webix.message("スタッフを選択してください");
+                return false;
+            }
+            $$("syainn_id").setValue(item.syainn_id);
+            $$("syainn_name").setValue(item.syainn_name);
+        },
     };
     var logic = {
         init:function() {

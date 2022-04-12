@@ -7,19 +7,12 @@ class ApiSyainnFix extends ApiBase
      */
     public function init ($request, $response)
     {   
-        //図書情報を取得する
-        $dbBookMapper = new \App\db\DbBookMapper;
-        $dmBook = new \App\model\DmBook;
-        $dmBook->book_id   = $this->session->book_id;
-        $book = $dbBookMapper->find($dmBook);
-
         //社員情報
         $dbSyainnMapper = new \App\db\DbSyainnMapper;
         $dmSyainn = new \App\model\DmSyainn;
         error_log(print_r($this->session, true));
-        $dmSyainn->syainn_id   = $this->session->book_id;
+        $dmSyainn->syainn_id   = $this->session->syainn_id;
         $syainn = $dbSyainnMapper->find($dmSyainn);
-        
         $result = [
             'syainn_id'          => $syainn[0]['syainn_id'] ?? '',   //スタッフコード
             'syainn_name'        => $syainn[0]['syainn_name'] ?? '', //社員名
@@ -48,7 +41,6 @@ class ApiSyainnFix extends ApiBase
         $dmSyainn->furigana              = $postData['furigana'];
         $dmSyainn->tel_no                = $postData['tel_no'];
         $dmSyainn->moblie_no             = $postData['moblie_no'];
-        
         $count = $dbSyainnMapper->insert($dmSyainn);
         return parent::toJson($count);
     }

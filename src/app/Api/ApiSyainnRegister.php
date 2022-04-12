@@ -7,12 +7,6 @@ class ApiSyainnRegister extends ApiBase
      */
     public function init ($request, $response)  
     {   
-        //図書情報を取得する
-        $dbBookMapper = new \App\db\DbBookMapper;
-        $dmBook = new \App\model\DmBook;
-        $dmBook->book_id   = $this->session->book_id;
-        $book = $dbBookMapper->find($dmBook);
-
         //社員の情報
         $dbSyainnMapper = new \App\db\DbSyainnMapper;
         $dmSyainn = new \App\model\DmSyainn;
