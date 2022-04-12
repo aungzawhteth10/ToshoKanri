@@ -47,7 +47,7 @@
     },
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
-       var _session = {book_id:_item.user_id};
+       var _session = {book_id:_item.book_id};
       AUNG.pageMove("RentalRegister", _session);
     }
   };

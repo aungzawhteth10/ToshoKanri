@@ -18,11 +18,7 @@ class ApiRentalRegister extends ApiBase
         error_log(print_r('aaaa', true));
         error_log(print_r($rental, true));
 
-        //スタッフ名称を取得する
-        $dbSyainnMapper = new \App\db\DbSyainnMapper;
-        $dmSyainn = new \App\model\DmSyainn;
-        $dmSyainn->syainn_id = $this->session->book_id;
-        $syainn = $dbSyainnMapper->find($dmSyainn);
+
         $result = [
             'book_id'   => $book[0]['book_id'],
             'book_name' => $book[0]['book_name'],
