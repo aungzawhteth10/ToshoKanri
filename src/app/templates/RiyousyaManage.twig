@@ -1,0 +1,58 @@
+{% include 'base.html' %}
+<script >
+  var form = {
+    view:"form",
+    id:"form",
+    borderless:true,
+    elements:[
+      {rows:[
+        {
+          view:"cust_datatable",
+          id:"ichiran",
+          hover:"myhover",
+          select:true,
+          rowHeight:60, 
+          yCount:8,
+          tooltip:true,
+          columns:[
+            {id:"riyousya_id", header:["利用者ID", {content:"textFilter"}], width:150},
+            {id:"riyousya_name", header:"利用者名",width: 200, sort:"string", template:"<span class='pageMove'>#riyousya_name#</span>"},
+            {id:"furigana", header:["フリガナ", {content:"textFilter"}], width:200},
+            {id:"tel_no", header:["電話番号", {content:"textFilter"}], width:200},
+            {id:"moblie_no", header :["携帯番号", {content:"textFilter"}],  width:200},
+            {id:"mail_address", header :["メールアドレス", {content:"textFilter"}],  width:200},
+          ]
+      }]} 
+    ]
+  };
+  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50}
+ var logic = {
+     init:function() {
+      $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
+      logic.dataload();
+      $$("ichiran").on_click.pageMove  = logic.toEditBook;
+    },
+    dataload:function() {
+      AUNG.GET("Api/ApiRiyousyaManage", {}, function(text, data, xml) {
+        if(AUNG.isAjaxError()) return false;
+        AUNG.datatable.parse("ichiran", text);
+      });
+    },
+    toEditBook:function(e, id, trg) {
+       var _item = $$("ichiran").getItem(id);
+       var _session = {riyousya_id:_item.riyousya_id};
+      AUNG.pageMove("RiyousyaFix", _session);
+    }
+  };
+   webix.ui(
+    {rows:[
+      form,
+      footer,
+      {height:60},
+    ]}
+  );
+  webix.ready(function () {
+    AUNG.init();
+    logic.init();
+  });
+</script>

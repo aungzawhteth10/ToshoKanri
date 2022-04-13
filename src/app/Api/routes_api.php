@@ -16,3 +16,8 @@ $app->get('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:init');
 $app->post('/Api/ApiSyainnFix', '\App\Api\ApiSyainnFix:update');
 $app->get('/Api/ApiBookSelect', '\App\Api\ApiBookSelect:init');
 $app->post('/Api/ApiBookSelect', '\App\Api\ApiBookSelect:update');
+$app->get('/Api/ApiRiyousyaRegister', '\App\Api\ApiRiyousyaRegister:init');
+$app->post('/Api/ApiRiyousyaRegister', '\App\Api\ApiRiyousyaRegister:update');
+$app->get('/Api/ApiRiyousyaManage', '\App\Api\ApiRiyousyaManage:init');
+$app->get('/Api/ApiRiyousyaFix', '\App\Api\ApiRiyousyaFix:init');
+$app->post('/Api/ApiRiyousyaFix', '\App\Api\ApiRiyousyaFix:update');

@@ -12,6 +12,7 @@
                 {view:"button", id:"btn_book_manage", value:"図書情報管理画面" , css:"webix_primary", height:50},
                 {view:"button", id:"btn_rental_choice", value:"図書レンタル管理" , css:"webix_primary", height:50},
                 {view:"button", id:"btn_syainn_register", value:"新規スタッフ情報登録画面" , css:"webix_primary", height:50},
+                {view:"button", id:"btn_riyousya_register", value:"新規利用者情報登録画面" , css:"webix_primary", height:50},
                 {}
             ]}
     ]}; 
@@ -21,6 +22,7 @@
             $$("btn_book_manage").attachEvent("onItemClick", function(){logic.pageMove("BookManage");});
             $$("btn_rental_choice").attachEvent("onItemClick", function(){logic.pageMove("RentalChoie");});
             $$("btn_syainn_register").attachEvent("onItemClick", function(){logic.pageMove("SyainnRegister");});
+            $$("btn_riyousya_register").attachEvent("onItemClick", function(){logic.pageMove("RiyousyaRegister");});
         },
         pageMove:function(page) {
             AUNG.pageMove(page);

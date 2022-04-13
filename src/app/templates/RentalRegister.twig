@@ -7,7 +7,7 @@
         borderless:true,
         elements:[
             {rows:[
-                {cols:[ 
+                {cols:[
                     {view:"label", label:"利用者ID", width:105},   //利用者ID入力画面追加
                     {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150,},
                 ]},
@@ -57,7 +57,7 @@
                     {view:"label", label:"出版社", width:105},  //出版社入力
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
-                 {view:"button", id:"btn_register", name:"btn_register", value:"情報の登録", css:"webix_primary", width:100, height:50},
+                 {view:"button", id:"btn_Register", name:"btn_Register", value:"情報の登録", css:"webix_primary", width:100, height:50},
             ]}
         ],
         rules:{
@@ -130,7 +130,7 @@
         init:function() {
             logic.dataLoad();
             //イベント
-            $$("btn_register").attachEvent("onItemClick", logic.register);
+            $$("btn_Register").attachEvent("onItemClick", logic.Register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_syainn_select").attachEvent("onItemClick", logic_syainn_select.show);
         },
@@ -141,7 +141,7 @@
                 $$("form").parse(text);
             });
         },
-        register:function() {
+        Register:function() {
             if(!logic.validate()) {
                 return false;
             }
