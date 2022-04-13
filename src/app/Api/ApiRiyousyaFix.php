@@ -30,7 +30,7 @@ class ApiRiyousyaFix extends ApiBase
     {   
         $postData  = $_POST;    
         $dbRiyousyaMapper = new \App\db\DbRiyousyaMapper;
-        $dmRiyousya = new \App\model\DmRiyousya;
+        $dmRiyousya = new \App\model\dmRiyousya;
         $dmRiyousya->riyousya_id           = $postData['riyousya_id'];
         $dmRiyousya->riyousya_name         = $postData['riyousya_name'];
         $dmRiyousya->mail_address          = $postData['mail_address'];

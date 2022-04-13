@@ -7,7 +7,7 @@ class ApiRiyousyaRegister extends ApiBase
      */
     public function init ($request, $response)  
     {   
-        //社員の情報
+        //利用者の情報
         $dbRiyousyaMapper = new \App\db\DbRiyousyaMapper;
         $dmRiyousya = new \App\model\DmRiyousya;
         $riyousya = $dbRiyousyaMapper->find($dmRiyousya);
