@@ -57,7 +57,7 @@
                     {view:"label", label:"出版社", width:105},  //出版社入力
                     {view:"text", id:"publisher", name:"publisher", label:" ", labelWidth:1, width:250,disabled:true},
                 ]},
-                 {view:"button", id:"btn_Register", name:"btn_Register", value:"情報の登録", css:"webix_primary", width:100, height:50},
+                 {view:"button", id:"btn_register", name:"btn_register", value:"情報の登録", css:"webix_primary", width:100, height:50},
             ]}
         ],
         rules:{
@@ -119,7 +119,7 @@
         syainnSelectSettei:function(){
             var item = $$("sub_syainn_select_ichiran").getSelectedItem();
             if(!item || item.syainn_id == ""){
-                webix.message("スタッフを選択してください");
+                webix.alert("スタッフを選択してください");
                 return false;
             }
             $$("syainn_id").setValue(item.syainn_id);
@@ -130,7 +130,7 @@
         init:function() {
             logic.dataLoad();
             //イベント
-            $$("btn_Register").attachEvent("onItemClick", logic.Register);
+            $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_syainn_select").attachEvent("onItemClick", logic_syainn_select.show);
         },
@@ -141,7 +141,7 @@
                 $$("form").parse(text);
             });
         },
-        Register:function() {
+        register:function() {
             if(!logic.validate()) {
                 return false;
             }

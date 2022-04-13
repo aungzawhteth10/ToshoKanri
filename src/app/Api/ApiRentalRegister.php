@@ -26,7 +26,7 @@ class ApiRentalRegister extends ApiBase
             'category'  => $book[0]['category'],
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
-            'ryoukinn'  => $book[0]['ryoukinn'],             
+            'ryoukinn'  => $book[0]['ryoukinn'],       
             //社員の情報
             'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
             'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //社員名
