@@ -5,7 +5,6 @@ class DmRiyousya extends DataModel
     public static $schema = [
         'riyousya_id'        => 'string', //利用者ID
         'riyousya_name'      => 'string', //利用者名
-        'mail_address'       => 'string', //メールアドレス
         'furigana'           => 'string', //フリガナ
         'tel_no'             => 'string', //電話番号
         'moblie_no'          => 'string', //携帯番号

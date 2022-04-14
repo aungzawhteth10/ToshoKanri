@@ -17,7 +17,7 @@ class ApiRiyousyaRegister extends ApiBase
             'furigana'           => $value['furigana'] ?? '',    //フリガナ
             'tel_no'             => $value['tel_no'] ?? '',  //電話番号
             'moblie_no'          => $value['moblie_no'] ?? '', //携帯番号
-            'mail_address'       => $value['mail_address'] ?? '', //メールアドレス
+            
         ];
         return parent::toJson($result);
     }

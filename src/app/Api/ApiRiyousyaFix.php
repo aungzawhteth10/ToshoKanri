@@ -19,7 +19,6 @@ class ApiRiyousyaFix extends ApiBase
             'furigana'           => $riyousya[0]['furigana'] ?? '',    //フリガナ
             'tel_no'             => $riyousya[0]['tel_no'] ?? '',  //電話番号
             'moblie_no'          => $riyousya[0]['moblie_no'] ?? '', //携帯番号
-            'mail_address'       => $riyousya[0]['mail_address'] ?? '', //メールアドレス
         ];
         return parent::toJson($result);
     }
@@ -33,7 +32,6 @@ class ApiRiyousyaFix extends ApiBase
         $dmRiyousya = new \App\model\dmRiyousya;
         $dmRiyousya->riyousya_id           = $postData['riyousya_id'];
         $dmRiyousya->riyousya_name         = $postData['riyousya_name'];
-        $dmRiyousya->mail_address          = $postData['mail_address'];
         $dmRiyousya->furigana              = $postData['furigana'];
         $dmRiyousya->tel_no                = $postData['tel_no'];
         $dmRiyousya->moblie_no             = $postData['moblie_no'];
