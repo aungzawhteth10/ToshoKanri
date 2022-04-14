@@ -32,6 +32,7 @@ class ApiRiyousyaFix extends ApiBase
         $dmRiyousya = new \App\model\dmRiyousya;
         $dmRiyousya->riyousya_id           = $postData['riyousya_id'];
         $dmRiyousya->riyousya_name         = $postData['riyousya_name'];
+        $dmRiyousya->mail_address          = $postData['mail_address'];
         $dmRiyousya->furigana              = $postData['furigana'];
         $dmRiyousya->tel_no                = $postData['tel_no'];
         $dmRiyousya->moblie_no             = $postData['moblie_no'];
