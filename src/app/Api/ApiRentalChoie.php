@@ -16,6 +16,11 @@ class ApiRentalChoie extends ApiBase
         $syainn = $DbSyainnMapper->find();
         $syainn = array_column($syainn, null, 'syainn_id') ;
 
+        //利用者情報を取得する
+        $DbRiyousyaMapper = new \App\db\DbRiyousyaMapper;
+        $riyousya = $DbRiyousyaMapper->find();
+        $riyousya = array_column($riyousya, null, 'riyousya_id') ;
+
         //レンタル情報を取得する
         $DbRentalMapper = new \App\db\DbRentalMapper;
         $rental = $DbRentalMapper->find();

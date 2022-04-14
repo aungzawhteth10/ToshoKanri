@@ -27,4 +27,5 @@ class ApiRiyousyaManage extends ApiBase
         }
         return parent::toJson($result);
     }
+
 }

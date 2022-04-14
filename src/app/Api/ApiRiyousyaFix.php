@@ -19,6 +19,7 @@ class ApiRiyousyaFix extends ApiBase
             'furigana'           => $riyousya[0]['furigana'] ?? '',    //フリガナ
             'tel_no'             => $riyousya[0]['tel_no'] ?? '',  //電話番号
             'moblie_no'          => $riyousya[0]['moblie_no'] ?? '', //携帯番号
+            'mail_address'       => $riyousya[0]['mail_address'] ?? '', //メールアドレス
         ];
         return parent::toJson($result);
     }
