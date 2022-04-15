@@ -10,7 +10,7 @@ class ApiRentalChoie extends ApiBase
         //図書情報を取得する
         $DbBookMapper = new \App\db\DbBookMapper;
         $book = $DbBookMapper->find();
-
+        
         //社員情報を取得する
         $DbSyainnMapper = new \App\db\DbSyainnMapper;
         $syainn = $DbSyainnMapper->find();

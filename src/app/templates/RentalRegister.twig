@@ -9,9 +9,9 @@
             {rows:[
                 {cols:[
                     {view:"label", label:"利用者ID", width:105},   //利用者ID入力画面追加
-                    {view:"text", id:"riyousya_id", name:"riyousya_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
-                    {view:"label", width:1},   //スタッフ選択画面追加
-                    {view:"button", id:"btn_riyousya_select", name:"btn_riyousya_select", label:"選択", css:"webix_primary",labelWidth:1, width:100},
+                    {view:"text", id:"user_id", name:"user_id", label:" ", labelWidth:1, width:150, attributes:{maxlength:6},disabled:true},
+                //    {view:"label", width:1},   //スタッフ選択画面追加
+                //    {view:"button", id:"btn_riyousya_select", name:"btn_riyousya_select", label:"選択", css:"webix_primary",labelWidth:1, width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"借用日付", width:105},   //借用日付入力画面追加
@@ -104,22 +104,6 @@
               ]}
             ],
         }
-   /*    bodies:{
-            view:"form",
-            elements:[
-              {rows:[
-                {   view:"cust_datatable",
-                    id:"sub_riyousya_select_ichiran",
-                    select:"row",
-                    columns:[
-                        {id:"riyousya_id", header:["利用者ID", {content:"textFilter"}], width:200},
-                        {id:"riyousya_name", header:["利用者名", {content:"textFilter"}], width:200},
-                    ]
-                },
-                sub_footer
-              ]}
-            ],
-        }   */
     };
     var logic_syainn_select = {
         init:function(){

@@ -9,6 +9,7 @@ class ApiRentalRegister extends ApiBase
         $dmBook = new \App\model\DmBook;
         $dmBook->book_id   = $this->session->book_id;
         $book = $dbBookMapper->find($dmBook);
+        
         //レンタル情報を取得する
         $dbRentalMapper = new \App\db\DbRentalMapper;
         $dmRental = new \App\model\DmRental;
@@ -16,12 +17,6 @@ class ApiRentalRegister extends ApiBase
         $rental = $dbRentalMapper->find($dmRental);
         error_log(print_r('aaaa', true));
         error_log(print_r($rental, true));
-
-        //利用者情報を取得する
-        $dbRiyousyaMapper = new \App\db\DbRiyousyaMapper;
-        $dmRiyousya = new \App\model\DmRiyousya;
-        $dmRiyousya->riyousya_id   = $this->session->riyousya_id;
-        $riyousya = $dbRiyousyaMapper->find($dmRiyousya);
 
         //スタッフ情報を取得する
         $dbSyainnMapper = new \App\db\DbSyainnMapper;
@@ -34,6 +29,9 @@ class ApiRentalRegister extends ApiBase
             'overview'  => $book[0]['overview'],
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
+            //利用者情報
+          //  'riyousya_id'  => $riyousya[0]['riyousya_id'],
+
             //社員の情報
             'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
             'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //社員名
