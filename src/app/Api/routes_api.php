@@ -21,3 +21,6 @@ $app->post('/Api/ApiRiyousyaRegister', '\App\Api\ApiRiyousyaRegister:update');
 $app->get('/Api/ApiRiyousyaManage', '\App\Api\ApiRiyousyaManage:init');
 $app->get('/Api/ApiRiyousyaFix', '\App\Api\ApiRiyousyaFix:init');
 $app->post('/Api/ApiRiyousyaFix', '\App\Api\ApiRiyousyaFix:update');
+
+$app->get('/Api/ApiStaffRegiseter', '\App\Api\ApiStaffRegiseter:init');
+$app->post('/Api/ApiStaffRegiseter', '\App\Api\ApiStaffRegiseter:update');
