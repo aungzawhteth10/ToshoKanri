@@ -16,7 +16,7 @@
                 ]},
                 {cols:[
                     {},
-                     {view:"text", id:"btn_staff_kihonnjyouho", value: "基本情報" , css:"webix_primary", height:40,width:1450},
+                     {view:"text", id:"btn_staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
@@ -25,20 +25,20 @@
                     {view:"button", id:"btn_staff_check", name:"btn_staff_check", label:"重複チェック", css:"webix_primary", width:150},
                 ]},
                 {cols:[
-                    {view:"label", label:"コード", width:117},   
+                    {view:"label", label:"コード", width:117},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150},
                 ]},
                 {cols:[
-                    {view:"label", label:"氏名", width:38},   
+                    {view:"label", label:"氏名", width:38}, 
                     {view:"text", id:"name", name:"name", label:" ", width:250},
                     {view:"button", id:"btn_staff_katakana", name:"btn_staff_katakana", label:"カナ", css:"webix_primary", width:100},
                 ]},
                 {cols:[
-                    {view:"label", label:"フリガナ", width:105},   
+                    {view:"label", label:"フリガナ", width:105}, 
                     {view:"text", id:"furigana", name:"furigana", label:" ", labelWidth:1, width:185},
                 ]},
                 {cols:[
-                    {view:"label", label:"表示略称", width:105},   
+                    {view:"label", label:"表示略称", width:105},
                     {view:"text", id:"hyouji_ryakushou", name:"hyouji_ryakushou", label:" ", labelWidth:1, width:185},
                 ]},
                 {cols:[
@@ -47,12 +47,12 @@
                 ]},
                 {cols:[
                     {view:"label", label:"生年月日 元号", width:105}, 
-                    {view:"select", id:"seinenngappi_genngou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
-                    {view:"text", id:"seinenngappi_yer", name:"seinenngappi_yer", label:"", width:100}, 
+                    {view:"select", id:"seinengappi_gengou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
-                    {view:"text", id:"seinenngappi_month", name:"seinenngappi_month", label:"",width:50},
+                    {view:"text", id:"seinengappi_month", name:"seinengappi_month", label:"",width:50},
                     {view:"label", label:"月", width:50},   
-                    {view:"text", id:"seinenngappi_day", name:"seinenngappi_day", label:"", width:50},
+                    {view:"text", id:"seinengappi_day", name:"seinengappi_day", label:"", width:50},
                     {view:"label", label:"日", width:50}, 
                     {view:"text", id:"age", name:"age", label:"", width:50}, 
                     {view:"label", label:"歳", width:50},
@@ -102,8 +102,6 @@
                     {view:"label", label:"削除日", width:105},   
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
-
-                //緊急連絡先
                 {},
                 {cols:[
                      {view:"text", id:"btn_staff_kinkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450},
@@ -137,7 +135,7 @@
                     {view:"text", id:"kinkyuuji_banchi", name:"kinkyuuji_banchi", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"電話番号", width:105},   
+                    {view:"label", label:"電話番号", width:105}, 
                     {view:"text", id:"kinkyuuji_tel_no", name:"kinkyuuji_tel_no", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
@@ -186,7 +184,7 @@
             return true;
         },
         toMenu:function() {
-            AUNG.pageMove("RiyousyaManage");
+            AUNG.pageMove("StaffRegister");
         }
     };
    webix.ui(
