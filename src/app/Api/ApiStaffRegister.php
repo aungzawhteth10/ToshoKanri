@@ -7,10 +7,13 @@ class ApiStaffRegister extends ApiBase
      */
     public function init ($request, $response)
     {   
+        if(!isset($this->session->staff_id)){
+            return parent::toJson([]);
+        }
         //スタッフ情報
         $dbStaffMapper = new \App\db\DbStaffMapper;
         $dmStaff = new \App\model\DmStaff;
-        $dmStaff->staff_id  = 1001;//$this->session->staff_id;
+        $dmStaff->staff_id  = $this->session->staff_id;
         $staff = $dbStaffMapper->find($dmStaff);
         if(count($staff) == 0){
             return parent::toJson([]);
