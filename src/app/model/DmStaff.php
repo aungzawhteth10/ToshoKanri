@@ -3,6 +3,7 @@ namespace App\model;
 class DmStaff extends DataModel
 {
     public static $schema = [
+        'staff_id'             => 'string', //スタッフID
         'staff_code'           => 'string', //スタッフコード
         'name'                 => 'string', //氏名
         'furigana'             => 'string', //フリガナ
@@ -23,9 +24,9 @@ class DmStaff extends DataModel
         'fax_no'               => 'string', //FAX番号
         'mail_address'         => 'string', //メールアドレス
         'bikou'                => 'string', //備考
-        'sakujo_day'           => 'string', //削除の日
+    //    'sakujo_day'           => 'string', //削除の日
     ];
     public static $primary_key = [
-        'staff_code',//スタッフコード
+        'staff_id',//スタッフID
     ];
 }

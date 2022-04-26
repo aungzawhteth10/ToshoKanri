@@ -4,62 +4,63 @@
         view:"form",
         id:"form",
         scroll:true,
+        autoheight:true,
         elements:[
             {rows:[
                 {cols:[
                 {},
-                {view:"button", id:"btn_staff_manage", value:"基本情報" , css:"webix_primary", height:40,width:400},
-                {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:400},
-                {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:400},
-                {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:360},
-                {}
-                ]},
-
-                {cols:[
-                    {view:"label", label:"スタッフコード",width:105}, 
-                    {view:"text", id:"staff_code", name:"staff_code", label:" ", labelWidth:1, width:245, attributes:{maxlength:6}},
-                    {view:"button", id:"btn_staff_select", name:"btn_staff_select", label:"自動採番", css:"webix_primary",labelWidth:1, width:100},
-                    {view:"button", id:"btn_staff_check", name:"btn_staff_check", label:"重複チェック", css:"webix_primary",labelWidth:1, width:100},
+                {view:"button", id:"btn_staff_manage", value:"基本情報" , css:"webix_primary", height:40,width:350},
+                {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
+                {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
+                {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
                 ]},
                 {cols:[
-                    {view:"label", label:"所属営業所", width:105},   
-                    {view:"text", id:"eigyousho_id", name:"eigyousho_id", label:" ", labelWidth:1, width:250},
+                    {},
+                     {view:"text", id:"btn_staff_kihonnjyouho", value: "基本情報" , css:"webix_primary", height:40,width:1450},
                 ]},
                 {cols:[
-                    {view:"label", label:"氏名", width:105},   
-                    {view:"text", id:"name", name:"name", label:" ", labelWidth:1, width:250},
-                    {view:"button", id:"btn_staff_katakana", name:"btn_staff_katakana", label:"カナ", css:"webix_primary",labelWidth:1, width:100},
-
+                    {view:"label", label:"スタッフ",width:104}, 
+                    {view:"text", id:"staff_id", name:"staff_id", label:" ", labelWidth:1, width:245, attributes:{maxlength:6}},
+                    {view:"button", id:"btn_staff_automatic", name:"btn_staff_automatic", label:"自動採番", css:"webix_primary", width:100},
+                    {view:"button", id:"btn_staff_check", name:"btn_staff_check", label:"重複チェック", css:"webix_primary", width:150},
+                ]},
+                {cols:[
+                    {view:"label", label:"コード", width:117},   
+                    {view:"text", id:"staff_code", name:"staff_code", label:"", width:150},
+                ]},
+                {cols:[
+                    {view:"label", label:"氏名", width:38},   
+                    {view:"text", id:"name", name:"name", label:" ", width:250},
+                    {view:"button", id:"btn_staff_katakana", name:"btn_staff_katakana", label:"カナ", css:"webix_primary", width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"フリガナ", width:105},   
-                    {view:"text", id:"furigana", name:"furigana", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"furigana", name:"furigana", label:" ", labelWidth:1, width:185},
                 ]},
                 {cols:[
                     {view:"label", label:"表示略称", width:105},   
-                    {view:"text", id:"hyouji_ryakushou", name:"hyouji_ryakushou", label:" ", labelWidth:1, width:250},
+                    {view:"text", id:"hyouji_ryakushou", name:"hyouji_ryakushou", label:" ", labelWidth:1, width:185},
                 ]},
                 {cols:[
                     {view:"label", label:"性別", width:105},   
-                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}},  labelWidth:1, width:250},
+                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}},  labelWidth:1, width:100},
                 ]},
                 {cols:[
-                    {view:"label", label:"生年月日 元号", width:105},   
-                    {view:"select", id:"seinenngappi_genngou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_book_category')|raw}}, labelWidth:1, width:250},
-
+                    {view:"label", label:"生年月日 元号", width:105}, 
+                    {view:"select", id:"seinenngappi_genngou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"text", id:"seinenngappi_yer", name:"seinenngappi_yer", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
-                    {view:"text", id:"seinenngappi_yer", name:"seinenngappi_yer", label:" ", width:105}, 
+                    {view:"text", id:"seinenngappi_month", name:"seinenngappi_month", label:"",width:50},
                     {view:"label", label:"月", width:50},   
-                    {view:"text", id:"seinenngappi_month", name:"seinenngappi_month", label:" ",  width:105},
-                    {view:"label", label:"日", width:50},   
-                    {view:"text", id:"seinenngappi_day", name:"seinenngappi_day", label:" ", width:105}, 
-                    {view:"label", label:"年齢", width:50},   
-                    {view:"text", id:"age", name:"age", label:" ", width:105}, 
+                    {view:"text", id:"seinenngappi_day", name:"seinenngappi_day", label:"", width:50},
+                    {view:"label", label:"日", width:50}, 
+                    {view:"text", id:"age", name:"age", label:"", width:50}, 
+                    {view:"label", label:"歳", width:50},
                 ]},
                 {cols:[
                     {view:"label", label:"郵便番号", width:105},   
                     {view:"text", id:"post_no", name:"post_no", label:" ",  labelWidth:1, width:250}, 
-                    {view:"button", id:"btn_post_on", name:"btn_post_on", label:"住所検索", css:"webix_primary",labelWidth:1, width:100},
+                    {view:"button", id:"btn_post_on", name:"btn_post_on", label:"住所検索", css:"webix_primary", width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"都道府県", width:105},   
@@ -82,40 +83,85 @@
                     {view:"text", id:"tel_no", name:"tel_no", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"携帯番号", width:105},   //携帯番号入力
+                    {view:"label", label:"携帯番号", width:105},  
                     {view:"text", id:"moblie_no", name:"moblie_no", label:" ", labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"FAX番号", width:105},   //FAX番号入力
+                    {view:"label", label:"FAX番号", width:105},  
                     {view:"text", id:"fax_no", name:"fax_no", label:" ", labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"メールアドレス", width:105},   //メールアドレス入力
+                    {view:"label", label:"メールアドレス", width:105},   
                     {view:"text", id:"mail_address", name:"mail_address", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"備考", width:105},   //備考入力
+                    {view:"label", label:"備考", width:105},   
                     {view:"text", id:"bikou", name:"bikou", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"削除日", width:105},   //削除日入力
+                    {view:"label", label:"削除日", width:105},   
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
-                 {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary", width:100, height:50},
+
+                //緊急連絡先
+                {},
+                {cols:[
+                     {view:"text", id:"btn_staff_kinkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450},
+                ]},
+                {cols:[
+                     {view:"button", id:"btn_staff_kinnkyuurennraku", name:"btn_staff_kinnkyuurennraku", label:"基本情報と同じ", css:"webix_primary", width:250},
+                ]},
+                {cols:[
+                    {view:"label", label:"氏名", width:38},   
+                    {view:"text", id:"kinkyuuji_name", name:"kinkyuuji_name", label:" ", width:300},
+                ]},
+                {cols:[
+                    {view:"label", label:"郵便番号", width:105},   
+                    {view:"text", id:"kinkyuuji_post_on", name:"kinkyuuji_post_on", label:" ",  labelWidth:1, width:200}, 
+                    {view:"button", id:"btn_kinkyuuji_post_on", name:"btn_kinkyuuji_post_on", label:"住所検索", css:"webix_primary", width:100},
+                ]},
+                {cols:[
+                    {view:"label", label:"都道府県", width:105},   
+                    {view:"text", id:"kinnkyuuji_todoufuken", name:"kinnkyuuji_todoufuken", label:" ", labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"市区町村", width:105},   
+                    {view:"text", id:"kinkyuuji_shikuchoson", name:"kinkyuuji_shikuchoson", label:" ", labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"町名", width:105},   
+                    {view:"text", id:"kinkyuuji_chou_name", name:"kinkyuuji_chou_name", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"番地", width:105},   
+                    {view:"text", id:"kinkyuuji_banchi", name:"kinkyuuji_banchi", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"電話番号", width:105},   
+                    {view:"text", id:"kinkyuuji_tel_no", name:"kinkyuuji_tel_no", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"備考", width:105},   //備考入力
+                    {view:"text", id:"kinkyuuji_bikou", name:"kinkyuuji_bikou", label:" ",  labelWidth:1, width:250}, 
+                ]},
             ]}
-        ],
+        ],  
         rules:{
         }
   };
-  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:150};
-    var logic = {
+  var footer = {cols:[
+                    {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
+                    {},
+                    {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
+                ]};
+      var logic = {
         init:function() {
             logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
         },
         dataLoad:function() {
-            AUNG.GET("Api/ApiRiyousyaRegister", {}, function(text, data, xml) {
+            AUNG.GET("Api/ApiStaffRegister", {}, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 console.log(text);
                 $$("form").parse(text);
@@ -126,7 +172,7 @@
                 return false;
             }
             var _postData = $$("form").getValues();
-             AUNG.POST("Api/ApiRiyousyaRegister", _postData, function(text, data, xml) {
+             AUNG.POST("Api/ApiStaffRegister", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました。");
                 { logic.dataload(); }
@@ -143,7 +189,7 @@
             AUNG.pageMove("RiyousyaManage");
         }
     };
-    webix.ui(
+   webix.ui(
         {rows:[
             form,
             footer,
