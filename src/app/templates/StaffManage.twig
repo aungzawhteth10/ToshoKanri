@@ -1,0 +1,77 @@
+{% include 'base.html' %}
+<script >
+  var form = {
+    view:"form",
+    id:"form",
+    borderless:true,
+    elements:[
+      {rows:[
+       {cols:[
+        {view:"button", id:"btn_staff_regitser", value:"新規ボタン" , css:"webix_primary", height:40,width:350},
+       ]},
+        {
+          view:"cust_datatable",
+          id:"ichiran",
+          hover:"myhover",
+          select:true,
+          rowHeight:60, 
+          yCount:8,
+          tooltip:true,
+          columns:[
+            {id:"staff_id", header:["スタッフ", {content:"textFilter"}], width:150},
+            {id:"staff_code", header:["コード", {content:"textFilter"}], width:150},
+            {id:"name", header:"氏名",width: 200, sort:"string", template:"<span class='pageMove'>#name#</span>"},
+            {id:"furigana",  header:["フリガナ", {content:"textFilter"}], width:200},
+            {id:"hyouji_ryakushou", header:["表示略称", {content:"textFilter"}], width:200},
+            {id:"seibetsu", header:["性別", {content:"textFilter"}], width:200},
+            {id:"seinengappi_gengou", header:["生年月日　元号", {content:"textFilter"}], width:200},
+            {id:"seinengappi_year", header:["年", {content:"textFilter"}], width:200},
+            {id:"seinengappi_month", header:["月", {content:"textFilter"}], width:200},
+            {id:"seinengappi_day", header:["日", {content:"textFilter"}], width:200},
+            {id:"age", header:["年齢", {content:"textFilter"}], width:200},
+            {id:"post_no", header:["郵便番号", {content:"textFilter"}], width:200},
+            {id:"todoufuken", header:["都道府県", {content:"textFilter"}], width:200},
+            {id:"shikuchoson", header:["市区町村", {content:"textFilter"}], width:200},
+            {id:"chou_name", header:["町名", {content:"textFilter"}], width:200},
+            {id:"banchi", header:["番地", {content:"textFilter"}], width:200},
+            {id:"tel_no", header:["電話番号", {content:"textFilter"}], width:200},
+            {id:"moblie_no", header :["携帯番号", {content:"textFilter"}],  width:200},
+            {id:"fax_no", header :["FAX番号", {content:"selectFilter"}], width:200},
+            {id:"mail_address", header :["メールアドレス", {content:"textFilter"}],  width:200},
+            {id:"bikou", header :["備考", {content:"textFilter"}],  width:200},
+          ]
+      }]}
+    ]
+  };
+  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"メニューへ戻る", css:"webix_primary", width:150, height:50}
+ var logic = {
+     init:function() {
+      $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
+      $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffRegister")});
+      logic.dataload();
+      $$("ichiran").on_click.pageMove  = logic.toEditBook;
+    },
+    dataload:function() {
+      AUNG.GET("Api/ApiStaffManage", {}, function(text, data, xml) {
+        if(AUNG.isAjaxError()) return false;
+        AUNG.datatable.parse("ichiran", text);
+      });
+    },
+    toEditBook:function(e, id, trg) {
+       var _item = $$("ichiran").getItem(id);
+       var _session = {syainn_id:_item.syainn_id};
+      AUNG.pageMove("SyainnFix", _session);
+    }
+  };
+   webix.ui(
+    {rows:[
+      form,
+      footer,
+      {height:60},
+    ]}
+  );
+  webix.ready(function () {
+    AUNG.init();
+    logic.init();
+  });
+</script>

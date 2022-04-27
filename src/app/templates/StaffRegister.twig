@@ -47,7 +47,7 @@
                 ]},
                 {cols:[
                     {view:"label", label:"生年月日 元号", width:105}, 
-                    {view:"select", id:"seinengappi_gengou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"select", id:"seinengappi_gengou", name:"seinengappi_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
                     {view:"text", id:"seinengappi_month", name:"seinengappi_month", label:"",width:50},
@@ -172,8 +172,8 @@
             var _postData = $$("form").getValues();
              AUNG.POST("Api/ApiStaffRegister", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
-                webix.message("登録しました。");
-                { logic.dataload(); }
+                webix.message("登録しました");
+             //   { logic.dataload(); }
             });
         },
         validate:function() {
@@ -184,7 +184,7 @@
             return true;
         },
         toMenu:function() {
-            AUNG.pageMove("StaffRegister");
+            AUNG.pageMove("StaffManage");
         }
     };
    webix.ui(
