@@ -7,16 +7,16 @@ class ApiStaffFix extends ApiBase
      */
     public function init ($request, $response)
     {   
-        //スタッフ情報
-        $dbStaffMapper = new \App\db\DbStaffMapper;
-        $dmStaff = new \App\model\DmStaff;
-        error_log(print_r($this->session, true));
-        $dmStaff->staff_id  = $this->session->staff_id;
-        $staff = $dbStaffMapper->find($dmStaff);
+ 
+       //スタッフ情報
+       $dbStaffMapper = new \App\db\DbStaffMapper;
+       $dmStaff = new \App\model\DmStaff;
+       error_log(print_r($this->session, true));
+       $dmStaff->staff_id  = $this->session->staff_id;
+       $staff = $dbStaffMapper->find($dmStaff);
         
-      //  $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
-       // error_log(print_r($category, true));
-       // error_log(print_r($category[1], true));
+        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
+        error_log(print_r($category, true));
         if(count($staff) == 0){
             return parent::toJson([]);
         }
@@ -56,6 +56,7 @@ class ApiStaffFix extends ApiBase
      {   
         $postData  = $_POST;
         error_log(print_r($postData, true));
+        
         $dbStaffMapper = new \App\db\DbStaffMapper;
         $dmStaff = new \App\model\DmStaff;
          $dmStaff->staff_id              =$postData['staff_id'];             //スタッフID
@@ -79,7 +80,10 @@ class ApiStaffFix extends ApiBase
          $dmStaff->fax_no                =$postData['fax_no'];               //FAX番号
          $dmStaff->mail_address          =$postData['mail_address'];         //メールアドレス
          $dmStaff->bikou                 =$postData['bikou'];                //備考
-         $count = $dbStaffMapper->insert($dmStaff);
+         error_log(print_r('postData', true));
+        error_log(print_r($postData['seinengappi_gengou'], true));
+
+         $count = $dbStaffMapper->update($dmStaff);
          return parent::toJson($count);
      }
 }

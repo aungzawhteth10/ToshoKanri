@@ -12,9 +12,7 @@ class ApiStaffManage extends ApiBase
         $staff = $DbStaffMapper->find();
         $staff = array_column($staff, null, 'staff_id') ;        
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_seibetsu')), 'value', 'id');
-        $gengou   = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_gengou')),   'value', 'id');
         error_log(print_r($category, true));
-        error_log(print_r($category[1], true));
         $result = [];
         foreach ($staff as $key => $value) {
             $result[] = [
@@ -25,7 +23,7 @@ class ApiStaffManage extends ApiBase
                 'furigana'               => $value['furigana'] ?? '',    //フリガナ
                 'hyouji_ryakushou'       => $value['hyouji_ryakushou'] ?? '', //表示略称
                 'seibetsu'               => $category[$value['seibetsu']]?? '' ,//性別
-                'seinengappi_gengou'     => $category[$value['seinengappi_gengou']]?? '' ,//生年月日　元号
+                'seinengappi_gengou'     => $value['seinengappi_gengou'] ,//生年月日　元号
                 'seinengappi_year'       => $value['seinengappi_year'] ?? '', //生年月日　年
                 'seinengappi_month'      => $value['seinengappi_month'] ?? '', //生年月日　月
                 'seinengappi_day'        => $value['seinengappi_day'] ?? '', //生年月日　日

@@ -102,7 +102,7 @@
                     {view:"label", label:"削除日", width:105},   
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
-                {},
+             /*   {},
                 {cols:[
                      {view:"text", id:"btn_staff_kinkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
@@ -141,12 +141,18 @@
                 {cols:[
                     {view:"label", label:"備考", width:105},   //備考入力
                     {view:"text", id:"kinkyuuji_bikou", name:"kinkyuuji_bikou", label:" ",  labelWidth:1, width:250}, 
-                ]},
+                ]}, */
             ]}
-        ],  
+        ],   
         rules:{
         }
   };
+  /*  var btn_staff_check = {
+       if ($this->_isStaffIdDuplicate($staff_id)) {
+            return parent::toError('書籍IDが重複しています。');
+        }
+    };   */
+
   var footer = {cols:[
                     {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
                     {},

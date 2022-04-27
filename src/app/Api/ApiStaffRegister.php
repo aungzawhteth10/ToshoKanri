@@ -19,7 +19,6 @@ class ApiStaffRegister extends ApiBase
         
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
         error_log(print_r($category, true));
-        error_log(print_r($category[1], true));
         if(count($staff) == 0){
             return parent::toJson([]);
         }

@@ -43,11 +43,11 @@
                 ]},
                 {cols:[
                     {view:"label", label:"性別", width:105},   
-                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}},  labelWidth:1, width:100},
+                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_seibetsu')|raw}},  labelWidth:1, width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"生年月日 元号", width:105}, 
-                    {view:"select", id:"seinengappi_gengou", name:"seinenngappi_genngou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"select", id:"seinengappi_gengou", name:"seinengappi_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
                     {view:"text", id:"seinengappi_month", name:"seinengappi_month", label:"",width:50},
@@ -107,6 +107,7 @@
         rules:{
         }
   };
+
   var footer = {cols:[
                     {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
                     {},
