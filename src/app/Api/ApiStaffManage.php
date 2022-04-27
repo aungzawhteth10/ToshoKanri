@@ -7,7 +7,7 @@ class ApiStaffManage extends ApiBase
      */
     public function init ($request, $response)
     {   
-        //社員情報を取得する
+        //スタッフ情報を取得する
         $DbStaffMapper = new \App\db\DbStaffMapper;
         $staff = $DbStaffMapper->find();
         $staff = array_column($staff, null, 'staff_id') ;        
@@ -43,5 +43,4 @@ class ApiStaffManage extends ApiBase
         }
         return parent::toJson($result);
     }
-
 }

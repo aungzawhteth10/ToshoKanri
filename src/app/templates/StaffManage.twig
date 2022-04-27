@@ -23,8 +23,8 @@
             {id:"name", header:"氏名",width: 200, sort:"string", template:"<span class='pageMove'>#name#</span>"},
             {id:"furigana",  header:["フリガナ", {content:"textFilter"}], width:200},
             {id:"hyouji_ryakushou", header:["表示略称", {content:"textFilter"}], width:200},
-            {id:"seibetsu", header:["性別", {content:"textFilter"}], width:200},
-            {id:"seinengappi_gengou", header:["生年月日　元号", {content:"textFilter"}], width:200},
+            {id:"seibetsu", header:["性別", {content:"selectFilter"}], width:200},
+            {id:"seinengappi_gengou", header:["生年月日　元号", {content:"selectFilter"}], width:200},
             {id:"seinengappi_year", header:["年", {content:"textFilter"}], width:200},
             {id:"seinengappi_month", header:["月", {content:"textFilter"}], width:200},
             {id:"seinengappi_day", header:["日", {content:"textFilter"}], width:200},
@@ -36,7 +36,7 @@
             {id:"banchi", header:["番地", {content:"textFilter"}], width:200},
             {id:"tel_no", header:["電話番号", {content:"textFilter"}], width:200},
             {id:"moblie_no", header :["携帯番号", {content:"textFilter"}],  width:200},
-            {id:"fax_no", header :["FAX番号", {content:"selectFilter"}], width:200},
+            {id:"fax_no", header :["FAX番号", {content:"textFilter"}], width:200},
             {id:"mail_address", header :["メールアドレス", {content:"textFilter"}],  width:200},
             {id:"bikou", header :["備考", {content:"textFilter"}],  width:200},
           ]
@@ -47,7 +47,7 @@
  var logic = {
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
-      $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffRegister")});
+       $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffRegister")});
       logic.dataload();
       $$("ichiran").on_click.pageMove  = logic.toEditBook;
     },
@@ -59,8 +59,8 @@
     },
     toEditBook:function(e, id, trg) {
        var _item = $$("ichiran").getItem(id);
-       var _session = {syainn_id:_item.syainn_id};
-      AUNG.pageMove("SyainnFix", _session);
+       var _session = {staff_id:_item.staff_id};
+      AUNG.pageMove("syainnFix", _session);
     }
   };
    webix.ui(
