@@ -24,3 +24,5 @@ $app->post('/Api/ApiRiyousyaFix', '\App\Api\ApiRiyousyaFix:update');
 $app->get('/Api/ApiStaffRegister', '\App\Api\ApiStaffRegister:init');
 $app->post('/Api/ApiStaffRegister', '\App\Api\ApiStaffRegister:update');
 $app->get('/Api/ApiStaffManage', '\App\Api\ApiStaffManage:init');
+$app->post('/Api/ApiStaffFix', '\App\Api\ApiStaffFix:update');
+$app->get('/Api/ApiStaffFix', '\App\Api\ApiStaffFix:init');

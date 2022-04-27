@@ -1,15 +1,12 @@
 <?php
 namespace App\Api;
-class ApiStaffRegister extends ApiBase
+class ApiStaffFix extends ApiBase
 {
     /*
      * 初期化
      */
     public function init ($request, $response)
     {   
-        if(!isset($this->session->staff_id)){
-            return parent::toJson([]);
-        }
         //スタッフ情報
         $dbStaffMapper = new \App\db\DbStaffMapper;
         $dmStaff = new \App\model\DmStaff;
@@ -17,9 +14,9 @@ class ApiStaffRegister extends ApiBase
         $dmStaff->staff_id  = $this->session->staff_id;
         $staff = $dbStaffMapper->find($dmStaff);
         
-        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
-        error_log(print_r($category, true));
-        error_log(print_r($category[1], true));
+      //  $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
+       // error_log(print_r($category, true));
+       // error_log(print_r($category[1], true));
         if(count($staff) == 0){
             return parent::toJson([]);
         }
@@ -28,27 +25,27 @@ class ApiStaffRegister extends ApiBase
             return parent::toError('書籍情報が不正です。');
         }
         $result = [
-            'staff_id'               => $staff['staff_id'] , //スタッフID
-            'staff_code'             => $staff['staff_code'] ,   //利用者ID
-            'name'                   => $staff['name'] , //氏名
-            'furigana'               => $staff['furigana'] ,    //フリガナ
-            'hyouji_ryakushou'       => $staff['hyouji_ryakushou'], //表示略称
-            'seibetsu'               => $staff['seibetsu'] , //性別
-            'seinengappi_gengou'     => $staff['seinengappi_gengou'] , //生年月日元号
-            'seinengappi_year'       => $staff['seinengappi_year'] , //生年月日 年
-            'seinengappi_month'      => $staff['seinengappi_month'] , //生年月日　月
-            'seinengappi_day'        => $staff['seinengappi_day'] , //生年月日　日
-            'age'                    => $staff['age'] , //年齢
-            'post_no'                => $staff['post_no'] , //郵便番号
-            'todoufuken'             => $staff['todoufuken'] , //都道府県
-            'shikuchoson'            => $staff['shikuchoson'], //市区町村
-            'chou_name'              => $staff['chou_name'] , //町名
-            'banchi'                 => $staff['banchi'] , //番地
-            'tel_no'                 => $staff['tel_no'] ,  //電話番号
-            'moblie_no'              => $staff['moblie_no'] , //携帯番号
-            'fax_no'                 => $staff['fax_no'] , //fax番号
-            'mail_address'           => $staff['mail_address'] , //メールアドレス
-            'bikou'                  => $staff['bikou'] , //備考
+            'staff_id'               => $staff[0]['staff_id'] , //スタッフID
+            'staff_code'             => $staff[0]['staff_code'] ,   //利用者ID
+            'name'                   => $staff[0]['name'] , //氏名
+            'furigana'               => $staff[0]['furigana'] ,    //フリガナ
+            'hyouji_ryakushou'       => $staff[0]['hyouji_ryakushou'], //表示略称
+            'seibetsu'               => $staff[0]['seibetsu'] , //性別
+            'seinengappi_gengou'     => $staff[0]['seinengappi_gengou'] , //生年月日元号
+            'seinengappi_year'       => $staff[0]['seinengappi_year'] , //生年月日 年
+            'seinengappi_month'      => $staff[0]['seinengappi_month'] , //生年月日　月
+            'seinengappi_day'        => $staff[0]['seinengappi_day'] , //生年月日　日
+            'age'                    => $staff[0]['age'] , //年齢
+            'post_no'                => $staff[0]['post_no'] , //郵便番号
+            'todoufuken'             => $staff[0]['todoufuken'] , //都道府県
+            'shikuchoson'            => $staff[0]['shikuchoson'], //市区町村
+            'chou_name'              => $staff[0]['chou_name'] , //町名
+            'banchi'                 => $staff[0]['banchi'] , //番地
+            'tel_no'                 => $staff[0]['tel_no'] ,  //電話番号
+            'moblie_no'              => $staff[0]['moblie_no'] , //携帯番号
+            'fax_no'                 => $staff[0]['fax_no'] , //fax番号
+            'mail_address'           => $staff[0]['mail_address'] , //メールアドレス
+            'bikou'                  => $staff[0]['bikou'] , //備考
         ];
         return parent::toJson($result);
     }
@@ -82,7 +79,6 @@ class ApiStaffRegister extends ApiBase
          $dmStaff->fax_no                =$postData['fax_no'];               //FAX番号
          $dmStaff->mail_address          =$postData['mail_address'];         //メールアドレス
          $dmStaff->bikou                 =$postData['bikou'];                //備考
-
          $count = $dbStaffMapper->insert($dmStaff);
          return parent::toJson($count);
      }

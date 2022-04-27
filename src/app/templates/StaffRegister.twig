@@ -16,7 +16,7 @@
                 ]},
                 {cols:[
                     {},
-                     {view:"text", id:"btn_staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450},
+                     {view:"text", id:"btn_staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
@@ -43,7 +43,7 @@
                 ]},
                 {cols:[
                     {view:"label", label:"性別", width:105},   
-                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}},  labelWidth:1, width:100},
+                    {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_seibetsu')|raw}},  labelWidth:1, width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"生年月日 元号", width:105}, 
@@ -104,7 +104,7 @@
                 ]},
                 {},
                 {cols:[
-                     {view:"text", id:"btn_staff_kinkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450},
+                     {view:"text", id:"btn_staff_kinkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                      {view:"button", id:"btn_staff_kinnkyuurennraku", name:"btn_staff_kinnkyuurennraku", label:"基本情報と同じ", css:"webix_primary", width:250},
@@ -114,12 +114,12 @@
                     {view:"text", id:"kinkyuuji_name", name:"kinkyuuji_name", label:" ", width:300},
                 ]},
                 {cols:[
-                    {view:"label", label:"郵便番号", width:105},   
+                    {view:"label", label:"郵便番号", width:105},
                     {view:"text", id:"kinkyuuji_post_on", name:"kinkyuuji_post_on", label:" ",  labelWidth:1, width:200}, 
                     {view:"button", id:"btn_kinkyuuji_post_on", name:"btn_kinkyuuji_post_on", label:"住所検索", css:"webix_primary", width:100},
                 ]},
                 {cols:[
-                    {view:"label", label:"都道府県", width:105},   
+                    {view:"label", label:"都道府県", width:105},
                     {view:"text", id:"kinnkyuuji_todoufuken", name:"kinnkyuuji_todoufuken", label:" ", labelWidth:1, width:250}, 
                 ]},
                 {cols:[
@@ -154,7 +154,6 @@
                 ]};
       var logic = {
         init:function() {
-            logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
         },
@@ -173,7 +172,7 @@
              AUNG.POST("Api/ApiStaffRegister", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました");
-              //  { logic.dataload(); }
+              
             });
         },
         validate:function() {
