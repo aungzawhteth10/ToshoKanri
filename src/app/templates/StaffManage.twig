@@ -49,7 +49,7 @@
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
        $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffRegister")});
       logic.dataload();
-      $$("ichiran").on_click.pageMove  = logic.toEditBook;
+      $$("ichiran").on_click.pageMove  = logic.toStaffRegister;
     },
     dataload:function() {
       AUNG.GET("Api/ApiStaffManage", {}, function(text, data, xml) {
@@ -57,10 +57,10 @@
         AUNG.datatable.parse("ichiran", text);
       });
     },
-    toEditBook:function(e, id, trg) {
-       var _item = $$("ichiran").getItem(id);
-       var _session = {staff_id:_item.staff_id};
-      AUNG.pageMove("StaffFix", _session);
+    toStaffRegister:function(e, id, trg) {
+      var _item = $$("ichiran").getItem(id);
+      var _session = {staff_id:_item.staff_id};
+      AUNG.pageMove("StaffRegister", _session);
     }
   };
    webix.ui(
