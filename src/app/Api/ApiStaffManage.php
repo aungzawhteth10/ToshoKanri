@@ -39,6 +39,16 @@ class ApiStaffManage extends ApiBase
                 'fax_no'                 => $value['fax_no'] ?? '', //FAX番号
                 'mail_address'           => $value['mail_address'] ?? '', //メールアドレス
                 'bikou'                  => $value['bikou'] ?? '', //備考
+
+                'kinnkyuuji_name'         => $value['kinkyuuji_name'] ?? '', //緊急氏名
+                'kinnkyuuji_post_on'      => $value['kinkyuuji_post_on'] ?? '',//緊急郵便番号
+                'kinnkyuuji_todoufuken'   => $value['kinnkyuuji_todoufuken'] ?? '', //緊急都道府県
+                'kinnkyuuji_shikuchoson'  => $value['kinkyuuji_shikuchoson'] ?? '', //緊急市区町村
+                'kinnkyuuji_chou_name'    => $value['kinkyuuji_chou_name'] ?? '', //緊急町名
+                'kinnkyuuji_banchi'       => $value['kinkyuuji_banchi'] ?? '', //緊急番地
+                'kinnkyuuji_tel_no'       => $value['kinkyuuji_tel_no'] ?? '', //緊急電話番号
+                'kinnkyuuji_bikou'        => $value['kinkyuuji_bikou'] ?? '',//緊急備考
+    
             ];
         }
         return parent::toJson($result);
