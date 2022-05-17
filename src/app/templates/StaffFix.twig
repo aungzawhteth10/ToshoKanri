@@ -147,7 +147,7 @@
                      {view:"text", id:"staff_kinmukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
-                    {view:"label", label:"入社日 元号", width:105}, 
+                    {view:"label", label:"入社日元号", width:105}, 
                     {view:"select", id:"nyusyaday_gengou", name:"nyusyaday_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"nyusyaday_year", name:"nyusyaday_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
@@ -155,8 +155,6 @@
                     {view:"label", label:"月", width:50},   
                     {view:"text", id:"nyusyaday_day", name:"nyusyaday_day", label:"", width:50},
                     {view:"label", label:"日", width:50}, 
-                    {view:"text", id:"nyusya_age", name:"nyusya_age", label:"", width:50}, 
-                    {view:"label", label:"歳", width:50},
                 ]},
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:105}, 
@@ -167,14 +165,42 @@
                     {view:"label", label:"月", width:50},   
                     {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50},
                     {view:"label", label:"日", width:50}, 
-                    {view:"text", id:"yuukyuukyuuka_age", name:"yuukyuukyuuka_age", label:"", width:50}, 
-                    {view:"label", label:"歳", width:50},
                 ]},
                 {cols:[
-                    {view:"label", label:"種別", width:105},   //備考入力
+                    {view:"label", label:"種別", width:105},  
                     {view:"select", id:"syubetu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}}, labelWidth:1, width:250}, 
                 ]}, 
-                
+                 {cols:[
+                    {view:"label", label:"契約日数", width:105},
+                    {view:"text", id:"keiyaku_nissuu", name:"keiyaku_nissuu", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"契約時間", width:105},
+                    {view:"text", id:"keiyaku_jikan", name:"keiyaku_jikan", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                {cols:[
+                    {view:"label", label:"勤務区分", width:105},   
+                    {view:"select", id:"kinmu_kubun", name:"kinmu_kubun", label:" ", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250}, 
+                ]}, 
+                {cols:[
+                    {view:"label", label:"勤務希望地", width:105},
+                    {view:"text", id:"kinmu_kibouchi", name:"kinmu_kibouchi", label:" ",  labelWidth:1, width:250}, 
+                ]},
+                 {cols:[
+                    {view:"label", label:"主な通勤手段", width:105}, 
+                    {view:"checkbox", id:"check_koutu_1", name:"check_koutu_1", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"徒歩", width:50},   
+                    {view:"checkbox", id:"check_koutu_2", name:"check_koutu_2", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"自転車", width:50}, 
+                     {view:"checkbox", id:"check_koutu_3", name:"check_koutu_3", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"オートバイ", width:50}, 
+                     {view:"checkbox", id:"check_koutu_4", name:"check_koutu_4", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"自動車", width:50}, 
+                     {view:"checkbox", id:"check_koutu_5", name:"check_koutu_5", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"電車・バス", width:50}, 
+                     {view:"checkbox", id:"check_koutu_6", name:"check_koutu_6", label:" ",  labelWidth:1, width:50}, 
+                    {view:"label", label:"その他", width:50}, 
+                ]},
             ]}
         ],  
         rules:{
