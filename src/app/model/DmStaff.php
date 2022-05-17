@@ -25,14 +25,14 @@ class DmStaff extends DataModel
         'mail_address'         => 'string', //メールアドレス
         'bikou'                => 'string', //備考
 
-        'kinnkyuuji_name'         => 'string', //緊急氏名
-        'kinnkyuuji_post_on'      => 'string',//緊急郵便番号
-        'kinnkyuuji_todoufuken'  => 'string', //緊急都道府県
-        'kinnkyuuji_shikuchoson'  => 'string', //緊急市区町村
-        'kinnkyuuji_chou_name'    => 'string', //緊急町名
-        'kinnkyuuji_banchi'       => 'string', //緊急番地
-        'kinnkyuuji_tel_no'       => 'string', //緊急電話番号
-        'kinnkyuuji_bikou'        => 'string',//緊急備考
+        'kinkyuuji_name'         => 'string', //緊急氏名
+        'kinkyuuji_post_on'      => 'string',//緊急郵便番号
+        'kinkyuuji_todoufuken'  => 'string', //緊急都道府県
+        'kinkyuuji_shikuchoson'  => 'string', //緊急市区町村
+        'kinkyuuji_chou_name'    => 'string', //緊急町名
+        'kinkyuuji_banchi'       => 'string', //緊急番地
+        'kinkyuuji_tel_no'       => 'string', //緊急電話番号
+        'kinkyuuji_bikou'        => 'string',//緊急備考
         
     ];  
     public static $primary_key = [

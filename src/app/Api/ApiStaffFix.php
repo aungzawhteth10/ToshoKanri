@@ -47,14 +47,14 @@ class ApiStaffFix extends ApiBase
             'mail_address'           => $staff[0]['mail_address'] , //メールアドレス
             'bikou'                  => $staff[0]['bikou'] , //備考
 
-            'kinnkyuuji_name'         => $staff[0]['kinkyuuji_name'], //緊急氏名
-            'kinnkyuuji_post_on'      => $staff[0]['kinkyuuji_post_on'],//緊急郵便番号
-            'kinnkyuuji_todoufuken'   => $staff[0]['kinnkyuuji_todoufuken'], //緊急都道府県
-            'kinnkyuuji_shikuchoson'  => $staff[0]['kinkyuuji_shikuchoson'], //緊急市区町村
-            'kinnkyuuji_chou_name'    => $staff[0]['kinkyuuji_chou_name'], //緊急町名
-            'kinnkyuuji_banchi'       => $staff[0]['kinkyuuji_banchi'], //緊急番地
-            'kinnkyuuji_tel_no'       => $staff[0]['kinkyuuji_tel_no'], //緊急電話番号
-            'kinnkyuuji_bikou'        => $staff[0]['kinkyuuji_bikou'],//緊急備考
+            'kinkyuuji_name'         => $staff[0]['kinkyuuji_name'], //緊急氏名
+            'kinkyuuji_post_on'      => $staff[0]['kinkyuuji_post_on'],//緊急郵便番号
+            'kinkyuuji_todoufuken'   => $staff[0]['kinkyuuji_todoufuken'], //緊急都道府県
+            'kinkyuuji_shikuchoson'  => $staff[0]['kinkyuuji_shikuchoson'], //緊急市区町村
+            'kinkyuuji_chou_name'    => $staff[0]['kinkyuuji_chou_name'], //緊急町名
+            'kinkyuuji_banchi'       => $staff[0]['kinkyuuji_banchi'], //緊急番地
+            'kinkyuuji_tel_no'       => $staff[0]['kinkyuuji_tel_no'], //緊急電話番号
+            'kinkyuuji_bikou'        => $staff[0]['kinkyuuji_bikou'],//緊急備考
 
         ];
         return parent::toJson($result);
@@ -91,14 +91,14 @@ class ApiStaffFix extends ApiBase
          $dmStaff->mail_address          =$postData['mail_address'];         //メールアドレス
          $dmStaff->bikou                 =$postData['bikou'];                //備考
 
-         $dmStaff->kinnkyuuji_name        =$postData['kinnkyuuji_name'];       //緊急氏名
-         $dmStaff->kinnkyuuji_post_on     =$postData['kinnkyuuji_post_on'];    //緊急郵便番号
-         $dmStaff->kinnkyuuji_todoufuken  =$postData['kinnkyuuji_todoufuken']; //緊急都道府県
-         $dmStaff->kinnkyuuji_shikuchoson =$postData['kinnkyuuji_shikuchoson']; //緊急市区町村
-         $dmStaff->kinnkyuuji_chou_name   =$postData['kinnkyuuji_chou_name'];   //緊急町名
-         $dmStaff->kinnkyuuji_banchi      =$postData['kinnkyuuji_banchi'];      //緊急番地
-         $dmStaff->kinnkyuuji_tel_no      =$postData['kinnkyuuji_tel_no'];      //緊急電話番号
-         $dmStaff->kinnkyuuji_bikou       =$postData['kinnkyuuji_bikou'];        //緊急備考
+         $dmStaff->kinkyuuji_name        =$postData['kinkyuuji_name'];       //緊急氏名
+         $dmStaff->kinkyuuji_post_on     =$postData['kinkyuuji_post_on'];    //緊急郵便番号
+         $dmStaff->kinkyuuji_todoufuken  =$postData['kinkyuuji_todoufuken']; //緊急都道府県
+         $dmStaff->kinkyuuji_shikuchoson =$postData['kinkyuuji_shikuchoson']; //緊急市区町村
+         $dmStaff->kinkyuuji_chou_name   =$postData['kinkyuuji_chou_name'];   //緊急町名
+         $dmStaff->kinkyuuji_banchi      =$postData['kinkyuuji_banchi'];      //緊急番地
+         $dmStaff->kinkyuuji_tel_no      =$postData['kinkyuuji_tel_no'];      //緊急電話番号
+         $dmStaff->kinkyuuji_bikou       =$postData['kinkyuuji_bikou'];        //緊急備考
 
          error_log(print_r('postData', true));
          error_log(print_r($postData['seinengappi_gengou'], true));
