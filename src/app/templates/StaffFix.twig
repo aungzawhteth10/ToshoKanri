@@ -157,8 +157,8 @@
             logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            // $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinkyuurenrakusaki")});
+            $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
@@ -175,7 +175,6 @@
              AUNG.POST("Api/ApiStaffFix", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました");
-              
             });
         },
         validate:function() {
@@ -190,8 +189,12 @@
         },
         scrollTo:function(id){
             $$("form").scrollTo(0, $$(id).$view.offsetTop);
-        }
-
+        },
+        tokihonjyouhou:function(){
+        //    var array_fill = $$("form").getValues();
+        //    $arr = array_fill("")
+            var select = confirm("[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？");
+            }
     };
    webix.ui(
         {rows:[

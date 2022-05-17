@@ -27,7 +27,7 @@ class DmStaff extends DataModel
 
         'kinkyuuji_name'         => 'string', //緊急氏名
         'kinkyuuji_post_on'      => 'string',//緊急郵便番号
-        'kinkyuuji_todoufuken'  => 'string', //緊急都道府県
+        'kinkyuuji_todoufuken'   => 'string', //緊急都道府県
         'kinkyuuji_shikuchoson'  => 'string', //緊急市区町村
         'kinkyuuji_chou_name'    => 'string', //緊急町名
         'kinkyuuji_banchi'       => 'string', //緊急番地
