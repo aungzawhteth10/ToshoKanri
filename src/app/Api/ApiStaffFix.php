@@ -25,7 +25,6 @@ class ApiStaffFix extends ApiBase
             return parent::toError('書籍情報が不正です。');
         }
         $result = [
-            //基本情報
             'staff_id'               => $staff[0]['staff_id'] , //スタッフID
             'staff_code'             => $staff[0]['staff_code'] ,   //利用者ID
             'name'                   => $staff[0]['name'] , //氏名
@@ -56,7 +55,7 @@ class ApiStaffFix extends ApiBase
             'kinkyuuji_banchi'       => $staff[0]['kinkyuuji_banchi'], //緊急番地
             'kinkyuuji_tel_no'       => $staff[0]['kinkyuuji_tel_no'], //緊急電話番号
             'kinkyuuji_bikou'        => $staff[0]['kinkyuuji_bikou'],//緊急備考
-            //
+
         ];
         return parent::toJson($result);
     }
@@ -91,6 +90,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->fax_no                =$postData['fax_no'];               //FAX番号
          $dmStaff->mail_address          =$postData['mail_address'];         //メールアドレス
          $dmStaff->bikou                 =$postData['bikou'];                //備考
+
          $dmStaff->kinkyuuji_name        =$postData['kinkyuuji_name'];       //緊急氏名
          $dmStaff->kinkyuuji_post_on     =$postData['kinkyuuji_post_on'];    //緊急郵便番号
          $dmStaff->kinkyuuji_todoufuken  =$postData['kinkyuuji_todoufuken']; //緊急都道府県
