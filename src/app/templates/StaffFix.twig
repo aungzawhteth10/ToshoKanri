@@ -16,7 +16,7 @@
                 ]},
                 {cols:[
                     {},
-                     {view:"text", id:"btn_staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
+                     {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
@@ -142,6 +142,39 @@
                     {view:"label", label:"備考", width:105},
                     {view:"text", id:"kinkyuuji_bikou", name:"kinkyuuji_bikou", label:" ",  labelWidth:1, width:250}, 
                 ]},
+                {},
+                 {cols:[
+                     {view:"text", id:"staff_kinmukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:1450,disabled:true},
+                ]},
+                {cols:[
+                    {view:"label", label:"入社日 元号", width:105}, 
+                    {view:"select", id:"nyusyaday_gengou", name:"nyusyaday_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"text", id:"nyusyaday_year", name:"nyusyaday_year", label:"", width:100}, 
+                    {view:"label", label:"年", width:50},   
+                    {view:"text", id:"nyusyaday_month", name:"nyusyaday_month", label:"",width:50},
+                    {view:"label", label:"月", width:50},   
+                    {view:"text", id:"nyusyaday_day", name:"nyusyaday_day", label:"", width:50},
+                    {view:"label", label:"日", width:50}, 
+                    {view:"text", id:"nyusya_age", name:"nyusya_age", label:"", width:50}, 
+                    {view:"label", label:"歳", width:50},
+                ]},
+                 {cols:[
+                    {view:"label", label:"有給休暇の基準日", width:105}, 
+                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100}, 
+                    {view:"label", label:"年", width:50},   
+                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50},
+                    {view:"label", label:"月", width:50},   
+                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50},
+                    {view:"label", label:"日", width:50}, 
+                    {view:"text", id:"yuukyuukyuuka_age", name:"yuukyuukyuuka_age", label:"", width:50}, 
+                    {view:"label", label:"歳", width:50},
+                ]},
+                {cols:[
+                    {view:"label", label:"種別", width:105},   //備考入力
+                    {view:"select", id:"syubetu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}}, labelWidth:1, width:250}, 
+                ]}, 
+                
             ]}
         ],  
         rules:{
@@ -159,6 +192,8 @@
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinkyuurenrakusaki")});
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
+            $$("btn_staff_manage").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kihonnjyouhou")});
+            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinmukeitai")});
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
