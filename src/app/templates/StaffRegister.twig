@@ -16,7 +16,7 @@
                 ]},
                 {cols:[
                     {},
-                     {view:"text", id:"btn_staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
+                     {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
@@ -105,7 +105,7 @@
 
                 {},
                 {cols:[
-                     {view:"text", id:"btn_staff_kinnkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
+                     {view:"text", id:"staff_kinnkyurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                      {view:"button", id:"btn_staff_kinnkyuurennraku", name:"btn_staff_kinnkyuurennraku", label:"基本情報と同じ", css:"webix_primary", width:250},
@@ -197,6 +197,8 @@
         init:function() {
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
+            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinnkyurenrakusaki")});
+            $$("btn_staff_manage").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kihonnjyouhou")});
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffRegister", {}, function(text, data, xml) {
@@ -225,6 +227,12 @@
         },
         toMenu:function() {
             AUNG.pageMove("StaffManage");
+        },
+        tokinnkyuuji:function() {
+            AUNG.scrollTo("btn_staff_kinnkyurenrakusaki");
+        },
+        scrollTo:function(id){
+            $$("form").scrollTo(0, $$(id).$view.offsetTop);
         }
     };
    webix.ui(
