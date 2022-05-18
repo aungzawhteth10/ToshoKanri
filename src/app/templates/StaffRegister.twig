@@ -225,6 +225,7 @@
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinnkyurenrakusaki")});
             $$("btn_staff_manage").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinmukeitai")});
+            $$("btn_staff_kinnkyuurennraku").attachEvent("onItemClick", logic.tokinnkyuurennraku);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffRegister", {}, function(text, data, xml) {
@@ -243,6 +244,17 @@
                 webix.message("登録しました");
               
             });
+        },
+        tokinnkyuurennraku:function(){
+            var msg = "[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？";
+            if (confirm(msg)){
+                $$("kinkyuuji_tel_no").setValue($$("tel_no").getValue());
+                $$("kinkyuuji_todoufuken").setValue($$("todoufuken").getValue());
+                $$("kinkyuuji_shikuchoson").setValue($$("shikuchoson").getValue());
+                $$("kinkyuuji_chou_name").setValue($$("chou_name").getValue());
+                $$("kinkyuuji_banchi").setValue($$("banchi").getValue());
+                $$("kinkyuuji_post_on").setValue($$("post_no").getValue());
+            }
         },
         validate:function() {
             if(!$$("form").validate()) {

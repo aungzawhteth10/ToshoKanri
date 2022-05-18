@@ -35,7 +35,7 @@ class DmStaff extends DataModel
         'kinkyuuji_tel_no'       => 'string', //緊急電話番号
         'kinkyuuji_bikou'        => 'string', //緊急備考
         //勤務形態
-      /*  'nyusyaday_gengou'       => 'string',     //入社日元号
+        'nyusyaday_gengou'       => 'string',     //入社日元号
         'nyusyaday_year'         => 'string',    //入社日　年
         'nyusyaday_month'        => 'string',     //入社日　月
         'nyusyaday_day'          => 'string',    //入社日　日
@@ -54,7 +54,6 @@ class DmStaff extends DataModel
         'check_koutu_4'          => 'string',    //自動車
         'check_koutu_5'          => 'string',    //電車・バス
         'check_koutu_6'          => 'string',    //その他
-*/
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID

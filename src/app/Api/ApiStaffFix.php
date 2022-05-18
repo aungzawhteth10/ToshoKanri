@@ -20,10 +20,6 @@ class ApiStaffFix extends ApiBase
         if(count($staff) == 0){
             return parent::toJson([]);
         }
-        $result = [];
-        if (count($staff) != 1) {
-            return parent::toError('書籍情報が不正です。');
-        }
         $result = [
             'staff_id'               => $staff[0]['staff_id'] , //スタッフID
             'staff_code'             => $staff[0]['staff_code'] ,   //利用者ID
@@ -56,7 +52,7 @@ class ApiStaffFix extends ApiBase
             'kinkyuuji_tel_no'       => $staff[0]['kinkyuuji_tel_no'], //緊急電話番号
             'kinkyuuji_bikou'        => $staff[0]['kinkyuuji_bikou'],//緊急備考
             //勤務形態
-    /*      'nyusyaday_gengou'       => $staff[0]['nyusyaday_gengou'],     //入社日元号
+            'nyusyaday_gengou'       => $staff[0]['nyusyaday_gengou'],     //入社日元号
             'nyusyaday_year'         => $staff[0]['nyusyaday_year'],       //入社日　年
             'nyusyaday_month'        => $staff[0]['nyusyaday_month'],      //入社日　月
             'nyusyaday_day'          => $staff[0]['nyusyaday_day'],        //入社日　日
@@ -74,7 +70,9 @@ class ApiStaffFix extends ApiBase
             'check_koutu_3'          => $staff[0]['check_koutu_3'],        //オートバイ
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
-            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他             */
+            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他        
+            //振込口座情報
+                 
         ];
         return parent::toJson($result);
     }
@@ -119,7 +117,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->kinkyuuji_tel_no      =$postData['kinkyuuji_tel_no'];      //緊急電話番号
          $dmStaff->kinkyuuji_bikou       =$postData['kinkyuuji_bikou'];        //緊急備考
         //勤務形態
-     /*    $dmStaff->nyusyaday_gengou        =$postData['nyusyaday_gengou'];        //入社日元号
+         $dmStaff->nyusyaday_gengou        =$postData['nyusyaday_gengou'];        //入社日元号
          $dmStaff->nyusyaday_year          =$postData['nyusyaday_year'];          //入社日　年
          $dmStaff->nyusyaday_month         =$postData['nyusyaday_month'];         //入社日　月
          $dmStaff->nyusyaday_day           =$postData['nyusyaday_day'];           //入社日　日
@@ -128,7 +126,8 @@ class ApiStaffFix extends ApiBase
          $dmStaff->yuukyuukyuuka_month     =$postData['yuukyuukyuuka_month'];     //有給休暇の基準日 月
          $dmStaff->yuukyuukyuuka_day       =$postData['yuukyuukyuuka_day'];       //有給休暇の基準日 日
          $dmStaff->syubetu_bikou           =$postData['syubetu_bikou'];           //種別
-         $dmStaff->keiyaku_nissuu          =$postData['keiyaku_nissuu'];          //契約時間
+         $dmStaff->keiyaku_nissuu          =$postData['keiyaku_nissuu'];          //契約日数
+         $dmStaff->keiyaku_jikan           =$postData['keiyaku_jikan'];           //契約時間
          $dmStaff->kinmu_kubun             =$postData['kinmu_kubun'];             //勤務区分
          $dmStaff->kinmu_kibouchi          =$postData['kinmu_kibouchi'];          //勤務希望地
          $dmStaff->check_koutu_1           =$postData['check_koutu_1'];           //徒歩
@@ -136,7 +135,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_3           =$postData['check_koutu_3'];           //オートバイ
          $dmStaff->check_koutu_4           =$postData['check_koutu_4'];           //自動車
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
-         $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他              */
+         $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他              
 
          error_log(print_r('postData', true));
          error_log(print_r($postData['seinengappi_gengou'], true));

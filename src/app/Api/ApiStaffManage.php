@@ -39,7 +39,7 @@ class ApiStaffManage extends ApiBase
                 'fax_no'                 => $value['fax_no'] ?? '', //FAX番号
                 'mail_address'           => $value['mail_address'] ?? '', //メールアドレス
                 'bikou'                  => $value['bikou'] ?? '', //備考
-
+                //緊急連絡先
                 'kinkyuuji_name'         => $value['kinkyuuji_name'] ?? '', //緊急氏名
                 'kinkyuuji_post_on'      => $value['kinkyuuji_post_on'] ?? '',//緊急郵便番号
                 'kinkyuuji_todoufuken'   => $value['kinkyuuji_todoufuken'] ?? '', //緊急都道府県
@@ -48,6 +48,27 @@ class ApiStaffManage extends ApiBase
                 'kinkyuuji_banchi'       => $value['kinkyuuji_banchi'] ?? '', //緊急番地
                 'kinkyuuji_tel_no'       => $value['kinkyuuji_tel_no'] ?? '', //緊急電話番号
                 'kinkyuuji_bikou'        => $value['kinkyuuji_bikou'] ?? '',//緊急備考
+
+                   //勤務形態
+                'nyusyaday_gengou'       => $value['nyusyaday_gengou']?? '',     //入社日元号
+                'nyusyaday_year'         => $value['nyusyaday_year']?? '',       //入社日　年
+                'nyusyaday_month'        => $value['nyusyaday_month']?? '',      //入社日　月
+                'nyusyaday_day'          => $value['nyusyaday_day']?? '',        //入社日　日
+                'yuukyuukyuuka_gengou'   => $value['yuukyuukyuuka_gengou']?? '', //有給休暇の基準日 元号
+                'yuukyuukyuuka_year'     => $value['yuukyuukyuuka_year']?? '',   //有給休暇の基準日 年
+                'yuukyuukyuuka_month'    => $value['yuukyuukyuuka_month']?? '',  //有給休暇の基準日 月
+                'yuukyuukyuuka_day'      => $value['yuukyuukyuuka_day']?? '',    //有給休暇の基準日 日
+                'syubetu_bikou'          => $value['syubetu_bikou']?? '',        //種別
+                'keiyaku_nissuu'         => $value['keiyaku_nissuu']?? '',       //契約日数
+                'keiyaku_jikan'          => $value['keiyaku_jikan']?? '',        //契約時間
+                'kinmu_kubun'            => $value['kinmu_kubun']?? '',          //勤務区分
+                'kinmu_kibouchi'         => $value['kinmu_kibouchi']?? '',       //勤務希望地
+                'check_koutu_1'          => $value['check_koutu_1']?? '',        //徒歩
+                'check_koutu_2'          => $value['check_koutu_2']?? '',        //自転車
+                'check_koutu_3'          => $value['check_koutu_3']?? '',        //オートバイ
+                'check_koutu_4'          => $value['check_koutu_4']?? '',        //自動車
+                'check_koutu_5'          => $value['check_koutu_5']?? '',        //電車・バス
+                'check_koutu_6'          => $value['check_koutu_6']?? '',        //その他        
     
             ];
         }
