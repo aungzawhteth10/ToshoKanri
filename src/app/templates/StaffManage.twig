@@ -7,7 +7,7 @@
     elements:[
       {rows:[
        {cols:[
-        {view:"button", id:"btn_staff_regitser", value:"新規ボタン" , css:"webix_primary", height:40,width:350},
+        {view:"button", id:"btn_staff_regitser", value:"新規" , css:"webix_primary", height:40,width:350},
        ]},
         {
           view:"cust_datatable",
@@ -69,7 +69,6 @@
             {id:"check_koutu_5", header :["電車・バス", {content:"textFilter"}],  width:200},
             {id:"check_koutu_6", header :["その他", {content:"textFilter"}],  width:200},
             //振込口座情報
-            
           ]
       }]}
     ]
@@ -78,7 +77,7 @@
  var logic = {
      init:function() {
       $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("Menu")});
-       $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffRegister")});
+      $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffFix", {staff_id:""})});
       logic.dataload();
       $$("ichiran").on_click.pageMove  = logic.toStaffRegister;
     },

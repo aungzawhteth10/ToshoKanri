@@ -21,8 +21,6 @@
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
                     {view:"text", id:"staff_id", name:"staff_id", label:" ", labelWidth:1, width:245, attributes:{maxlength:6}},
-                    {view:"button", id:"btn_staff_automatic", name:"btn_staff_automatic", label:"自動採番", css:"webix_primary", width:100},
-                    {view:"button", id:"btn_staff_check", name:"btn_staff_check", label:"重複チェック", css:"webix_primary", width:150},
                 ]},
                 {cols:[
                     {view:"label", label:"コード", width:117},
@@ -31,7 +29,6 @@
                 {cols:[
                     {view:"label", label:"氏名", width:38}, 
                     {view:"text", id:"name", name:"name", label:" ", width:250},
-                    {view:"button", id:"btn_staff_katakana", name:"btn_staff_katakana", label:"カナ", css:"webix_primary", width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"フリガナ", width:105}, 
@@ -60,7 +57,6 @@
                 {cols:[
                     {view:"label", label:"郵便番号", width:105},   
                     {view:"text", id:"post_no", name:"post_no", label:" ",  labelWidth:1, width:250}, 
-                    {view:"button", id:"btn_post_on", name:"btn_post_on", label:"住所検索", css:"webix_primary", width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"都道府県", width:105},   
@@ -116,7 +112,6 @@
                 {cols:[
                     {view:"label", label:"郵便番号", width:105},
                     {view:"text", id:"kinkyuuji_post_on", name:"kinkyuuji_post_on", label:" ",  labelWidth:1, width:200}, 
-                    {view:"button", id:"btn_kinkyuuji_post_on", name:"btn_kinkyuuji_post_on", label:"住所検索", css:"webix_primary", width:100},
                 ]},
                 {cols:[
                     {view:"label", label:"都道府県", width:105},
@@ -150,15 +145,15 @@
                     {view:"label", label:"入社日元号", width:178}, 
                     {view:"select", id:"nyusyaday_gengou", name:"nyusyaday_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"nyusyaday_year", name:"nyusyaday_year", label:"", width:100}, 
-                    {view:"label", label:"年", width:50},   
+                    {view:"label", label:"年", width:50},
                     {view:"text", id:"nyusyaday_month", name:"nyusyaday_month", label:"",width:50},
-                    {view:"label", label:"月", width:50},   
+                    {view:"label", label:"月", width:50},
                     {view:"text", id:"nyusyaday_day", name:"nyusyaday_day", label:"", width:50},
-                    {view:"label", label:"日", width:50}, 
+                    {view:"label", label:"日", width:50},
                 ]},
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:130}, 
-                    {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50}, 
+                    {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
                     {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
@@ -206,52 +201,12 @@
                 ]},
                     
                 {cols:[
-                    {view:"label", label:"勤務希望設定",width:170},
-                   
-                ]},
-                {cols:[
-                    {view:"datatable",id:"曜日",height:300},
-                    {view:"datatable",label:"勤務区分"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                ]},
-
-                 {cols:[
-                    {view:"label", label:"新規追加   n件",width:170},
-                   
-                ]},
-                {cols:[
-                    {view:"datatable",id:"サービス",height:100},
-                    {view:"datatable",label:""},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                    {view:"datatable"},
-                ]},
-
-               {},
-                {cols:[
                      {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                    {view:"label", label:"支払い方法", width:178}, 
                 ]},
 
-             /*   {cols:[
-                    {view:"radio",id:"kinnkou_kouzafurikomi",name:"kinnkoukouza_furikomi",label:"銀行口座振込",renght:10,width:200},
-                    {view:"radio",id:"yuubinkyoku_kouzafurikomi",name:"yuubinkyoku_kouzafurikomi",label:"郵便局口座振込",renght:10,width:200},
-                ]},
-*/
             ]}
         ],  
         rules:{
@@ -267,10 +222,10 @@
             logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
+            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
-            $$("btn_staff_manage").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kihonnjyouhou")});
-            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(id){logic.scrollTo("staff_kinmukeitai")});
+            $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
+            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {

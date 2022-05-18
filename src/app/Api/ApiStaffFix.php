@@ -6,17 +6,13 @@ class ApiStaffFix extends ApiBase
      * 初期化
      */
     public function init ($request, $response)
-    {   
- 
+    {
        //スタッフ情報
        $dbStaffMapper = new \App\db\DbStaffMapper;
        $dmStaff = new \App\model\DmStaff;
-       error_log(print_r($this->session, true));
        $dmStaff->staff_id  = $this->session->staff_id;
        $staff = $dbStaffMapper->find($dmStaff);
-        
-        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
-        error_log(print_r($category, true));
+       $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_category')), 'value', 'id');
         if(count($staff) == 0){
             return parent::toJson([]);
         }
@@ -72,7 +68,6 @@ class ApiStaffFix extends ApiBase
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他        
             //振込口座情報
-                 
         ];
         return parent::toJson($result);
     }
@@ -83,7 +78,6 @@ class ApiStaffFix extends ApiBase
      {   
         $postData  = $_POST;
         error_log(print_r($postData, true));
-        
         $dbStaffMapper = new \App\db\DbStaffMapper;
         $dmStaff = new \App\model\DmStaff;
          $dmStaff->staff_id              =$postData['staff_id'];             //スタッフID
@@ -139,8 +133,11 @@ class ApiStaffFix extends ApiBase
 
          error_log(print_r('postData', true));
          error_log(print_r($postData['seinengappi_gengou'], true));
-
-         $count = $dbStaffMapper->update($dmStaff);
+         if($this->session->staff_id==''){
+            $count = $dbStaffMapper->insert($dmStaff);
+         }else{
+            $count = $dbStaffMapper->update($dmStaff);
+         }
          return parent::toJson($count);
      }
 }
