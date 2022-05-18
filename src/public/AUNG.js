@@ -8,6 +8,7 @@ AUNG.updateSession = function(session) {
     webix.storage.session.put('session', session);
 };
 AUNG.pageMove = function(page, session = {}) {
+    AUNG.showProgress();
     var _authKey = webix.storage.session.get("auth_key");
     console.log(session);
     if(Object.keys(session).length != 0) {
@@ -62,4 +63,19 @@ AUNG.datatable = {};
 AUNG.datatable.parse = function(ichiranName, parseData) {
     $$(ichiranName).clearAll();
     $$(ichiranName).parse(parseData);
+};
+AUNG.showProgress = function(viewId) {
+    viewId = viewId || "app";
+    if(!$$(viewId)) return;
+    $$(viewId).disable();
+    webix.extend($$(viewId), webix.ProgressBar);
+    $$(viewId).showProgress({
+        type: "icon"
+    });
+};
+AUNG.hideProgress = function(viewId) {
+    viewId = viewId || "app";
+    if(!$$(viewId)) return;
+    $$(wId).hideProgress();
+    $$(viewId).enable();
 };
