@@ -130,9 +130,6 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_4           =$postData['check_koutu_4'];           //自動車
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
          $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他              
-
-         error_log(print_r('postData', true));
-         error_log(print_r($postData['seinengappi_gengou'], true));
          if($this->session->staff_id==''){
             $count = $dbStaffMapper->insert($dmStaff);
          }else{

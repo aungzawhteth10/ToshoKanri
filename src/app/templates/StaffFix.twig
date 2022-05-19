@@ -199,14 +199,41 @@
                     {view:"checkbox", id:"check_koutu_6", name:"check_koutu_6", label:" ",  labelWidth:1, width:50}, 
                     {view:"label", label:"その他", width:50}, 
                 ]},
-                    
+
+                {cols:[ 
+                  {view:"label", label:"勤務希望設定", width:200},
+                ]},
+
+                {
+                    view:"cust_datatable",
+                    id:"ichiran",
+                    hover:"myhover",
+                    select:true,
+                    rowHeight:60, 
+                    yCount:8,
+                    tooltip:true,
+                        columns:[
+                        {id:"youbi_id", header:" 曜日" , width:150},
+                        {id:"kinmu_kubun_id", header:" 勤務区分" , width:150},
+                        {id:"kinmu_kubun_settei", header:" 勤務区分設定" , width:150},
+                        {id:"jikandai_1", header:" 時間帯①" , width:150},
+                        {id:"jikandai_2", header:" 時間帯②" , width:150},
+                        {id:"jikandai_3", header:" 時間帯③" , width:150},
+                        {id:"jikandai_4", header:" 時間帯④" , width:150},
+                        {id:"jikandai_5", header:" 時間帯⑤" , width:150},
+                        ]
+                },
+
+                {cols:[
+                   {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
+                ]},
+                {},
                 {cols:[
                      {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                    {view:"label", label:"支払い方法", width:178}, 
                 ]},
-
             ]}
         ],  
         rules:{
@@ -226,6 +253,9 @@
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
+            $$("btn_staff_sinkituika").attachEvent("onItemClick",logic.toaddition)
+            $$("grid").parse("films", "htmltable");
+            
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
@@ -270,7 +300,7 @@
         }
     };
    webix.ui(
-        {rows:[
+        {id:"app", rows:[
             form,
             footer,
             {height:60}
