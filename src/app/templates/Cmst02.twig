@@ -1,0 +1,57 @@
+{% include 'base.html' %}
+<script >
+  var form = {
+    view:"form",
+    id:"form",
+    borderless:true,
+    elements:[
+      {rows:[
+        {
+          view:"datatable",
+          id:"grid",
+          hover:"myhover",
+          select:"cell",
+          scroll: "auto",
+          rowHeight:60, 
+          yCount:8,
+          tooltip:true,
+          columns:[
+            {id:"youbi", header:["曜日", ], width:150},
+            {id:"kinmu_kubun_id", header:["勤務区分",], width:150},
+            {id:"kinmu_kubun_settei", header:["勤務区分の時間設定", ], width:150},
+            {id:"jikantai1", header:["時間帯①", ], width:150},
+            {id:"jikantai2", header:["時間帯②", ], width:150},
+            {id:"jikantai3", header:["時間帯③", ], width:150},
+            {id:"jikantai4", header:["時間帯④", ], width:150},
+            {id:"jikantai5", header:["時間帯⑤", ], width:150},
+          ]
+      }]}
+    ]
+  };
+
+  var footer = {view:"button", id:"btn_back", name:"btn_back", value:"完了", css:"webix_primary", width:150, height:50}
+ var logic = {
+     init:function() {
+      $$("btn_back").attachEvent("onItemClick", function(){AUNG.pageMove("StaffFix")});
+      $$("btn_staff_regitser").attachEvent("onItemClick",function(){AUNG.pageMove("StaffFix", {staff_id:""})});
+      logic.dataload();
+    },
+    dataload:function() {
+      AUNG.GET("Api/ApiStaffManage", {}, function(text, data, xml) {
+        if(AUNG.isAjaxError()) return false;
+        AUNG.datatable.parse("ichiran", text);
+      });
+    },
+  };
+   webix.ui(
+    {id:"app", rows:[
+      form,
+      footer,
+      {height:60},
+    ]}
+  );
+  webix.ready(function () {
+    AUNG.init();
+    logic.init();
+  });
+</script>

@@ -54,6 +54,15 @@ class DmStaff extends DataModel
         'check_koutu_4'          => 'string',    //自動車
         'check_koutu_5'          => 'string',    //電車・バス
         'check_koutu_6'          => 'string',    //その他
+        //勤務区分
+        'youbi_id'               => 'string',      //曜日
+        'kinmu_kubun_id'         => 'string',      //勤務区分
+        'kinmu_kubun_settei'     => 'string',      //勤務区分設定
+        'jikandai_1'             => 'string',      //時間帯①
+        'jikandai_2'             => 'string',      //時間帯②
+        'jikandai_3'             => 'string',      //時間帯③
+        'jikandai_4'             => 'string',      //時間帯④
+        'jikandai_5'             => 'string',      //時間帯⑤
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID

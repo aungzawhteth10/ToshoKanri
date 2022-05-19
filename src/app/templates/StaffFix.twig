@@ -8,15 +8,15 @@
         elements:[
             {rows:[
                 {cols:[
-                {},
-                {view:"button", id:"btn_staff_manage", value:"基本情報" , css:"webix_primary", height:40,width:350},
-                {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
-                {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
-                {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
+                    {},
+                    {view:"button", id:"btn_staff_manage", value:"基本情報" , css:"webix_primary", height:40,width:350},
+                    {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
+                    {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
+                    {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
                 ]},
                 {cols:[
                     {},
-                     {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
+                    {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
                     {view:"label", label:"スタッフ",width:104}, 
@@ -98,7 +98,6 @@
                     {view:"label", label:"削除日", width:105},   
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
-                {},
                 {cols:[
                      {view:"text", id:"staff_kinkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
@@ -209,21 +208,28 @@
                     id:"ichiran",
                     hover:"myhover",
                     select:true,
-                    rowHeight:60, 
+                    rowHeight:60,
                     yCount:8,
                     tooltip:true,
                         columns:[
-                        {id:"youbi_id", header:" 曜日" , width:150},
-                        {id:"kinmu_kubun_id", header:" 勤務区分" , width:150},
-                        {id:"kinmu_kubun_settei", header:" 勤務区分設定" , width:150},
-                        {id:"jikandai_1", header:" 時間帯①" , width:150},
-                        {id:"jikandai_2", header:" 時間帯②" , width:150},
-                        {id:"jikandai_3", header:" 時間帯③" , width:150},
-                        {id:"jikandai_4", header:" 時間帯④" , width:150},
-                        {id:"jikandai_5", header:" 時間帯⑤" , width:150},
+                            
+                        {view:"",id:"youbi_id", header:" 曜日" , width:150,height:300},
+                        
+                        {id:"kinmu_kubun_id", header:" 勤務区分" , width:150,height:300},
+
+                        {id:"kinmu_kubun_settei", header:" 勤務区分設定" , width:150,height:300},
+
+                        {id:"jikandai_1", header:" 時間帯①" , width:150,height:150},
+                             
+                        {id:"jikandai_2", header:" 時間帯②" , width:150,height:150},
+
+                        {id:"jikandai_3", header:" 時間帯③" , width:150,height:150},
+
+                        {id:"jikandai_4", header:" 時間帯④" ,width:150,height:150},
+
+                        {id:"jikandai_5", header:" 時間帯⑤" , width:150,height:150},
                         ]
                 },
-
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
@@ -244,6 +250,7 @@
                     {},
                     {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
                 ]};
+
       var logic = {
         init:function() {
             logic.dataLoad();
@@ -253,9 +260,6 @@
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
-            $$("btn_staff_sinkituika").attachEvent("onItemClick",logic.toaddition)
-            $$("grid").parse("films", "htmltable");
-            
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
