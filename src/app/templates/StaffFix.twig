@@ -201,26 +201,25 @@
                 {cols:[ 
                   {view:"label", label:"勤務希望設定", width:200},
                 ]},
-
+                
+                //勤務区分一覧
                 {
-                     view:"datatable", css:"webix_header_border",
+                    view:"datatable", css:"webix_header_border",
                     id:"ichiran",
                     hover:"myhover",
                     select:true,
                     rowHeight:60,
-                    yCount:8,
+                    yCount:9,
                     tooltip:true,
-                  
-                        columns:[
-                        {id:"youbi_id", header :["曜日"],"月",},
-
+                    columns:[
+                        { id:"youbi_id", header:"曜日" , width:80},
 
                         {id:"kinmu_kubun_id", header :["勤務区分"]},
 
                         {   
                             id:"title",
                             header:[
-                                {id:"title",text:"勤務区分の時間を設定",width:300,rowspan:2},
+                                {id:"title",text:"勤務区分の時間を設定",width:200,rowspan:2},
                             ]
                         },
                         
@@ -238,11 +237,11 @@
 
                         {id:"jikandai_5", header:[" 時間帯⑤" ,"開始" ]},
                              {id:"jikandai_5",header:[" ","終了"]},         
-                      ]
+                    ],
+                    autoheight:true,
+                    scroll:false,
+                    data:youbi_id
                 },
-                {cols:[
-                    
-                ]},
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
@@ -254,10 +253,14 @@
                    {view:"label", label:"支払い方法", width:178}, 
                 ]},
             ]}
-        ],  
+        ],
         rules:{
         }
   };
+  var youbi_id = [
+                        { id:"youbi_id", text:"月"},
+                 ]; 
+
   var footer = {cols:[
                     {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
                     {},
@@ -304,6 +307,7 @@
         scrollTo:function(id){
             $$("form").scrollTo(0, $$(id).$view.offsetTop);
         },
+
         tokihonjyouhou:function(){
             var msg = "[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？";
             if (confirm(msg)){
