@@ -75,8 +75,7 @@ class ApiStaffFix extends ApiBase
             'jikandai_2'             => $staff[0]['jikandai_2'],          //時間帯②
             'jikandai_3'             => $staff[0]['jikandai_3'],          //時間帯③
             'jikandai_4'             => $staff[0]['jikandai_4'],          //時間帯④
-            'jikandai_5'             => $staff[0]['jikandai_5'],          //時間帯⑤
-
+            'jikandai_5'             => $staff[0]['jikandai_5'],          //時間帯⑤  
         ];
         return parent::toJson($result);
     }
@@ -147,7 +146,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->jikandai_3              =$postData['jikandai_3'];                //時間帯３
          $dmStaff->jikandai_4              =$postData['jikandai_4'];                //時間帯４
          $dmStaff->jikandai_5              =$postData['jikandai_5'];                //時間帯５
-
+         
          if($this->session->staff_id==''){
             $count = $dbStaffMapper->insert($dmStaff);
          }else{
