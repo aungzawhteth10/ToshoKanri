@@ -213,28 +213,28 @@
                     columns:[
                         {id:"youbi_id", header:"曜日"},
                         {id:"kinmu_kubun_id", header :["勤務区分"]},
-                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"]},
-                       /* {   
-                            id:"title",
-                            header:[
-                                {id:"title",text:"時間代①",width:200,rowspan:2},
-                            ]
-                        },                  
-                         */
-                        {id:"jikandai_1",header:["時間帯①","開始"]},
+                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:150},
+                        
+                        { id:"title",	header:[
+                         { text:"時間代①", colspan:2}, "開始"],	
+                                     fillspace:true },
                             {id:"jikandai_1",header:[" ","終了"]},
-
-                        {id:"jikandai_2", header:[" 時間帯②" ,"開始" ]},
-                             {id:"jikandai_2",header:[" ","終了"]},
-
-                        {id:"jikandai_3", header:[" 時間帯③" ,"開始" ]},
-                             {id:"jikandai_3",header:[" ","終了"]},
-
-                        {id:"jikandai_4", header:[" 時間帯④" ,"開始" ]},
-                             {id:"jikandai_4",header:[" ","終了"]},
-
-                        {id:"jikandai_5", header:[" 時間帯⑤" ,"開始" ]},
-                             {id:"jikandai_5",header:[" ","終了"]},  
+                       { id:"title",	header:[
+                         { text:"時間代②", colspan:2}, "開始"],	
+                                     fillspace:true },
+                            {id:"jikandai_2",header:[" ","終了"]},
+                       { id:"title",	header:[
+                         { text:"時間代③", colspan:2}, "開始"],	
+                                     fillspace:true },
+                            {id:"jikandai_3",header:[" ","終了"]},
+                         { id:"title",	header:[
+                         { text:"時間代④", colspan:2}, "開始"],	
+                                     fillspace:true },
+                            {id:"jikandai_4",header:[" ","終了"]},
+                        { id:"title",	header:[
+                         { text:"時間代⑤", colspan:2}, "開始"],	
+                                     fillspace:true },
+                            {id:"jikandai_5",header:[" ","終了"]},
                     ],
 
                     autoheight:true,
@@ -266,7 +266,6 @@
                     {view:"text",id:"youbi_id",value:"土"},
                     {view:"text",id:"youbi_id",value:"日"}
                  ]; 
-
   var footer = {cols:[
                     {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
                     {},
