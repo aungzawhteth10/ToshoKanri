@@ -138,7 +138,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
          $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他
          //勤務区分
-     /*  $dmStaff->youbi_id                =$postData['youbi_id'];                  //曜日
+     /*  $dmStaff->youbi                =$postData['youbi'];                  //曜日
          $dmStaff->kinmu_kubun_id          =$postData['kinmu_kubun_id'];            //勤務区分
          $dmStaff->kinmu_kubun_settei      =$postData['kinmu_kubun_settei'];        //勤務区分設定
          $dmStaff->jikandai_1              =$postData['jikandai_1'];                //時間帯１
