@@ -39,7 +39,7 @@
                     {view:"text", id:"hyouji_ryakushou", name:"hyouji_ryakushou", label:" ", labelWidth:1, width:185},
                 ]},
                 {cols:[
-                    {view:"label", label:"性別", width:105},   
+                    {view:"label", label:"性別", width:105},
                     {view:"select", id:"seibetsu", name:"seibetsu", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_seibetsu')|raw}},  labelWidth:1, width:100},
                 ]},
                 {cols:[
@@ -125,11 +125,11 @@
                     {view:"text", id:"kinkyuuji_chou_name", name:"kinkyuuji_chou_name", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"番地", width:105},   
+                    {view:"label", label:"番地", width:105},
                     {view:"text", id:"kinkyuuji_banchi", name:"kinkyuuji_banchi", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {view:"label", label:"電話番号", width:105}, 
+                    {view:"label", label:"電話番号", width:105},
                     {view:"text", id:"kinkyuuji_tel_no", name:"kinkyuuji_tel_no", label:" ",  labelWidth:1, width:250}, 
                 ]},
                 {cols:[
@@ -151,7 +151,7 @@
                     {view:"label", label:"日", width:50},
                 ]},
                  {cols:[
-                    {view:"label", label:"有給休暇の基準日", width:130}, 
+                    {view:"label", label:"有給休暇の基準日", width:130},
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
                     {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
                     {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
@@ -198,10 +198,9 @@
                     {view:"checkbox", id:"check_koutu_6", name:"check_koutu_6", label:" ",  labelWidth:1, width:50}, 
                     {view:"label", label:"その他", width:50}, 
                 ]},
-                {cols:[ 
+                {cols:[
                   {view:"label", label:"勤務希望設定", width:200},
                 ]},
-                
                 //勤務区分一覧
                 {
                     view:"datatable", css:"webix_header_border",
@@ -212,17 +211,16 @@
                     yCount:9,
                     tooltip:true,
                     columns:[
-                        { id:"youbi_id", header:"曜日" , width:80},
-
+                        {id:"youbi_id", header:"曜日"},
                         {id:"kinmu_kubun_id", header :["勤務区分"]},
-
-                        {   
+                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"]},
+                       /* {   
                             id:"title",
                             header:[
-                                {id:"title",text:"勤務区分の時間を設定",width:200,rowspan:2},
+                                {id:"title",text:"時間代①",width:200,rowspan:2},
                             ]
-                        },
-                        
+                        },                  
+                         */
                         {id:"jikandai_1",header:["時間帯①","開始"]},
                             {id:"jikandai_1",header:[" ","終了"]},
 
@@ -236,8 +234,9 @@
                              {id:"jikandai_4",header:[" ","終了"]},
 
                         {id:"jikandai_5", header:[" 時間帯⑤" ,"開始" ]},
-                             {id:"jikandai_5",header:[" ","終了"]},         
+                             {id:"jikandai_5",header:[" ","終了"]},  
                     ],
+
                     autoheight:true,
                     scroll:false,
                     data:youbi_id
@@ -255,10 +254,17 @@
             ]}
         ],
         rules:{
+
         }
   };
   var youbi_id = [
-                        { id:"youbi_id", text:"月"},
+                    {view:"text",id:"youbi_id",value:"月"},
+                    {view:"text",id:"youbi_id",value:"火"},
+                    {view:"text",id:"youbi_id",value:"水"},
+                    {view:"text",id:"youbi_id",value:"木"},
+                    {view:"text",id:"youbi_id",value:"金"},
+                    {view:"text",id:"youbi_id",value:"土"},
+                    {view:"text",id:"youbi_id",value:"日"}
                  ]; 
 
   var footer = {cols:[
@@ -281,7 +287,7 @@
                 if(AUNG.isAjaxError()) return false;
                 console.log(text);
                 $$("form").parse(text);
-                  AUNG.datatable.parse("ichiran", text);
+                AUNG.datatable.parse("ichiran", text);
             });
         },
         register:function() {
@@ -307,7 +313,6 @@
         scrollTo:function(id){
             $$("form").scrollTo(0, $$(id).$view.offsetTop);
         },
-
         tokihonjyouhou:function(){
             var msg = "[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？";
             if (confirm(msg)){

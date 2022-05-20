@@ -68,14 +68,14 @@ class ApiStaffFix extends ApiBase
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他        
             //勤務区分
-            'youbi_id'               => $staff[0]['youbi_id'],            //曜日
+       /*     'youbi_id'               => $staff[0]['youbi_id'],            //曜日
             'kinmu_kubun_id'         => $staff[0]['kinmu_kubun_id'],      //勤務区分
             'kinmu_kubun_settei'     => $staff[0]['kinmu_kubun_settei'],  //勤務区分設定
             'jikandai_1'             => $staff[0]['jikandai_1'],          //時間帯①
             'jikandai_2'             => $staff[0]['jikandai_2'],          //時間帯②
             'jikandai_3'             => $staff[0]['jikandai_3'],          //時間帯③
             'jikandai_4'             => $staff[0]['jikandai_4'],          //時間帯④
-            'jikandai_5'             => $staff[0]['jikandai_5'],          //時間帯⑤  
+            'jikandai_5'             => $staff[0]['jikandai_5'],          //時間帯⑤    */
         ];
         return parent::toJson($result);
     }
@@ -138,14 +138,14 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
          $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他
          //勤務区分
-         $dmStaff->youbi_id                =$postData['youbi_id'];                  //曜日
+     /*    $dmStaff->youbi_id                =$postData['youbi_id'];                  //曜日
          $dmStaff->kinmu_kubun_id          =$postData['kinmu_kubun_id'];            //勤務区分
          $dmStaff->kinmu_kubun_settei      =$postData['kinmu_kubun_settei'];        //勤務区分設定
          $dmStaff->jikandai_1              =$postData['jikandai_1'];                //時間帯１
          $dmStaff->jikandai_2              =$postData['jikandai_2'];                //時間帯２
          $dmStaff->jikandai_3              =$postData['jikandai_3'];                //時間帯３
          $dmStaff->jikandai_4              =$postData['jikandai_4'];                //時間帯４
-         $dmStaff->jikandai_5              =$postData['jikandai_5'];                //時間帯５
+         $dmStaff->jikandai_5              =$postData['jikandai_5'];                //時間帯５               */
          
          if($this->session->staff_id==''){
             $count = $dbStaffMapper->insert($dmStaff);
