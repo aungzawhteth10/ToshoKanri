@@ -35,6 +35,7 @@ class ApiRiyousyaRegister extends ApiBase
         $dmRiyousya->furigana              = $postData['furigana'];
         $dmRiyousya->tel_no                = $postData['tel_no'];
         $dmRiyousya->moblie_no             = $postData['moblie_no'];
+        
         $count = $dbRiyousyaMapper->insert($dmRiyousya);
         return parent::toJson($count);
     }

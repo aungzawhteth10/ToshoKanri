@@ -153,12 +153,12 @@
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:130}, 
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
-                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
-                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100}, 
+                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
+                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
                     {view:"label", label:"年", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50},
+                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50,disabled:true},
                     {view:"label", label:"月", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50},
+                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50,disabled:true},
                     {view:"label", label:"日", width:50}, 
                 ]},
                 {cols:[
@@ -168,7 +168,7 @@
                  {cols:[
                     {view:"label", label:"契約日数", width:105},
                     {view:"text", id:"keiyaku_nissuu", name:"keiyaku_nissuu", label:" ",  labelWidth:1, width:250}, 
-                    {view:"label",label:"日 / 週"},
+                    {view:"label",label:"日 / 週"}, 
                 ]},
                 {cols:[
                     {view:"label", label:"契約時間", width:105},
@@ -209,21 +209,27 @@
                     rowHeight:60,
                     yCount:8,
                     tooltip:true,
+                    span:true,
                         columns:[
                         
-                        {id:"youbi_id", header :["曜日",]},
+                        {id:"youbi_id", header :["曜日"]},
+                        
 
-                        {id:"kinmu_kubun_id", header :["勤務区分",]},
+                        {id:"kinmu_kubun_id", header :["勤務区分"]},
 
                         {id:"kinmu_kubun_settei", header:" 勤務区分設定"},
+
                         {   
                             id:"title",
                             header:[
-                                {id:"youbi",text:"曜日", rowspan:2 },
+                                {id:"title",text:"時間帯①", rowspan:2 },
+                                    {id:"jikandai_1",header:["時間帯①"," "]},
                             ]
                         },
-                             {id:"jikandai_1",header:["開始","終了"]},
+                        
+                        {id:"jikandai_1",header:["開始","終了"]},
 
+                        
                         {id:"jikandai_2", header:[" 時間帯②" ,"開始" ]},
                              {id:"jikandai_2",header:[" ","終了"]},
 
@@ -234,7 +240,7 @@
                              {id:"jikandai_4",header:[" ","終了"]},
 
                         {id:"jikandai_5", header:[" 時間帯⑤" ,"開始" ]},
-                             {id:"jikandai_5",header:[" ","終了"]},
+                             {id:"jikandai_5",header:[" ","終了"]},         
                       ]
                 },
                 {cols:[
@@ -257,7 +263,6 @@
                     {},
                     {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
                 ]};
-
       var logic = {
         init:function() {
             logic.dataLoad();
@@ -273,8 +278,7 @@
                 if(AUNG.isAjaxError()) return false;
                 console.log(text);
                 $$("form").parse(text);
-                                
-                AUNG.datatable.parse("ichiran", text);
+                  AUNG.datatable.parse("ichiran", text);
             });
         },
         register:function() {
