@@ -213,32 +213,31 @@
                     autoheight:true,
                     scroll:false,
                     columns:[
-                        {id:"youbi_id", header:"曜日"},
+                        {id:"youbi", header:"曜日"},
+                        {id:"kinmu_kubun", header :["勤務区分",]},
+                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:200},
 
-                        {id:"kinmu_kubun_id", header :["勤務区分"]},
-                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:150},
-
-                        {id:"title",	header:[{text:"時間代①", colspan:2}, "開始"],	fillspace:true },
+                        {id:"title",	header:[{text:"時間代①",  colspan:2}, "開始"]},
                         {id:"jikandai_1",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間代②", colspan:2}, "開始"],	fillspace:true },
+                        {id:"title",	header:[{ text:"時間代②", colspan:2}, "開始"]},
                         {id:"jikandai_2",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間代③", colspan:2}, "開始"],	fillspace:true },
+                        {id:"title",	header:[{ text:"時間代③", colspan:2}, "開始"]},
                         {id:"jikandai_3",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間代④", colspan:2}, "開始"],	fillspace:true },
+                        {id:"title",	header:[{ text:"時間代④", colspan:2}, "開始"],},
                         {id:"jikandai_4",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間代⑤", colspan:2}, "開始"],	fillspace:true },
+                        {id:"title",	header:[{ text:"時間代⑤", colspan:2}, "開始"],fillspace:true},
                         {id:"jikandai_5",header:[" ","終了"]},
                     ],
                     data: [
-                        {view:"text",id:"youbi_id",value:"月"},
-                        {view:"text",id:"youbi_id",value:"火"},
-                        {view:"text",id:"youbi_id",value:"水"},
-                        {view:"text",id:"youbi_id",value:"木"},
-                        {view:"text",id:"youbi_id",value:"金"},
-                        {view:"text",id:"youbi_id",value:"土"},
-                        {view:"text",id:"youbi_id",value:"日"}
+                        {id:"1",youbi:"月"},
+                        {id:"2",youbi:"火"},
+                        {id:"3",youbi:"水"},
+                        {id:"4",youbi:"木"},
+                        {id:"5",youbi:"金"},
+                        {id:"6",youbi:"土"},
+                        {id:"0",youbi:"日"},
+                        
                     ],
-                    
                 },
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
