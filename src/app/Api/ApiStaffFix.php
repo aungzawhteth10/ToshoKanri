@@ -20,7 +20,7 @@ class ApiStaffFix extends ApiBase
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
         $dmKinmuKubun = new \App\model\DmKinmuKubun;
         $dmKinmuKubun->staff_id   = $this->session->staff_id;
-        $KinmuKubun = $dbKinmuKubunMapper->find($dbKinmuKubun); 
+        $KinmuKubun = $dbKinmuKubunMapper->find($dmKinmuKubun); 
 
         $result = [
             'staff_id'               => $staff[0]['staff_id'] , //スタッフID
@@ -73,19 +73,19 @@ class ApiStaffFix extends ApiBase
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他     
-            //勤務
-            'staff_id'               => $KinmuKubun[0]['staff_id'],
-            'kinmu_kubun_id'         => $KinmuKubun[0]['kinmu_kubun_id'],
-            'start_time_1'           => $KinmuKubun[0]['start_time_1'],
-            'end_time_1'             => $KinmuKubun[0]['end_time_1'],
-            'start_time_2'           => $KinmuKubun[0]['start_time_2'],
-            'end_time_2'             => $KinmuKubun[0]['end_time_2'],
-            'start_time_3'           => $KinmuKubun[0]['start_time_3'],
-            'end_time_3'             => $KinmuKubun[0]['end_time_3'],
-            'start_time_4'           => $KinmuKubun[0]['start_time_4'],
-            'end_time_3'             => $KinmuKubun[0]['end_time_4'],
-            'start_time_5'           => $KinmuKubun[0]['start_time_5'],
-            'end_time_3'             => $KinmuKubun[0]['end_time_5'],                
+            //勤務区分一覧
+      /*      'staff_id'               => $KinmuKubun[0]['staff_id'],          //スタッフID
+            'kinmu_kubun_id'         => $KinmuKubun[0]['kinmu_kubun_id'],    //勤務区分
+            'start_time_1'           => $KinmuKubun[0]['start_time_1'],      //開始時間１
+            'end_time_1'             => $KinmuKubun[0]['end_time_1'],        //終了時間1
+            'start_time_2'           => $KinmuKubun[0]['start_time_2'],      //開始時間2
+            'end_time_2'             => $KinmuKubun[0]['end_time_2'],        //終了時間2
+            'start_time_3'           => $KinmuKubun[0]['start_time_3'],      //開始時間3
+            'end_time_3'             => $KinmuKubun[0]['end_time_3'],        //終了時間3
+            'start_time_4'           => $KinmuKubun[0]['start_time_4'],      //開始時間4
+            'end_time_4'             => $KinmuKubun[0]['end_time_4'],        //終了時間4
+            'start_time_5'           => $KinmuKubun[0]['start_time_5'],      //開始時間5
+            'end_time_5'             => $KinmuKubun[0]['end_time_5'],        //終了時間5       */
         ];
         return parent::toJson($result);
     }
@@ -97,6 +97,9 @@ class ApiStaffFix extends ApiBase
         $postData  = $_POST;
         $dbStaffMapper = new \App\db\DbStaffMapper;
         $dmStaff = new \App\model\DmStaff;
+        //勤務区分一覧情報
+        $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
+        $dmKinmuKubun = new \App\model\DmKinmuKubun;
          $dmStaff->staff_id              =$postData['staff_id'];             //スタッフID
          $dmStaff->staff_code            =$postData['staff_code'];           //スタッフコード
          $dmStaff->name                  =$postData['name'];                 //氏名
@@ -119,14 +122,14 @@ class ApiStaffFix extends ApiBase
          $dmStaff->mail_address          =$postData['mail_address'];         //メールアドレス
          $dmStaff->bikou                 =$postData['bikou'];                //備考
         //緊急連絡先
-         $dmStaff->kinkyuuji_name        =$postData['kinkyuuji_name'];       //緊急氏名
-         $dmStaff->kinkyuuji_post_on     =$postData['kinkyuuji_post_on'];    //緊急郵便番号
-         $dmStaff->kinkyuuji_todoufuken  =$postData['kinkyuuji_todoufuken']; //緊急都道府県
+         $dmStaff->kinkyuuji_name        =$postData['kinkyuuji_name'];        //緊急氏名
+         $dmStaff->kinkyuuji_post_on     =$postData['kinkyuuji_post_on'];     //緊急郵便番号
+         $dmStaff->kinkyuuji_todoufuken  =$postData['kinkyuuji_todoufuken'];  //緊急都道府県
          $dmStaff->kinkyuuji_shikuchoson =$postData['kinkyuuji_shikuchoson']; //緊急市区町村
          $dmStaff->kinkyuuji_chou_name   =$postData['kinkyuuji_chou_name'];   //緊急町名
          $dmStaff->kinkyuuji_banchi      =$postData['kinkyuuji_banchi'];      //緊急番地
          $dmStaff->kinkyuuji_tel_no      =$postData['kinkyuuji_tel_no'];      //緊急電話番号
-         $dmStaff->kinkyuuji_bikou       =$postData['kinkyuuji_bikou'];        //緊急備考
+         $dmStaff->kinkyuuji_bikou       =$postData['kinkyuuji_bikou'];       //緊急備考
         //勤務形態
          $dmStaff->nyusyaday_gengou        =$postData['nyusyaday_gengou'];        //入社日元号
          $dmStaff->nyusyaday_year          =$postData['nyusyaday_year'];          //入社日　年
@@ -147,7 +150,7 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_4           =$postData['check_koutu_4'];           //自動車
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
          $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他
-         //勤務区分
+         //勤務区分         
          $dmKinmuKubun -> staff_id          =$postData['staff_id'];                         //スタッフID
          $dmKinmuKubun -> kinmu_kubun_id    =$postData['kinmu_kubun_id'];                   //勤務区分
          $dmKinmuKubun -> start_time_1      =$postData['start_time_1'];                     //開始時間1
@@ -167,7 +170,7 @@ class ApiStaffFix extends ApiBase
             $count = $dbKinmuKubunMapper->update($dmKinmuKubun);
          }
          return parent::toJson($count);
-         
+
          if($this->session->staff_id==''){
             $count = $dbStaffMapper->insert($dmStaff);
          }else{

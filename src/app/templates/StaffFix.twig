@@ -237,7 +237,8 @@
                         {id:"5",youbi:"金"},
                         {id:"6",youbi:"土"},    
                         {id:"0",youbi:"日"},
-                        {view:"select",id:"1", kinmu_kubun_id:"", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250},
+
+                        {view:"select",id:"1", kinmu_kubun_id:" ", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250},
                     ],
                 },
 
@@ -258,7 +259,6 @@
 
         }
   };
-
   var footer = {cols:[
                     {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
                     {},
@@ -273,9 +273,6 @@
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
-
-    //        $$("kijunbi_henkou").attachEvent("onItemClick",logic.kijunbi_henkou);
-           
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
@@ -285,13 +282,6 @@
                 {# AUNG.datatable.parse("ichiran", text); #}
             });
         },
-    /*  kijunbi_henkou:function(){
-          if(){
-            
-            disabled:true;
-          }
-            disabled:false;
-      },*/
         register:function() {
             if(!logic.validate()) {
                 return false;
