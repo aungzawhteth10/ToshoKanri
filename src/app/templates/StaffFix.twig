@@ -212,9 +212,11 @@
                     tooltip:true,
                     autoheight:true,
                     scroll:false,
+                    editable:true,
                     columns:[
                         {id:"youbi", header:"曜日"},
-                        {id:"kinmu_kubun", header :["勤務区分",],width:150},
+                    
+                        {id:"kinmu_kubun", header:["勤務区分"]},
                         {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:200},
 
                         {id:"title",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
@@ -236,12 +238,15 @@
                         {id:"5",youbi:"金"},
                         {id:"6",youbi:"土"},
                         {id:"0",youbi:"日"},
-                        
+
+                        {id:"1", kinmu_kubun:[" ", {content:"select" }], },
                     ],
+
                 },
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
+
                 {},
                 {cols:[
                      {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
@@ -270,6 +275,8 @@
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
+            
+           
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
@@ -279,6 +286,7 @@
                 {# AUNG.datatable.parse("ichiran", text); #}
             });
         },
+       
         register:function() {
             if(!logic.validate()) {
                 return false;
