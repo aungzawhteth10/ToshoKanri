@@ -16,6 +16,12 @@ class ApiStaffFix extends ApiBase
         if(count($staff) == 0){
             return parent::toJson([]);
         }
+        //勤務区分一覧情報
+        $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
+        $dmKinmuKubun = new \App\model\DmKinmuKubun;
+        $dmKinmuKubun->staff_id   = $this->session->staff_id;
+        $KinmuKubun = $dbKinmuKubunMapper->find($dbKinmuKubun); 
+
         $result = [
             'staff_id'               => $staff[0]['staff_id'] , //スタッフID
             'staff_code'             => $staff[0]['staff_code'] ,   //利用者ID
@@ -66,16 +72,20 @@ class ApiStaffFix extends ApiBase
             'check_koutu_3'          => $staff[0]['check_koutu_3'],        //オートバイ
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
-            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他        
-            //勤務区分
-       /*   'youbi_id'               => $staff[0]['youbi_id'],            //曜日
-            'kinmu_kubun_id'         => $staff[0]['kinmu_kubun_id'],      //勤務区分
-            'kinmu_kubun_settei'     => $staff[0]['kinmu_kubun_settei'],  //勤務区分設定
-            'jikandai_1'             => $staff[0]['jikandai_1'],          //時間帯①
-            'jikandai_2'             => $staff[0]['jikandai_2'],          //時間帯②
-            'jikandai_3'             => $staff[0]['jikandai_3'],          //時間帯③
-            'jikandai_4'             => $staff[0]['jikandai_4'],          //時間帯④
-            'jikandai_5'             => $staff[0]['jikandai_5'],          //時間帯⑤    */
+            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他     
+            //勤務
+            'staff_id'               => $KinmuKubun[0]['staff_id'],
+            'kinmu_kubun_id'         => $KinmuKubun[0]['kinmu_kubun_id'],
+            'start_time_1'           => $KinmuKubun[0]['start_time_1'],
+            'end_time_1'             => $KinmuKubun[0]['end_time_1'],
+            'start_time_2'           => $KinmuKubun[0]['start_time_2'],
+            'end_time_2'             => $KinmuKubun[0]['end_time_2'],
+            'start_time_3'           => $KinmuKubun[0]['start_time_3'],
+            'end_time_3'             => $KinmuKubun[0]['end_time_3'],
+            'start_time_4'           => $KinmuKubun[0]['start_time_4'],
+            'end_time_3'             => $KinmuKubun[0]['end_time_4'],
+            'start_time_5'           => $KinmuKubun[0]['start_time_5'],
+            'end_time_3'             => $KinmuKubun[0]['end_time_5'],                
         ];
         return parent::toJson($result);
     }
@@ -138,14 +148,25 @@ class ApiStaffFix extends ApiBase
          $dmStaff->check_koutu_5           =$postData['check_koutu_5'];           //電車・バス
          $dmStaff->check_koutu_6           =$postData['check_koutu_6'];           //その他
          //勤務区分
-     /*  $dmStaff->youbi                =$postData['youbi'];                  //曜日
-         $dmStaff->kinmu_kubun_id          =$postData['kinmu_kubun_id'];            //勤務区分
-         $dmStaff->kinmu_kubun_settei      =$postData['kinmu_kubun_settei'];        //勤務区分設定
-         $dmStaff->jikandai_1              =$postData['jikandai_1'];                //時間帯１
-         $dmStaff->jikandai_2              =$postData['jikandai_2'];                //時間帯２
-         $dmStaff->jikandai_3              =$postData['jikandai_3'];                //時間帯３
-         $dmStaff->jikandai_4              =$postData['jikandai_4'];                //時間帯４
-         $dmStaff->jikandai_5              =$postData['jikandai_5'];                //時間帯５               */
+         $dmKinmuKubun -> staff_id          =$postData['staff_id'];                         //スタッフID
+         $dmKinmuKubun -> kinmu_kubun_id    =$postData['kinmu_kubun_id'];                   //勤務区分
+         $dmKinmuKubun -> start_time_1      =$postData['start_time_1'];                     //開始時間1
+         $dmKinmuKubun -> end_time_1        =$postData['end_time_1'];                       //終了時間1
+         $dmKinmuKubun -> start_time_2      =$postData['start_time_2'];                     //開始時間2
+         $dmKinmuKubun -> end_time_2        =$postData['end_time_2'];                       //終了時間2
+         $dmKinmuKubun -> start_time_3      =$postData['start_time_3'];                     //開始時間3
+         $dmKinmuKubun -> end_time_3        =$postData['end_time_3'];                       //終了時間3
+         $dmKinmuKubun -> start_time_4      =$postData['start_time_4'];                     //開始時間4
+         $dmKinmuKubun -> end_time_4        =$postData['end_time_4'];                       //終了時間4 
+         $dmKinmuKubun -> start_time_5      =$postData['start_time_5'];                     //開始時間5
+         $dmKinmuKubun -> end_time_5        =$postData['end_time_5'];                       //終了時間5       
+               
+         if($this->session->staff_id==''){
+            $count = $dbKinmuKubunMapper->insert($dmKinmuKubun);
+         }else{
+            $count = $dbKinmuKubunMapper->update($dmKinmuKubun);
+         }
+         return parent::toJson($count);
          
          if($this->session->staff_id==''){
             $count = $dbStaffMapper->insert($dmStaff);

@@ -154,6 +154,7 @@
                     {view:"label", label:"有給休暇の基準日", width:130},
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
                     {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
+
                     {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
                     {view:"label", label:"年", width:50},   
                     {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50,disabled:true},
@@ -215,20 +216,18 @@
                     editable:true,
                     columns:[
                         {id:"youbi", header:"曜日"},
-                    
-                        {id:"kinmu_kubun", header:["勤務区分"]},
+                        {id:"kinmu_kubun_id", header:["勤務区分"]},
                         {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:200},
-
-                        {id:"title",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
-                        {id:"jikandai_1",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間帯①", colspan:2}, "開始"]},
-                        {id:"jikandai_2",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間帯③", colspan:2}, "開始"]},
-                        {id:"jikandai_3",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間帯④", colspan:2}, "開始"]},
-                        {id:"jikandai_4",header:[" ","終了"]},
-                        {id:"title",	header:[{ text:"時間帯⑤", colspan:2}, "開始"],fillspace:true},
-                        {id:"jikandai_5",header:[" ","終了"]},
+                        {view:"title",id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
+                        {id:"end_time_1",header:[" ","終了"]},
+                        {view:"title",id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {id:"end_time_2",header:[" ","終了"]},
+                        {view:"title",id:"start_time_3",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {id:"end_time_3",header:[" ","終了"]},
+                        {view:"title",id:"start_time_4",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {id:"end_time_4",header:[" ","終了"]},
+                        {view:"title",id:"start_time_5",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {id:"end_time_5",header:[" ","終了"]},
                     ],
                     data: [
                         {id:"1",youbi:"月"},
@@ -236,22 +235,21 @@
                         {id:"3",youbi:"水"},
                         {id:"4",youbi:"木"},
                         {id:"5",youbi:"金"},
-                        {id:"6",youbi:"土"},
+                        {id:"6",youbi:"土"},    
                         {id:"0",youbi:"日"},
-
-                        {id:"1", kinmu_kubun:[" ", {content:"select" }], },
+                        {view:"select",id:"1", kinmu_kubun_id:"", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250},
                     ],
-
                 },
+
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
-
                 {},
                 {cols:[
                      {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
+
                    {view:"label", label:"支払い方法", width:178}, 
                 ]},
             ]}
@@ -275,7 +273,8 @@
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
-            
+
+    //        $$("kijunbi_henkou").attachEvent("onItemClick",logic.kijunbi_henkou);
            
         },
         dataLoad:function() {
@@ -286,7 +285,13 @@
                 {# AUNG.datatable.parse("ichiran", text); #}
             });
         },
-       
+    /*  kijunbi_henkou:function(){
+          if(){
+            
+            disabled:true;
+          }
+            disabled:false;
+      },*/
         register:function() {
             if(!logic.validate()) {
                 return false;
