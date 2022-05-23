@@ -18,12 +18,9 @@
                     {},
                     {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
+            
                 {cols:[
-                    {view:"label", label:"スタッフ",width:104}, 
-                    {view:"text", id:"staff_id", name:"staff_id", label:" ", labelWidth:1, width:245, attributes:{maxlength:6}},
-                ]},
-                {cols:[
-                    {view:"label", label:"コード", width:117},
+                    {view:"label", label:"スタッフコード", width:117},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150},
                 ]},
                 {cols:[
@@ -218,15 +215,15 @@
                         {id:"youbi", header:"曜日"},
                         {id:"kinmu_kubun_id", header:["勤務区分"]},
                         {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:200},
-                        {view:"title",id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
+                        {view:"text",id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
                         {id:"end_time_1",header:[" ","終了"]},
-                        {view:"title",id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {view:"text",id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
                         {id:"end_time_2",header:[" ","終了"]},
-                        {view:"title",id:"start_time_3",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {view:"text",id:"start_time_3",	header:[{text:"時間帯③",  colspan:2}, "開始"]},
                         {id:"end_time_3",header:[" ","終了"]},
-                        {view:"title",id:"start_time_4",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {view:"text",id:"start_time_4",	header:[{text:"時間帯④",  colspan:2}, "開始"]},
                         {id:"end_time_4",header:[" ","終了"]},
-                        {view:"title",id:"start_time_5",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
+                        {view:"text",id:"start_time_5",	header:[{text:"時間帯⑤",  colspan:2}, "開始"],fillspace:true},
                         {id:"end_time_5",header:[" ","終了"]},
                     ],
                     data: [
