@@ -4,7 +4,8 @@ class DmKinmuKubun extends DataModel
 {
     public static $schema = [
         //基本情報
-        'staff_id'             => 'string',//スタッフID            
+        'staff_id'             => 'string', //スタッフID
+        'youbi_id'             => 'samlInt',//曜日ID            
         'kinmu_kubun_id'       => 'string',//勤務区分
         'start_time_1'         => 'string',//時間開始1
         'end_time_1'           => 'string',//時間終了1

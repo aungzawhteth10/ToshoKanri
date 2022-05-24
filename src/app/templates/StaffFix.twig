@@ -247,7 +247,6 @@
                      {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
                 {cols:[
-
                    {view:"label", label:"支払い方法", width:178}, 
                 ]},
             ]}
@@ -272,11 +271,11 @@
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
         },
         dataLoad:function() {
-            AUNG.GET("Api/ApiStaffFix", {}, function(text, data, xml) {
+            AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
                 if(AUNG.isAjaxError()) return false;
-                console.log(text);
-                $$("form").parse(text);
-                {# AUNG.datatable.parse("ichiran", text); #}
+                json = xml.json();
+                $$("form").parse(json.kihon);
+                AUNG.datatable.parse("ichiran", json.ichiran);
             });
         },
         register:function() {

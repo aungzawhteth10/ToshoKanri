@@ -54,7 +54,6 @@ class DmStaff extends DataModel
         'check_koutu_4'          => 'string',    //自動車
         'check_koutu_5'          => 'string',    //電車・バス
         'check_koutu_6'          => 'string',    //その他
-      
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID

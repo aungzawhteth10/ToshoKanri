@@ -10,7 +10,7 @@ class ApiStaffManage extends ApiBase
         //スタッフ情報を取得する    
         $DbStaffMapper = new \App\db\DbStaffMapper;
         $staff = $DbStaffMapper->find();
-        $staff = array_column($staff, null, 'staff_id') ;        
+        $staff = array_column($staff, null, 'staff_id') ;   
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_seibetsu')), 'value', 'id');
         error_log(print_r($category, true));
         $result = [];
@@ -48,7 +48,6 @@ class ApiStaffManage extends ApiBase
                 'kinkyuuji_banchi'       => $value['kinkyuuji_banchi'] ?? '', //緊急番地
                 'kinkyuuji_tel_no'       => $value['kinkyuuji_tel_no'] ?? '', //緊急電話番号
                 'kinkyuuji_bikou'        => $value['kinkyuuji_bikou'] ?? '',//緊急備考
-
                    //勤務形態
                 'nyusyaday_gengou'       => $value['nyusyaday_gengou']?? '',     //入社日元号
                 'nyusyaday_year'         => $value['nyusyaday_year']?? '',       //入社日　年
@@ -69,7 +68,6 @@ class ApiStaffManage extends ApiBase
                 'check_koutu_4'          => $value['check_koutu_4']?? '',        //自動車
                 'check_koutu_5'          => $value['check_koutu_5']?? '',        //電車・バス
                 'check_koutu_6'          => $value['check_koutu_6']?? '',        //その他        
-    
             ];
         }
         return parent::toJson($result);
