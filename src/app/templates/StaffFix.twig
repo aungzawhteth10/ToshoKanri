@@ -16,7 +16,7 @@
                 ]},
                 {cols:[
                     {},
-                    {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
+                   { view:"label", label: "<div class='subTitle'>基本情報</div>" },
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
                 {cols:[
@@ -206,9 +206,8 @@
                     select:true,
                     rowHeight:60,
                     yCount:9,
-                    tooltip:true,
                     autoheight:true,
-                    scroll:false,
+                    scroll:true,
                     editable:true,
                     columns:[
                         {id:"id", header:"ID", hidden:true},
