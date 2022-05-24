@@ -18,7 +18,7 @@
                     {},
                     {view:"text", id:"staff_kihonnjyouhou", value: "基本情報" , css:"webix_primary", height:40,width:1450,disabled:true},
                 ]},
-            
+                {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200},
                 {cols:[
                     {view:"label", label:"スタッフコード", width:117},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150},
@@ -151,7 +151,6 @@
                     {view:"label", label:"有給休暇の基準日", width:130},
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
                     {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
-
                     {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
                     {view:"label", label:"年", width:50},   
                     {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50,disabled:true},
@@ -212,33 +211,30 @@
                     scroll:false,
                     editable:true,
                     columns:[
+                        {id:"id", header:"ID", hidden:true},
                         {id:"youbi", header:"曜日"},
-                        {id:"kinmu_kubun_id", header:["勤務区分"]},
-                        {id:"kinmu_kubun_settei", header :["勤務区分の時間を設定"],width:200},
-                        {view:"text",id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"]},
-                        {id:"end_time_1",header:[" ","終了"]},
-                        {view:"text",id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"]},
-                        {id:"end_time_2",header:[" ","終了"]},
-                        {view:"text",id:"start_time_3",	header:[{text:"時間帯③",  colspan:2}, "開始"]},
-                        {id:"end_time_3",header:[" ","終了"]},
-                        {view:"text",id:"start_time_4",	header:[{text:"時間帯④",  colspan:2}, "開始"]},
-                        {id:"end_time_4",header:[" ","終了"]},
-                        {view:"text",id:"start_time_5",	header:[{text:"時間帯⑤",  colspan:2}, "開始"],fillspace:true},
-                        {id:"end_time_5",header:[" ","終了"]},
+                        {id:"kinmu_kubun_id", header:["勤務区分"],fillspace:true},
+                        {id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"], editor:"text"},
+                        {id:"end_time_1",header:[" ","終了"], editor:"text"},
+                        {id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"], editor:"text"},
+                        {id:"end_time_2",header:[" ","終了"], editor:"text"},
+                        {id:"start_time_3",	header:[{text:"時間帯③",  colspan:2}, "開始"], editor:"text"},
+                        {id:"end_time_3",header:[" ","終了"], editor:"text"},
+                        {id:"start_time_4",	header:[{text:"時間帯④",  colspan:2}, "開始"], editor:"text"},
+                        {id:"end_time_4",header:[" ","終了"], editor:"text"},
+                        {id:"start_time_5",	header:[{text:"時間帯⑤",  colspan:2}, "開始"], editor:"text"},
+                        {id:"end_time_5",header:[" ","終了"], editor:"text"},
                     ],
                     data: [
-                        {id:"1",youbi:"月"},
-                        {id:"2",youbi:"火"},
-                        {id:"3",youbi:"水"},
-                        {id:"4",youbi:"木"},
-                        {id:"5",youbi:"金"},
-                        {id:"6",youbi:"土"},    
-                        {id:"0",youbi:"日"},
-
-                        {view:"select",id:"1", kinmu_kubun_id:" ", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250},
+                        {id:"1",youbi:"月", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"2",youbi:"火", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"3",youbi:"水", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"4",youbi:"木", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"5",youbi:"金", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"6",youbi:"土", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
+                        {id:"0",youbi:"日", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
                     ],
                 },
-
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
@@ -255,12 +251,12 @@
 
         }
   };
-  var footer = {cols:[
-                    {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
-                    {},
-                    {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
-                ]};
-      var logic = {
+    var footer = {cols:[
+        {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
+        {},
+        {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
+    ]};
+    var logic = {
         init:function() {
             logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
@@ -275,17 +271,25 @@
                 if(AUNG.isAjaxError()) return false;
                 json = xml.json();
                 $$("form").parse(json.kihon);
-                AUNG.datatable.parse("ichiran", json.ichiran);
+                $$("ichiran").parse(json.ichiran);
+                {# AUNG.datatable.parse("ichiran", json.ichiran); #}
+
             });
         },
         register:function() {
+            $$("ichiran").editStop();
             if(!logic.validate()) {
                 return false;
             }
-            var _postData = $$("form").getValues();
+            var _postData = {
+                kihon: $$("form").getValues(),
+                ichiran: AUNG.datatable.getItem("ichiran"),
+            };
+            console.log(_postData);
              AUNG.POST("Api/ApiStaffFix", _postData, function(text, data, xml) {
                 if(AUNG.isAjaxError()) return false;
                 webix.message("登録しました");
+                logic.dataLoad();
             });
         },
         validate:function() {

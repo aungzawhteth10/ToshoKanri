@@ -36,24 +36,24 @@ class DmStaff extends DataModel
         'kinkyuuji_bikou'        => 'string', //緊急備考
         //勤務形態
         'nyusyaday_gengou'       => 'string',     //入社日元号
-        'nyusyaday_year'         => 'string',    //入社日　年
+        'nyusyaday_year'         => 'string',     //入社日　年
         'nyusyaday_month'        => 'string',     //入社日　月
-        'nyusyaday_day'          => 'string',    //入社日　日
-        'yuukyuukyuuka_gengou'   => 'string',    //有給休暇の基準日 元号
-        'yuukyuukyuuka_year'     => 'string',    //有給休暇の基準日 年
+        'nyusyaday_day'          => 'string',     //入社日　日
+        'yuukyuukyuuka_gengou'   => 'string',     //有給休暇の基準日 元号
+        'yuukyuukyuuka_year'     => 'string',     //有給休暇の基準日 年
         'yuukyuukyuuka_month'    => 'string',     //有給休暇の基準日 月
-        'yuukyuukyuuka_day'      => 'string',    //有給休暇の基準日 日
-        'syubetu_bikou'          => 'string',    //種別
-        'keiyaku_nissuu'         => 'string',    //契約日数
-        'keiyaku_jikan'          => 'string',    //契約時間
-        'kinmu_kubun'            => 'string',    //勤務区分
+        'yuukyuukyuuka_day'      => 'string',     //有給休暇の基準日 日
+        'syubetu_bikou'          => 'string',     //種別
+        'keiyaku_nissuu'         => 'string',     //契約日数
+        'keiyaku_jikan'          => 'string',     //契約時間
+        'kinmu_kubun'            => 'string',     //勤務区分
         'kinmu_kibouchi'         => 'string',     //勤務希望地
-        'check_koutu_1'          => 'string',    //徒歩
+        'check_koutu_1'          => 'string',     //徒歩
         'check_koutu_2'          => 'string',     //自転車
-        'check_koutu_3'          => 'string',    //オートバイ
-        'check_koutu_4'          => 'string',    //自動車
-        'check_koutu_5'          => 'string',    //電車・バス
-        'check_koutu_6'          => 'string',    //その他
+        'check_koutu_3'          => 'string',     //オートバイ
+        'check_koutu_4'          => 'string',     //自動車
+        'check_koutu_5'          => 'string',     //電車・バス
+        'check_koutu_6'          => 'string',     //その他
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID

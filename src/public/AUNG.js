@@ -79,3 +79,10 @@ AUNG.hideProgress = function(viewId) {
     $$(wId).hideProgress();
     $$(viewId).enable();
 };
+AUNG.datatable.getItem = function(tableId){
+    var _rtn = [];
+    $$(tableId).data.each(function(obj){
+        _rtn.push(obj);
+    })
+    return _rtn;
+};
