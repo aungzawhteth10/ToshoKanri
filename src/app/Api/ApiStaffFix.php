@@ -177,8 +177,6 @@ class ApiStaffFix extends ApiBase
             $dmKinmuKubun->end_time_4        = $value['end_time_4'];//終了時間4 
             $dmKinmuKubun->start_time_5      = $value['start_time_5'];//開始時間5
             $dmKinmuKubun->end_time_5        = $value['end_time_5'];//終了時間5
-            error_log(print_r('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', true));
-            error_log(print_r($dmKinmuKubun, true));
             $count += $dbKinmuKubunMapper->insert($dmKinmuKubun);
         }
         if ($this->session->staff_id == '') {
