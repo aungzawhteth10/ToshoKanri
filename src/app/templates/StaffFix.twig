@@ -5,6 +5,7 @@
         id:"form",
         scroll:true,
         autoheight:true,
+        multiview:true, 
         elements:[
             {rows:[
                 {cols:[
@@ -14,9 +15,10 @@
                     {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
                     {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
                 ]},
+                
                 {cols:[
                     {},
-                   { view:"label", label: "<div class='subTitle'>基本情報</div>" },
+                   {view:"label", label: "<div class='subTitle'>基本情報</div>" },
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
                 {cols:[
@@ -96,10 +98,11 @@
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                     {view:"text", id:"staff_kinkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:1450,disabled:true},
+                    {},
+                    {view:"label", label: "<div class='subTitle'>基本連絡先</div>" },
                 ]},
                 {cols:[
-                     {view:"button", id:"btn_staff_kihonjyouhoutoonaji", name:"btn_staff_kihonjyouhoutoonaji", label:"基本情報と同じ", css:"webix_primary", width:250},
+                    {view:"button", id:"btn_staff_kihonjyouhoutoonaji", name:"btn_staff_kihonjyouhoutoonaji", label:"基本情報と同じ", css:"webix_primary", width:250},
                 ]},
                 {cols:[
                     {view:"label", label:"氏名", width:38},   
@@ -135,7 +138,8 @@
                 ]},
                 {},
                  {cols:[
-                     {view:"text", id:"staff_kinmukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:1450,disabled:true},
+                    {},
+                    {view:"label", label: "<div class='subTitle'>勤務形態</div>" },
                 ]},
                 {cols:[
                     {view:"label", label:"入社日元号", width:178}, 
@@ -213,7 +217,7 @@
                     columns:[
                         {id:"id", header:"ID", hidden:true},
                         {id:"youbi", header:"曜日"},
-                        {id:"kinmu_kubun_id", header:["勤務区分"],fillspace:true},
+                        {id:"kinmu_kubun_id", header:["勤務区分"],editor:"select",options:{{HtmlHelper.getJsonKara('kinmuKubun_category')|raw}},fillspace:true},
                         {id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"], editor:"text"},
                         {id:"end_time_1",header:[" ","終了"], editor:"text"},
                         {id:"start_time_2",	header:[{text:"時間帯②",  colspan:2}, "開始"], editor:"text"},
