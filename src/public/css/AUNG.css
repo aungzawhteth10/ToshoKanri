@@ -50,3 +50,6 @@ div.subSubTitle{
     border-top: 1px solid #1253a4;
     text-indent: 1em;
 }
+div.line {
+	color:black;
+}

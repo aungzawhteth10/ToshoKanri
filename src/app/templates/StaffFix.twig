@@ -10,22 +10,21 @@
             {rows:[
                 {cols:[
                     {},
-                    {view:"button", id:"btn_staff_manage", value:"基本情報" , css:"webix_primary", height:40,width:350},
+                    {view:"button", id:"btn_staff_kihonjyouhou", value:"基本情報" , css:"webix_primary", height:40,width:350},
                     {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
                     {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
                     {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
                 ]},
-                
                 {cols:[
-                   {view:"label", label: "<div class='subTitle'>基本情報</div>" },
+                   {view:"label", label: "<div class='subTitle'>基本情報</div>"},
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
                 {cols:[
                     {view:"label", label:"スタッフコード", width:117},
-                    {view:"text", id:"staff_code", name:"staff_code", label:"", width:150},
+                    {view:"text", id:"staff_code", name:"staff_code", label:"", width:172},
                 ]},
                 {cols:[
-                    {view:"label", label:"氏名", width:38}, 
+                    {view:"label",label:"氏名",width:38,right:38},
                     {view:"text", id:"name", name:"name", label:" ", width:250},
                 ]},
                 {cols:[
@@ -44,7 +43,7 @@
                     {view:"label", label:"生年月日 元号", width:105}, 
                     {view:"select", id:"seinengappi_gengou", name:"seinengappi_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
                     {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:100}, 
-                    {view:"label", label:"年", width:50},   
+                    {view:"label", label:"年", width:50},
                     {view:"text", id:"seinengappi_month", name:"seinengappi_month", label:"",width:50},
                     {view:"label", label:"月", width:50},   
                     {view:"text", id:"seinengappi_day", name:"seinengappi_day", label:"", width:50},
@@ -103,7 +102,7 @@
                     {view:"button", id:"btn_staff_kihonjyouhoutoonaji", name:"btn_staff_kihonjyouhoutoonaji", label:"基本情報と同じ", css:"webix_primary", width:250},
                 ]},
                 {cols:[
-                    {view:"label", label:"氏名", width:38},   
+                    {view:"label", label:"氏名", width:38}, 
                     {view:"text", id:"kinkyuuji_name", name:"kinkyuuji_name", label:" ", width:300},
                 ]},
                 {cols:[
@@ -151,12 +150,12 @@
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:130},
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50},
-                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
-                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100}, 
+                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disable:true},
+                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disable:true}, 
                     {view:"label", label:"年", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50},
+                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50,disable:true},
                     {view:"label", label:"月", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50},
+                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50,disable:true},
                     {view:"label", label:"日", width:50}, 
                 ]},
                 {cols:[
@@ -174,7 +173,7 @@
                     {view:"label",label:"時間 / 月"},
                 ]},
                 {cols:[
-                    {view:"label", label:"勤務区分", width:105},   
+                    {view:"label", label:"勤務区分", width:105}, 
                     {view:"select", id:"kinmu_kubun", name:"kinmu_kubun", label:" ", options:{{HtmlHelper.getJsonKara('cm_kinmu_category')|raw}}, labelWidth:1, width:250}, 
                 ]}, 
                 {cols:[
@@ -203,16 +202,17 @@
                 {
                     view:"datatable", css:"webix_header_border",
                     id:"ichiran",
-                    hover:"myhover",
+                    hover:"myhover", 
                     select:true,
                     borderless:true,
                     rowHeight:60,
                     yCount:7,
                     autoheight:true,
                     editable:true,
+                    type:"line",
                     columns:[
                         {id:"id", header:"ID", hidden:true},
-                        {id:"youbi", header:"曜日"},
+                        {id:"youbi", header:"曜日" },
                         {id:"kinmu_kubun_id", header:["勤務区分"],editor:"select",options:{{HtmlHelper.getJsonKara('kinmuKubun_category')|raw}},fillspace:true},
                         {id:"start_time_1",	header:[{text:"時間帯①",  colspan:2}, "開始"], editor:"text"},
                         {id:"end_time_1",header:[" ","終了"], editor:"text"},
@@ -262,7 +262,7 @@
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
-            $$("btn_staff_manage").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonnjyouhou")});
+            $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
         },
@@ -277,18 +277,18 @@
         },
         check:function(){
             console.log("check");
-            if ($$("kijunbi_henkou").getValue() == 1){
-                console.log("1");
-                $$("yuukyuukyuuka_gengou").enable();
-                $$("yuukyuukyuuka_year").enable();
-                $$("yuukyuukyuuka_month").enable();
-                $$("yuukyuukyuuka_day").enable();
-            }  else {
+            if ($$("kijunbi_henkou").getValue() == 0){
                 console.log("0");
                 $$("yuukyuukyuuka_gengou").disable();
                 $$("yuukyuukyuuka_year").disable();
                 $$("yuukyuukyuuka_month").disable();
                 $$("yuukyuukyuuka_day").disable();
+            }  else {
+                console.log("1");
+                $$("yuukyuukyuuka_gengou").enable();
+                $$("yuukyuukyuuka_year").enable();
+                $$("yuukyuukyuuka_month").enable();
+                $$("yuukyuukyuuka_day").enable();
             }
         },      
         register:function() {
@@ -318,7 +318,7 @@
             AUNG.pageMove("StaffManage");
         },
         scrollTo:function(id){
-            $$("form").scrollTo(0, $$(id).$view.offsetTop);
+            $$("form").scrollTo(0, $$(id).$subTitle.offsetTop);
         },
         tokihonjyouhou:function(){
             var msg = "[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？";
