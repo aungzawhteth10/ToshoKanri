@@ -151,12 +151,12 @@
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:130},
                     {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50},
-                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
-                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
+                    {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150},
+                    {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100}, 
                     {view:"label", label:"年", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50,disabled:true},
+                    {view:"text", id:"yuukyuukyuuka_month", name:"yuukyuukyuuka_month", label:"",width:50},
                     {view:"label", label:"月", width:50},   
-                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50,disabled:true},
+                    {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50},
                     {view:"label", label:"日", width:50}, 
                 ]},
                 {cols:[
@@ -273,7 +273,6 @@
                 $$("form").parse(json.kihon);
                 $$("ichiran").parse(json.ichiran);
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
-
             });
         },
         check:function(){
