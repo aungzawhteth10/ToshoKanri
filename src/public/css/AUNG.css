@@ -3,7 +3,7 @@ input {
 }
 .webix_dtable .webix_ss_filter select, .webix_dtable .webix_ss_filter input {
 	border-radius: 40px;
-	padding-left: 10px;
+	padding-left:  10px;
 	padding-right: 10px;
 }
 .webix_ss_header .webix_hcell {
@@ -51,5 +51,5 @@ div.subSubTitle{
     text-indent: 1em;
 }
 div.line {
-	color:black;
+	color: #000;
 }
