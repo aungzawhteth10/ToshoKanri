@@ -60,6 +60,7 @@ class ApiStaffFix extends ApiBase
             'nyusyaday_year'         => $staff[0]['nyusyaday_year'],       //入社日　年
             'nyusyaday_month'        => $staff[0]['nyusyaday_month'],      //入社日　月
             'nyusyaday_day'          => $staff[0]['nyusyaday_day'],        //入社日　日
+            'kijunbi_henkou'         => $staff[0]['kijunbi_henkou'],       //有給休暇の基準日 変更
             'yuukyuukyuuka_gengou'   => $staff[0]['yuukyuukyuuka_gengou'], //有給休暇の基準日 元号
             'yuukyuukyuuka_year'     => $staff[0]['yuukyuukyuuka_year'],   //有給休暇の基準日 年
             'yuukyuukyuuka_month'    => $staff[0]['yuukyuukyuuka_month'],  //有給休暇の基準日 月
@@ -140,6 +141,7 @@ class ApiStaffFix extends ApiBase
         $dmStaff->nyusyaday_year          = $kihon['nyusyaday_year'];          //入社日　年
         $dmStaff->nyusyaday_month         = $kihon['nyusyaday_month'];         //入社日　月
         $dmStaff->nyusyaday_day           = $kihon['nyusyaday_day'];           //入社日　日
+        $dmStaff->kijunbi_henkou          = $kihon['kijunbi_henkou'];          //有給休暇の基準日 変更
         $dmStaff->yuukyuukyuuka_gengou    = $kihon['yuukyuukyuuka_gengou'];    //有給休暇の基準日 元号
         $dmStaff->yuukyuukyuuka_year      = $kihon['yuukyuukyuuka_year'];      //有給休暇の基準日 年
         $dmStaff->yuukyuukyuuka_month     = $kihon['yuukyuukyuuka_month'];     //有給休暇の基準日 月

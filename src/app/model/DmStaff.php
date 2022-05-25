@@ -39,6 +39,7 @@ class DmStaff extends DataModel
         'nyusyaday_year'         => 'string',     //入社日　年
         'nyusyaday_month'        => 'string',     //入社日　月
         'nyusyaday_day'          => 'string',     //入社日　日
+        'kijunbi_henkou'         => 'string',     //有給休暇の基準日 変更
         'yuukyuukyuuka_gengou'   => 'string',     //有給休暇の基準日 元号
         'yuukyuukyuuka_year'     => 'string',     //有給休暇の基準日 年
         'yuukyuukyuuka_month'    => 'string',     //有給休暇の基準日 月
