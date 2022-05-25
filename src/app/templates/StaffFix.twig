@@ -17,7 +17,6 @@
                 ]},
                 
                 {cols:[
-                    {},
                    {view:"label", label: "<div class='subTitle'>基本情報</div>" },
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
@@ -98,7 +97,6 @@
                     {view:"text", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:1, width:250}, 
                 ]},
                 {cols:[
-                    {},
                     {view:"label", label: "<div class='subTitle'>基本連絡先</div>" },
                 ]},
                 {cols:[
@@ -138,7 +136,6 @@
                 ]},
                 {},
                  {cols:[
-                    {},
                     {view:"label", label: "<div class='subTitle'>勤務形態</div>" },
                 ]},
                 {cols:[
@@ -153,7 +150,7 @@
                 ]},
                  {cols:[
                     {view:"label", label:"有給休暇の基準日", width:130},
-                    {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50,},
+                    {view:"checkbox", id:"kijunbi_henkou", name:"kijunbi_henkou", label:" ",  width:50},
                     {view:"select", id:"yuukyuukyuuka_gengou", name:"yuukyuukyuuka_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:1, width:150,disabled:true},
                     {view:"text", id:"yuukyuukyuuka_year", name:"yuukyuukyuuka_year", label:"", width:100,disabled:true}, 
                     {view:"label", label:"年", width:50},   
@@ -161,6 +158,7 @@
                     {view:"label", label:"月", width:50},   
                     {view:"text", id:"yuukyuukyuuka_day", name:"yuukyuukyuuka_day", label:"", width:50,disabled:true},
                     {view:"label", label:"日", width:50}, 
+                    
                 ]},
                 {cols:[
                     {view:"label", label:"種別", width:105},  
@@ -208,11 +206,10 @@
                     id:"ichiran",
                     hover:"myhover",
                     select:true,
+                    borderless:true,
                     rowHeight:60,
-                    Borderless:true,
-                    yCount:9,
+                    yCount:7,
                     autoheight:true,
-                    scroll:true,
                     editable:true,
                     columns:[
                         {id:"id", header:"ID", hidden:true},
@@ -244,7 +241,7 @@
                 ]},
                 {},
                 {cols:[
-                     {view:"text", id:"furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:1450,disabled:true},
+                     { view:"label", label: "<div class='subTitle'>振込口座情報</div>" },
                 ]},
                 {cols:[
                    {view:"label", label:"支払い方法", width:178}, 
@@ -252,7 +249,6 @@
             ]}
         ],
         rules:{
-
         }
   };
     var footer = {cols:[

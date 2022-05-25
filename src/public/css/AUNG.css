@@ -37,3 +37,16 @@ input {
 	color: #475466;
 	border-color: #CCD7E6;
 }
+div.subTitle{
+    color: #1253a4;
+    border-top: 4px solid #1253a4;
+    box-shadow: #dbe5f1 0 1px 0;
+    background: #f7f9fc;
+    text-indent: 1em;
+    font-weight: bold;
+}
+div.subSubTitle{
+    color: #1253a4;
+    border-top: 1px solid #1253a4;
+    text-indent: 1em;
+}
