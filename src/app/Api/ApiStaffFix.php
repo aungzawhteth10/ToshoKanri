@@ -76,8 +76,20 @@ class ApiStaffFix extends ApiBase
             'check_koutu_3'          => $staff[0]['check_koutu_3'],        //オートバイ
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
-            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他      
+            'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他    
+            //振込口座情報
+           // 'furikomisaki_bunkum'       => $staff[0]['furikomisaki_bunkum'], //振込先区分
+        /*    'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
+            'bank_shiten_furigana'      => $staff[0]['bank_shiten_furigana'], //支店名
+            'bank_bank_code'            => $staff[0]['bank_bank_code'],       //銀行コード
+            'bank_shiten_code'          => $staff[0]['bank_shiten_code'],     //支店コード
+            'bank_kouza_shubets'        => $staff[0]['bank_kouza_shubets'],  //口座種別
+            'bank_kouza_no'             => $staff[0]['bank_kouza_no'],         //口座番号
+            'bank_kouza_meigi_furigana' => $staff[0]['bank_kouza_meigi_furigana'], //口座名義フリガナ
+            'bank_kokyaku_code'         => $staff[0]['bank_kokyaku_code'],      //顧客コード        */
             
+
+
         ];
         //勤務希望設定
         foreach ($kinmuKubun as $key => $value) {
@@ -160,8 +172,17 @@ class ApiStaffFix extends ApiBase
         $dmStaff->check_koutu_4           = $kihon['check_koutu_4'];           //自動車
         $dmStaff->check_koutu_5           = $kihon['check_koutu_5'];           //電車・バス
         $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];           //その他
+        //振込口座情報
+      /*  $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];      //銀行名
+        $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];     //支店名
+        $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];           //銀行コード
+        $dmStaff->bank_shiten_code               = $kihon['bank_shiten_code'];         //支店コード
+        $dmStaff->bank_kouza_shubets             = $kihon['bank_kouza_shubets'];      //口座種別
+        $dmStaff->bank_kouza_no                  = $kihon['bank_kouza_no'];           //口座番号
+        $dmStaff->bank_kouza_meigi_furigana      = $kihon['bank_kouza_meigi_furigana'];  //口座名義フリガナ
+        $dmStaff->bank_kokyaku_code              = $kihon['bank_kokyaku_code'];      //顧客コード*/
         $count = 0;
-        //勤務希望設定
+        //勤務区分一覧情報
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
         $dmKinmuKubun = new \App\model\DmKinmuKubun;   
         $dmKinmuKubun->staff_id = $kihon['staff_id'];//スタッフID

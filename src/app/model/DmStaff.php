@@ -56,6 +56,16 @@ class DmStaff extends DataModel
         'check_koutu_4'          => 'string',     //自動車
         'check_koutu_5'          => 'string',     //電車・バス
         'check_koutu_6'          => 'string',     //その他
+        //振込口座情報 
+     //   'furikomisaki_bunkum'       => 'string',   //振込先区分
+   /*     'bank_bank_name_furi'       => 'string',   //銀行名
+        'bank_shiten_furigana'      =>'string',     //支店名
+        'bank_bank_code'            =>'string',     //銀行コード
+        'bank_shiten_code'          =>'string',     //支店コード
+        'bank_kouza_shubetu'        =>'string',      //口座種別
+        'bank_kouza_no'             =>'string',      //口座番号
+        'bank_kouza_meigi_furigana' =>'string',     //口座名義フリガナ
+        'bank_kokyaku_code'         =>'string',     //顧客コード        */
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID
