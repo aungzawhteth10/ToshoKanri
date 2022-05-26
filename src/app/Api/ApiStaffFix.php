@@ -87,9 +87,6 @@ class ApiStaffFix extends ApiBase
             'bank_kouza_no'             => $staff[0]['bank_kouza_no'],         //口座番号
             'bank_kouza_meigi_furigana' => $staff[0]['bank_kouza_meigi_furigana'], //口座名義フリガナ
             'bank_kokyaku_code'         => $staff[0]['bank_kokyaku_code'],      //顧客コード        */
-            
-
-
         ];
         //勤務希望設定
         foreach ($kinmuKubun as $key => $value) {
@@ -174,13 +171,13 @@ class ApiStaffFix extends ApiBase
         $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];           //その他
         //振込口座情報
       /*  $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];      //銀行名
-        $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];     //支店名
-        $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];           //銀行コード
-        $dmStaff->bank_shiten_code               = $kihon['bank_shiten_code'];         //支店コード
-        $dmStaff->bank_kouza_shubets             = $kihon['bank_kouza_shubets'];      //口座種別
-        $dmStaff->bank_kouza_no                  = $kihon['bank_kouza_no'];           //口座番号
+        $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];       //支店名
+        $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];             //銀行コード
+        $dmStaff->bank_shiten_code               = $kihon['bank_shiten_code'];           //支店コード
+        $dmStaff->bank_kouza_shubets             = $kihon['bank_kouza_shubets'];         //口座種別
+        $dmStaff->bank_kouza_no                  = $kihon['bank_kouza_no'];              //口座番号
         $dmStaff->bank_kouza_meigi_furigana      = $kihon['bank_kouza_meigi_furigana'];  //口座名義フリガナ
-        $dmStaff->bank_kokyaku_code              = $kihon['bank_kokyaku_code'];      //顧客コード*/
+        $dmStaff->bank_kokyaku_code              = $kihon['bank_kokyaku_code'];          //顧客コード*/
         $count = 0;
         //勤務区分一覧情報
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
