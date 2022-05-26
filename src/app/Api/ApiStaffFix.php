@@ -46,6 +46,7 @@ class ApiStaffFix extends ApiBase
             'fax_no'                 => $staff[0]['fax_no'], //fax番号
             'mail_address'           => $staff[0]['mail_address'], //メールアドレス
             'bikou'                  => $staff[0]['bikou'], //備考
+            'moussaka_day'           => $staff[0]['moussaka_day'], //削除日
             //緊急連絡先
             'kinkyuuji_name'         => $staff[0]['kinkyuuji_name'], //緊急氏名
             'kinkyuuji_post_on'      => $staff[0]['kinkyuuji_post_on'],//緊急郵便番号
@@ -127,6 +128,7 @@ class ApiStaffFix extends ApiBase
         $dmStaff->fax_no                = $kihon['fax_no'];               //FAX番号
         $dmStaff->mail_address          = $kihon['mail_address'];         //メールアドレス
         $dmStaff->bikou                 = $kihon['bikou'];                //備考
+        $dmStaff->moussaka_day          = $kihon['moussaka_day'];           //削除日
         //緊急連絡先
         $dmStaff->kinkyuuji_name        = $kihon['kinkyuuji_name'];        //緊急氏名
         $dmStaff->kinkyuuji_post_on     = $kihon['kinkyuuji_post_on'];     //緊急郵便番号

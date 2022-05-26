@@ -53,3 +53,7 @@ div.subSubTitle{
 div.line {
 	color: #000;
 }
+.webix_column > div, .webix_table_cell {
+	border-right: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a9a9a9;
+}

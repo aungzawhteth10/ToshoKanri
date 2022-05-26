@@ -25,6 +25,7 @@ class DmStaff extends DataModel
         'fax_no'               => 'string', //FAX番号
         'mail_address'         => 'string', //メールアドレス
         'bikou'                => 'string', //備考
+        'moussaka_day'         => 'string', //削除日
         //緊急連絡先
         'kinkyuuji_name'         => 'string', //緊急氏名
         'kinkyuuji_post_on'      => 'string', //緊急郵便番号

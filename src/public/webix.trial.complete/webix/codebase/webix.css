@@ -1709,9 +1709,10 @@ button,
 /*normal data cell of the table*/
 .webix_column > div,
 .webix_table_cell {
-  border-right: 1px solid #EDEFF0;
-  padding: 0 12px;
-  border-bottom: 1px solid #EDEFF0;
+  border-right: 1px solid #ebebeb;
+  padding: 0 10px;
+  border-bottom: 1px solid #ebebeb;
+  border-right-color: #EDEFF0;
 }
 .webix_column,
 .webix_hcolumn {
