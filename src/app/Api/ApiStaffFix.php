@@ -46,7 +46,7 @@ class ApiStaffFix extends ApiBase
             'fax_no'                 => $staff[0]['fax_no'], //fax番号
             'mail_address'           => $staff[0]['mail_address'], //メールアドレス
             'bikou'                  => $staff[0]['bikou'], //備考
-            'moussaka_day'           => $staff[0]['moussaka_day'], //削除日
+            'sakujo_day'             => $staff[0]['sakujo_day'], //削除日
             //緊急連絡先
             'kinkyuuji_name'         => $staff[0]['kinkyuuji_name'], //緊急氏名
             'kinkyuuji_post_on'      => $staff[0]['kinkyuuji_post_on'],//緊急郵便番号
@@ -77,8 +77,9 @@ class ApiStaffFix extends ApiBase
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他      
+            
         ];
-        //勤務区分一覧
+        //勤務希望設定
         foreach ($kinmuKubun as $key => $value) {
             $result['ichiran'][] = [
                 'id'                     => $value['youbi_id'],          //曜日
@@ -128,7 +129,7 @@ class ApiStaffFix extends ApiBase
         $dmStaff->fax_no                = $kihon['fax_no'];               //FAX番号
         $dmStaff->mail_address          = $kihon['mail_address'];         //メールアドレス
         $dmStaff->bikou                 = $kihon['bikou'];                //備考
-        $dmStaff->moussaka_day          = $kihon['moussaka_day'];           //削除日
+        $dmStaff->sakujo_day            = $kihon['sakujo_day'];           //削除日
         //緊急連絡先
         $dmStaff->kinkyuuji_name        = $kihon['kinkyuuji_name'];        //緊急氏名
         $dmStaff->kinkyuuji_post_on     = $kihon['kinkyuuji_post_on'];     //緊急郵便番号
@@ -160,7 +161,7 @@ class ApiStaffFix extends ApiBase
         $dmStaff->check_koutu_5           = $kihon['check_koutu_5'];           //電車・バス
         $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];           //その他
         $count = 0;
-        //勤務区分一覧情報
+        //勤務希望設定
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
         $dmKinmuKubun = new \App\model\DmKinmuKubun;   
         $dmKinmuKubun->staff_id = $kihon['staff_id'];//スタッフID
