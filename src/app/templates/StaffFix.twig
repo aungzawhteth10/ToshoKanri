@@ -17,7 +17,7 @@
                     {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
                 ]},
                 {cols:[
-                   {view:"label",id:"", label: "<div class='subTitle'>基本情報</div>"},
+                   {view:"label",id:"staff_kihonjyouhou", label: "<div class='subTitle'>基本情報</div>"},
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
                 {cols:[
@@ -244,10 +244,8 @@
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
                 ]},
-                {view:"radio",label:"支払い方法",options:[{id:"ginkokouza_furikomi", value:"銀行口座振込"}, {id:"yuubinnkyokukouza_furikomi", value:"郵便局口座振込" },],},
-                
+                {view:"radio",label:"支払い方法",options:[{id:"furikomisaki_kubun", value:"銀行口座振込"}, {value:"郵便局口座振込" },],},
                 {view:"label", label: "<div class='subTitle'>銀行口座振込</div>" },
-                
                 {cols:[
                     {view:"label",label:"◎:振込データの必須項目",width:250,align:"right"},
                 ]},
@@ -291,14 +289,14 @@
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座記号",width:150,align:"right"},
-                    {view:"text",id:"kouza_kigou",value:"1",labelWidth:0, width:40,disabled:true},
+                    {view:"text",id:"kouza_kigou1",value:"1",labelWidth:0, width:40,disabled:true},
                     {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", label:" ",  labelWidth:0, width:80},
-                    {view:"text",id:"kouza_kigou1",value:"0",labelWidth:0, width:40,disabled:true},
+                    {view:"text",id:"kouza_kigou2",value:"0",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座番号",width:150,align:"right"},
                     {view:"text", id:"post_office_kouza_no", name:"post_office_kouza_no", label:" ",  labelWidth:0, width:150},
-                    {view:"text",id:"1",value:"1",labelWidth:0, width:40,disabled:true},
+                    {view:"text",id:"kouza_no",value:"1",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座名義フリガナ",width:150,align:"right"},
@@ -332,14 +330,13 @@
     var logic = {
         init:function() {
             logic.dataLoad();
-            $$("btn_register").attachEvent("onItemClick", logic.register);
+            $$("btn_register").attachEvent("onItemClick", logic.register);  
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
-       
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {

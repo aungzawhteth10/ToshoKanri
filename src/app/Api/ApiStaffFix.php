@@ -78,7 +78,7 @@ class ApiStaffFix extends ApiBase
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他    
             //銀行振込口座振込
-           // 'furikomisaki_bunkum'       => $staff[0]['furikomisaki_bunkum'], //振込先区分
+            'furikomisaki_kubun'        => $staff[0]['furikomisaki_kubun'], //振込先区分
             'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
             'bank_shiten_furigana'      => $staff[0]['bank_shiten_furigana'], //銀行支店名
             'bank_bank_code'            => $staff[0]['bank_bank_code'],       //銀行コード
@@ -177,7 +177,8 @@ class ApiStaffFix extends ApiBase
         $dmStaff->check_koutu_4           = $kihon['check_koutu_4']; //自動車
         $dmStaff->check_koutu_5           = $kihon['check_koutu_5'];  //電車・バス
         $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];  //その他
-        //振込口座振込
+        //銀行振込口座振込
+        $dmStaff->furikomisaki_kubun             = $kihon['furikomisaki_kubun'];   //振込区分
         $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];  //銀行名
         $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];  //銀行支店名
         $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];   //銀行コード
@@ -194,6 +195,7 @@ class ApiStaffFix extends ApiBase
         //振込データ「新規コード」初期設定
         $dmStaff->touroku_month         = $kihon['touroku_month'];  //登録年月
         $dmStaff->modification_month    = $kihon['modification_month'];  //更新年月
+
         $count = 0;
         //勤務区分一覧情報
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
