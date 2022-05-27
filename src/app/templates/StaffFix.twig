@@ -23,6 +23,7 @@
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
+                    {view:"button", id:"btn_jyufuku_check", value:"重複チェック" , css:"webix_primary",width:120},
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -43,8 +44,8 @@
                 {cols:[
                     {view:"label", label:"生年月日 元号",width:150,align:"right"},
                     {view:"select", id:"seinengappi_gengou", name:"seinengappi_gengou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_gengou')|raw}}, labelWidth:0, width:150},
-                    {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:80}, 
-                    {view:"label", label:"年", width:50},
+                    {view:"text", id:"seinengappi_year", name:"seinengappi_year", label:"", width:65}, 
+                    {view:"label", label:"年", width:50,},  
                     {view:"text", id:"seinengappi_month", name:"seinengappi_month", label:"",width:50},
                     {view:"label", label:"月", width:50},   
                     {view:"text", id:"seinengappi_day", name:"seinengappi_day", label:"", width:50},
@@ -235,6 +236,9 @@
                         {id:"0",youbi:"日", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
                     ],
                 },
+
+
+           
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
@@ -245,9 +249,8 @@
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
                 ]},
                 {view:"radio", id:"furikomisaki_kubun", name:"furikomisaki_kubun", value:"1", label:"支払い方法", options:[{id:"1",value:"銀行口座振込"}, {id:"2",value:"郵便局口座振込" }]},
-
                 {view:"label", label: "<div class='subTitle'>銀行口座振込</div>" },
-
+            
                 {cols:[
                     {view:"label",label:"◎:振込データの必須項目",width:250,align:"right"},
                 ]},
@@ -261,7 +264,7 @@
                 ]},
                 {cols:[
                     {view:"label",label:"◎　銀行コード",width:150,align:"right"},
-                    {view:"text", id:"bank_bank_code", name:"bank_bank_code", label:" ", width:150, labelWidth:0},
+                    {view:"text",id:"bank_bank_code", name:"bank_bank_code",label:" ", width:150, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　支店コード",width:150,align:"right"},
@@ -284,7 +287,6 @@
                     {view:"text", id:"bank_kokyaku_code", name:"bank_kokyaku_code", label:" ",  labelWidth:0, width:250},
                 ]},
                 {view:"label", label: "<div class='subTitle'>郵便局口座振込</div>" },
-                
                 {cols:[
                     {view:"label",label:" ◎: 振込データの必須項目",width:250,align:"right"},
                 ]},
@@ -292,7 +294,6 @@
                     {view:"label",label:"◎　口座記号",width:150,align:"right"},
                     {view:"text",id:"kouza_kigou1",value:"1",labelWidth:0, width:40,disabled:true},
                     {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", label:" ",  labelWidth:0, width:80},
-                    
                     {view:"text",id:"kouza_kigou2",value:"0",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
@@ -308,9 +309,7 @@
                     {view:"label",label:"◎　顧客コード",width:150,align:"right"},
                     {view:"text", id:"post_office_kokyaku_code", name:"post_office_kokyaku_code", label:" ",  labelWidth:0, width:250},
                 ]},
-
                 {view:"label", label: "<div class='subTitle'>振込データ「新規コード」初期設定</div>"},
-
                 {cols:[
                     {view:"label", label:"登録年月", width:150,align:"right"},
                     {view:"datepicker",type:"month", id:"touroku_month", name:"touroku_month", label:" ", labelWidth:0, width:150}, 
@@ -339,6 +338,7 @@
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
+            $$("btn_jyufuku_check").attachEvent("onItemClick",logic.check1)
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -365,6 +365,15 @@
                 $$("yuukyuukyuuka_day").enable();
             }
         },      
+        check1:function(){
+            if($$("staff_code").getValue() == 1){
+                webix.message("重複していない"); 
+                return false;
+            } else {
+                webix.message("重複している");
+                 return false;
+            }
+        },
         register:function() {
             $$("ichiran").editStop();
             if(!logic.validate()) {
@@ -387,11 +396,6 @@
                 return false;
             }
             return true;
-   /*         if(!$$(preg_match( '/^[0-9]+$/', 'string') {
-                AUNG.errorMessage("半角数字(4桁固定)で入力してください");
-                return false;
-            }
-            return true;*/
         },
         toMenu:function() {
             AUNG.pageMove("StaffManage");
