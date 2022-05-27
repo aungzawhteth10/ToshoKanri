@@ -244,8 +244,10 @@
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
                 ]},
-                {view:"radio",label:"支払い方法",options:[{id:"furikomisaki_kubun", value:"銀行口座振込"}, {value:"郵便局口座振込" },],},
+                {view:"radio", id:"furikomisaki_kubun", name:"furikomisaki_kubun", value:"1", label:"支払い方法", options:[{id:"1",value:"銀行口座振込"}, {id:"2",value:"郵便局口座振込" }]},
+
                 {view:"label", label: "<div class='subTitle'>銀行口座振込</div>" },
+
                 {cols:[
                     {view:"label",label:"◎:振込データの必須項目",width:250,align:"right"},
                 ]},
@@ -281,7 +283,6 @@
                     {view:"label",label:"◎　顧客コード",width:150,align:"right"},
                     {view:"text", id:"bank_kokyaku_code", name:"bank_kokyaku_code", label:" ",  labelWidth:0, width:250},
                 ]},
-
                 {view:"label", label: "<div class='subTitle'>郵便局口座振込</div>" },
                 
                 {cols:[
@@ -291,6 +292,7 @@
                     {view:"label",label:"◎　口座記号",width:150,align:"right"},
                     {view:"text",id:"kouza_kigou1",value:"1",labelWidth:0, width:40,disabled:true},
                     {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", label:" ",  labelWidth:0, width:80},
+                    
                     {view:"text",id:"kouza_kigou2",value:"0",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
@@ -307,7 +309,7 @@
                     {view:"text", id:"post_office_kokyaku_code", name:"post_office_kokyaku_code", label:" ",  labelWidth:0, width:250},
                 ]},
 
-                {view:"label", label: "<div class='subTitle'>振込データ「新規コード」初期設定</div>" },
+                {view:"label", label: "<div class='subTitle'>振込データ「新規コード」初期設定</div>"},
 
                 {cols:[
                     {view:"label", label:"登録年月", width:150,align:"right"},
@@ -385,6 +387,11 @@
                 return false;
             }
             return true;
+   /*         if(!$$(preg_match( '/^[0-9]+$/', 'string') {
+                AUNG.errorMessage("半角数字(4桁固定)で入力してください");
+                return false;
+            }
+            return true;*/
         },
         toMenu:function() {
             AUNG.pageMove("StaffManage");
