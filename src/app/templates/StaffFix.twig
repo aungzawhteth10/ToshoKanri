@@ -264,7 +264,7 @@
                 ]},
                 {cols:[
                     {view:"label",label:"◎　銀行コード",width:150,align:"right"},
-                    {view:"text",id:"bank_bank_code", name:"bank_bank_code",label:" ", width:150, labelWidth:0},
+                    {view:"text", maxlength: 4, id:"bank_bank_code", name:"bank_bank_code", label:" ", width:150, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　支店コード",width:150,align:"right"},
@@ -321,6 +321,7 @@
             ]}
         ],
         rules:{
+
         }
   };
     var footer = {cols:[
