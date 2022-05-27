@@ -77,16 +77,24 @@ class ApiStaffFix extends ApiBase
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他    
-            //振込口座情報
+            //銀行振込口座振込
            // 'furikomisaki_bunkum'       => $staff[0]['furikomisaki_bunkum'], //振込先区分
-        /*    'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
-            'bank_shiten_furigana'      => $staff[0]['bank_shiten_furigana'], //支店名
+            'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
+            'bank_shiten_furigana'      => $staff[0]['bank_shiten_furigana'], //銀行支店名
             'bank_bank_code'            => $staff[0]['bank_bank_code'],       //銀行コード
-            'bank_shiten_code'          => $staff[0]['bank_shiten_code'],     //支店コード
-            'bank_kouza_shubets'        => $staff[0]['bank_kouza_shubets'],  //口座種別
-            'bank_kouza_no'             => $staff[0]['bank_kouza_no'],         //口座番号
-            'bank_kouza_meigi_furigana' => $staff[0]['bank_kouza_meigi_furigana'], //口座名義フリガナ
-            'bank_kokyaku_code'         => $staff[0]['bank_kokyaku_code'],      //顧客コード        */
+            'bank_shiten_code'          => $staff[0]['bank_shiten_code'],     //銀行支店コード
+            'bank_kouza_shubets'        => $staff[0]['bank_kouza_shubets'],  //銀行口座種別
+            'bank_kouza_no'             => $staff[0]['bank_kouza_no'],         //銀行口座番号
+            'bank_kouza_meigi_furigana' => $staff[0]['bank_kouza_meigi_furigana'], //銀行口座名義フリガナ
+            'bank_kokyaku_code'         => $staff[0]['bank_kokyaku_code'],      //銀行顧客コード      
+            //郵便局口座振込
+            'post_office_kouza_kigou'           => $staff[0]['post_office_kouza_kigou'], //郵便局口座記号
+            'post_office_kouza_no'              => $staff[0]['post_office_kouza_no'], //郵便局口座番号
+            'post_office_kouza_meigi_furigana'  => $staff[0]['post_office_kouza_meigi_furigana'], //郵便局口座名義フリガナ  
+            'post_office_kokyaku_code'          => $staff[0]['post_office_kokyaku_code'],   //郵便局顧客コード
+            //振込データ「新規コード」初期設定
+            'touroku_month'         => $staff[0]['touroku_month'],  //登録年月
+            'modification_month'    => $staff[0]['modification_month'], //更新年月
         ];
         //勤務希望設定
         foreach ($kinmuKubun as $key => $value) {
@@ -149,35 +157,43 @@ class ApiStaffFix extends ApiBase
         $dmStaff->kinkyuuji_tel_no      = $kihon['kinkyuuji_tel_no'];      //緊急電話番号
         $dmStaff->kinkyuuji_bikou       = $kihon['kinkyuuji_bikou'];       //緊急備考
         //勤務形態
-        $dmStaff->nyusyaday_gengou        = $kihon['nyusyaday_gengou'];        //入社日元号
-        $dmStaff->nyusyaday_year          = $kihon['nyusyaday_year'];          //入社日　年
-        $dmStaff->nyusyaday_month         = $kihon['nyusyaday_month'];         //入社日　月
-        $dmStaff->nyusyaday_day           = $kihon['nyusyaday_day'];           //入社日　日
-        $dmStaff->kijunbi_henkou          = $kihon['kijunbi_henkou'];          //有給休暇の基準日 変更
-        $dmStaff->yuukyuukyuuka_gengou    = $kihon['yuukyuukyuuka_gengou'];    //有給休暇の基準日 元号
-        $dmStaff->yuukyuukyuuka_year      = $kihon['yuukyuukyuuka_year'];      //有給休暇の基準日 年
-        $dmStaff->yuukyuukyuuka_month     = $kihon['yuukyuukyuuka_month'];     //有給休暇の基準日 月
-        $dmStaff->yuukyuukyuuka_day       = $kihon['yuukyuukyuuka_day'];       //有給休暇の基準日 日
-        $dmStaff->syubetu_bikou           = $kihon['syubetu_bikou'];           //種別
-        $dmStaff->keiyaku_nissuu          = $kihon['keiyaku_nissuu'];          //契約日数
-        $dmStaff->keiyaku_jikan           = $kihon['keiyaku_jikan'];           //契約時間
-        $dmStaff->kinmu_kubun             = $kihon['kinmu_kubun'];             //勤務区分
-        $dmStaff->kinmu_kibouchi          = $kihon['kinmu_kibouchi'];          //勤務希望地
-        $dmStaff->check_koutu_1           = $kihon['check_koutu_1'];           //徒歩
-        $dmStaff->check_koutu_2           = $kihon['check_koutu_2'];           //自転車
-        $dmStaff->check_koutu_3           = $kihon['check_koutu_3'];           //オートバイ
-        $dmStaff->check_koutu_4           = $kihon['check_koutu_4'];           //自動車
-        $dmStaff->check_koutu_5           = $kihon['check_koutu_5'];           //電車・バス
-        $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];           //その他
-        //振込口座情報
-      /*  $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];      //銀行名
-        $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];       //支店名
-        $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];             //銀行コード
-        $dmStaff->bank_shiten_code               = $kihon['bank_shiten_code'];           //支店コード
-        $dmStaff->bank_kouza_shubets             = $kihon['bank_kouza_shubets'];         //口座種別
-        $dmStaff->bank_kouza_no                  = $kihon['bank_kouza_no'];              //口座番号
-        $dmStaff->bank_kouza_meigi_furigana      = $kihon['bank_kouza_meigi_furigana'];  //口座名義フリガナ
-        $dmStaff->bank_kokyaku_code              = $kihon['bank_kokyaku_code'];          //顧客コード*/
+        $dmStaff->nyusyaday_gengou        = $kihon['nyusyaday_gengou']; //入社日元号
+        $dmStaff->nyusyaday_year          = $kihon['nyusyaday_year'];  //入社日　年
+        $dmStaff->nyusyaday_month         = $kihon['nyusyaday_month'];  //入社日　月
+        $dmStaff->nyusyaday_day           = $kihon['nyusyaday_day']; //入社日　日
+        $dmStaff->kijunbi_henkou          = $kihon['kijunbi_henkou'];  //有給休暇の基準日 変更
+        $dmStaff->yuukyuukyuuka_gengou    = $kihon['yuukyuukyuuka_gengou']; //有給休暇の基準日 元号
+        $dmStaff->yuukyuukyuuka_year      = $kihon['yuukyuukyuuka_year'];  //有給休暇の基準日 年
+        $dmStaff->yuukyuukyuuka_month     = $kihon['yuukyuukyuuka_month'];//有給休暇の基準日 月
+        $dmStaff->yuukyuukyuuka_day       = $kihon['yuukyuukyuuka_day'];  //有給休暇の基準日 日
+        $dmStaff->syubetu_bikou           = $kihon['syubetu_bikou'];  //種別
+        $dmStaff->keiyaku_nissuu          = $kihon['keiyaku_nissuu']; //契約日数
+        $dmStaff->keiyaku_jikan           = $kihon['keiyaku_jikan'];  //契約時間
+        $dmStaff->kinmu_kubun             = $kihon['kinmu_kubun'];  //勤務区分
+        $dmStaff->kinmu_kibouchi          = $kihon['kinmu_kibouchi']; //勤務希望地
+        $dmStaff->check_koutu_1           = $kihon['check_koutu_1'];  //徒歩
+        $dmStaff->check_koutu_2           = $kihon['check_koutu_2']; //自転車
+        $dmStaff->check_koutu_3           = $kihon['check_koutu_3']; //オートバイ
+        $dmStaff->check_koutu_4           = $kihon['check_koutu_4']; //自動車
+        $dmStaff->check_koutu_5           = $kihon['check_koutu_5'];  //電車・バス
+        $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];  //その他
+        //振込口座振込
+        $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];  //銀行名
+        $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];  //銀行支店名
+        $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];   //銀行コード
+        $dmStaff->bank_shiten_code               = $kihon['bank_shiten_code']; //銀行支店コード
+        $dmStaff->bank_kouza_shubets             = $kihon['bank_kouza_shubets'];//銀行口座種別
+        $dmStaff->bank_kouza_no                  = $kihon['bank_kouza_no'];//銀行口座番号
+        $dmStaff->bank_kouza_meigi_furigana      = $kihon['bank_kouza_meigi_furigana']; //銀行口座名義フリガナ
+        $dmStaff->bank_kokyaku_code              = $kihon['bank_kokyaku_code'];  //銀行顧客コード
+        //郵便局口座情振込
+        $dmStaff->post_office_kouza_kigou           = $kihon['post_office_kouza_kigou'];  //郵便局口座記号
+        $dmStaff->post_office_kouza_no              = $kihon['post_office_kouza_no'];   //郵便局口座番号
+        $dmStaff->post_office_kouza_meigi_furigana  = $kihon['post_office_kouza_meigi_furigana'];   //郵便局口座名義フリガナ
+        $dmStaff->post_office_kokyaku_code          = $kihon['post_office_kokyaku_code'];   //郵便局顧客コード
+        //振込データ「新規コード」初期設定
+        $dmStaff->touroku_month         = $kihon['touroku_month'];  //登録年月
+        $dmStaff->modification_month    = $kihon['modification_month'];  //更新年月
         $count = 0;
         //勤務区分一覧情報
         $dbKinmuKubunMapper = new \App\db\DbKinmuKubunMapper;
