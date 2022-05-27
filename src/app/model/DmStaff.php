@@ -58,7 +58,6 @@ class DmStaff extends DataModel
         'check_koutu_6'          => 'string',     //その他
         //銀行振込口座振込
         'furikomisaki_kubun'        => 'string',   //振込先区分
-        
         'bank_bank_name_furi'       => 'string',   //銀行名
         'bank_shiten_furigana'      => 'string',     //支店名
         'bank_bank_code'            => 'string',     //銀行コード

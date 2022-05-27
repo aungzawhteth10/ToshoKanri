@@ -79,7 +79,6 @@ class ApiStaffFix extends ApiBase
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他    
             //銀行振込口座振込
             'furikomisaki_kubun'        => $staff[0]['furikomisaki_kubun'], //振込先区分
-            
             'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
             'bank_shiten_furigana'      => $staff[0]['bank_shiten_furigana'], //銀行支店名
             'bank_bank_code'            => $staff[0]['bank_bank_code'],       //銀行コード
@@ -180,7 +179,6 @@ class ApiStaffFix extends ApiBase
         $dmStaff->check_koutu_6           = $kihon['check_koutu_6'];  //その他
         //銀行振込口座振込
         $dmStaff->furikomisaki_kubun             = $kihon['furikomisaki_kubun'];   //振込区分
-
         $dmStaff->bank_bank_name_furi            = $kihon['bank_bank_name_furi'];  //銀行名
         $dmStaff->bank_shiten_furigana           = $kihon['bank_shiten_furigana'];  //銀行支店名
         $dmStaff->bank_bank_code                 = $kihon['bank_bank_code'];   //銀行コード
