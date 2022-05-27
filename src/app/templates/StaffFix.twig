@@ -23,7 +23,7 @@
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
-                    {view:"button", id:"btn_jyufuku_check", value:"重複チェック" , css:"webix_primary",width:120},
+              //      {view:"button", id:"btn_jyufuku_check", value:"重複チェック" , css:"webix_primary",width:120},
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -337,7 +337,7 @@
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
-            $$("btn_jyufuku_check").attachEvent("onItemClick",logic.check1)
+        //  $$("btn_jyufuku_check").attachEvent("onItemClick",logic.check1)
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -364,15 +364,15 @@
                 $$("yuukyuukyuuka_day").enable();
             }
         },      
-        check1:function(){
-            if($$("staff_code").getValue() == 1){
+ /*      check1:function(){
+            if($$("staff_code").getValue() == 0){
+                 console.log("0");
                 webix.message("重複していない"); 
-                return false;
             } else {
+                console.log("1");
                 webix.message("重複している");
-                 return false;
             }
-        },
+        },  */
         register:function() {
             $$("ichiran").editStop();
             if(!logic.validate()) {
