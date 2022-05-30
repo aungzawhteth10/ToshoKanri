@@ -10,6 +10,8 @@ class ApiStaffFix extends ApiBase
         $result = [
             'kihon' => [],
             'ichiran' => [],
+      //      'furikomisaki_kubun'   =>[],
+
         ];
        //スタッフ情報
        $dbStaffMapper = new \App\db\DbStaffMapper;
@@ -25,7 +27,12 @@ class ApiStaffFix extends ApiBase
         $dmKinmuKubun->staff_id   = $this->session->staff_id;
         $kinmuKubun = $dbKinmuKubunMapper->find($dmKinmuKubun); 
 
-        
+        //振込口座区分
+       /* $dbFuriKomisakiKubunMapper = new \App\db\DbFuriKomisakiKubunMapper;
+        $dmFuriKomisakiKubun = new \App\model\DmFuriKomisakiKubun;
+        $dmFuriKomisakiKubun->staff_id   = $this->session->staff_id;
+        $FuriKomisakiKubun = $dbFuriKomisakiKubunMapper->find($dmFuriKomisakiKubun);    */
+
         $result['kihon'] = [
             'staff_id'               => $staff[0]['staff_id'], //スタッフID
             'staff_code'             => $staff[0]['staff_code'],   //利用者ID
@@ -79,6 +86,7 @@ class ApiStaffFix extends ApiBase
             'check_koutu_4'          => $staff[0]['check_koutu_4'],        //自動車
             'check_koutu_5'          => $staff[0]['check_koutu_5'],        //電車・バス
             'check_koutu_6'          => $staff[0]['check_koutu_6'],        //その他    
+
             //銀行振込口座振込
             'furikomisaki_kubun'        => $staff[0]['furikomisaki_kubun'], //振込先区分
             'bank_bank_name_furi'       => $staff[0]['bank_bank_name_furi'],  //銀行名
@@ -116,6 +124,7 @@ class ApiStaffFix extends ApiBase
                 
             ];
         }
+        
         return parent::toJson($result);
     }
     /*
