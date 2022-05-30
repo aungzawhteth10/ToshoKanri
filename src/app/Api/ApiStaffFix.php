@@ -10,8 +10,6 @@ class ApiStaffFix extends ApiBase
         $result = [
             'kihon' => [],
             'ichiran' => [],
-      //      'furikomisaki_kubun'   =>[],
-
         ];
        //スタッフ情報
        $dbStaffMapper = new \App\db\DbStaffMapper;
@@ -26,13 +24,6 @@ class ApiStaffFix extends ApiBase
         $dmKinmuKubun = new \App\model\DmKinmuKubun;
         $dmKinmuKubun->staff_id   = $this->session->staff_id;
         $kinmuKubun = $dbKinmuKubunMapper->find($dmKinmuKubun); 
-
-        //振込口座区分
-       /* $dbFuriKomisakiKubunMapper = new \App\db\DbFuriKomisakiKubunMapper;
-        $dmFuriKomisakiKubun = new \App\model\DmFuriKomisakiKubun;
-        $dmFuriKomisakiKubun->staff_id   = $this->session->staff_id;
-        $FuriKomisakiKubun = $dbFuriKomisakiKubunMapper->find($dmFuriKomisakiKubun);    */
-
         $result['kihon'] = [
             'staff_id'               => $staff[0]['staff_id'], //スタッフID
             'staff_code'             => $staff[0]['staff_code'],   //利用者ID
