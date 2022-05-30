@@ -264,7 +264,7 @@
                 ]},
                 {cols:[
                     {view:"label",label:"◎　銀行コード",width:150,align:"right"},
-                    {view:"text",/*type = "number", maxlength = "4", */id:"bank_bank_code", name:"bank_bank_code", label:" ", width:150, labelWidth:0},
+                    {view:"text",id:"bank_bank_code", name:"bank_bank_code", label:" ", width:150, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　支店コード",width:150,align:"right"},
@@ -340,7 +340,7 @@
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.show);
-            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.hide);
+        //  $$("furikomisaki_kubun").setValue($$("form").getValue(show));
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -371,17 +371,9 @@
             if($$("furikomisaki_kubun").getValue() == 1){
                 $$("form").show();
             } else {
-                $$("form").hide();
+                $$("form").show(false);
             }
         },  
-        hide:function(){
-            if($$("furikomisaki_kubun").getValue() == 0){
-                $$("form").show();
-            } else {
-                $$("form").hide();
-            }
-        },  
-
         register:function() {
             $$("ichiran").editStop();
             if(!logic.validate()) {
@@ -405,6 +397,7 @@
             }
             return true;
         },
+
         toMenu:function() {
             AUNG.pageMove("StaffManage");
         },
