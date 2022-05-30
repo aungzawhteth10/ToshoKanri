@@ -343,8 +343,7 @@
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
-            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.ginkou);
-            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.post);
+            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -371,18 +370,13 @@
                 $$("yuukyuukyuuka_day").enable();
             }
         },
-        ginkou:function(){
+        shiharaihouhou:function(){
             if($$("furikomisaki_kubun").getValue() == 1){
                 $$("ginkou").show();
+                $$("post").hide();
             } else {
                 $$("ginkou").hide();
-            }
-        }, 
-        post:function(){
-            if($$("furikomisaki_kubun").getValue() == 2){
                 $$("post").show();
-            } else {
-                $$("post").hide();
             }
         },
         register:function() {
