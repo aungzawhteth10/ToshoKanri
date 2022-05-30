@@ -121,10 +121,8 @@ class ApiStaffFix extends ApiBase
                 'end_time_4'             => $value['end_time_4'],        //終了時間4
                 'start_time_5'           => $value['start_time_5'],      //開始時間5
                 'end_time_5'             => $value['end_time_5'],        //終了時間5 
-                
             ];
         }
-        
         return parent::toJson($result);
     }
     /*

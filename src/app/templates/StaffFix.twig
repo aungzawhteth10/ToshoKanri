@@ -241,7 +241,6 @@
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
                 //振込口座情報
-
                 {cols:[
                 {view:"label", label: "<div class='subTitle'>振込口座情報</div>" },
                 ]},
@@ -249,42 +248,42 @@
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
                 ]},
                 
-                {view:"radio", id:"furikomisaki_kubun", name:"furikomisaki_kubun", value:"1", label:"支払い方法", options:[{id:"1",value:"銀行口座振込"}, {id:"2",value:"郵便局口座振込" }]},
+                {view:"radio", id:"furikomisaki_kubun", name:"furikomisaki_kubun", value:"1", label:"支払い方法", options:[{id:"1",value:"銀行口座振込"},{id:"2",value:"郵便局口座振込" }]},
                 {view:"label", label: "<div class='subTitle'>銀行口座振込</div>" },
                 {cols:[
                     {view:"label",label:"◎:振込データの必須項目",width:250,align:"right"},
                 ]},
                 {cols:[
                     {view:"label",label:"銀行名",width:150,align:"right"},
-                    {view:"text", id:"bank_bank_name_furi", name:"bank_bank_name_furi", label:" ", width:300, labelWidth:0},
+                    {view:"text", id:"bank_bank_name_furi", name:"bank_bank_name_furi",batch:1, label:" ", width:300, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"支店名",width:150,align:"right"},
-                    {view:"text", id:"bank_shiten_furigana", name:"bank_shiten_furigana", label:" ", width:300, labelWidth:0},
+                    {view:"text", id:"bank_shiten_furigana", name:"bank_shiten_furigana",batch:1,label:" ", width:300, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　銀行コード",width:150,align:"right"},
-                    {view:"text",id:"bank_bank_code", name:"bank_bank_code", label:" ", width:150, labelWidth:0},
+                    {view:"text",id:"bank_bank_code", name:"bank_bank_code", batch:1,label:" ", width:150, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　支店コード",width:150,align:"right"},
-                    {view:"text", id:"bank_shiten_code", name:"bank_shiten_code", label:" ", width:150, labelWidth:0},
+                    {view:"text", id:"bank_shiten_code", name:"bank_shiten_code",batch:1, label:" ", width:150, labelWidth:0},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座種別",width:150,align:"right"},
-                    {view:"select", id:"bank_kouza_shubets", name:"bank_kouza_shubets", label:" ",options:{{HtmlHelper.getJsonKara('kouza_syubetu')|raw}},  labelWidth:0, width:150},
+                    {view:"select", id:"bank_kouza_shubets", name:"bank_kouza_shubets", batch:1,label:" ",options:{{HtmlHelper.getJsonKara('kouza_syubetu')|raw}},  labelWidth:0, width:150},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座番号",width:150,align:"right"},
-                    {view:"text", id:"bank_kouza_no", name:"bank_kouza_no", label:" ",  labelWidth:0, width:200},
+                    {view:"text", id:"bank_kouza_no", name:"bank_kouza_no", label:" ", batch:1, labelWidth:0, width:200},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座名義フリガナ",width:150,align:"right"},
-                    {view:"text", id:"bank_kouza_meigi_furigana", name:"bank_kouza_meigi_furigana", label:" ",  labelWidth:0, width:300},
+                    {view:"text", id:"bank_kouza_meigi_furigana", name:"bank_kouza_meigi_furigana",batch:1, label:" ",  labelWidth:0, width:300},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　顧客コード",width:150,align:"right"},
-                    {view:"text", id:"bank_kokyaku_code", name:"bank_kokyaku_code", label:" ",  labelWidth:0, width:250},
+                    {view:"text", id:"bank_kokyaku_code", name:"bank_kokyaku_code",batch:1, label:" ",  labelWidth:0, width:250},
                 ]},
                 {view:"label", label: "<div class='subTitle'>郵便局口座振込</div>" },
                 {cols:[
@@ -293,21 +292,21 @@
                 {cols:[
                     {view:"label",label:"◎　口座記号",width:150,align:"right"},
                     {view:"text",id:"kouza_kigou1",value:"1",labelWidth:0, width:40,disabled:true},
-                    {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", label:" ",  labelWidth:0, width:80},
+                    {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", batch:0,label:" ",  labelWidth:0, width:80},
                     {view:"text",id:"kouza_kigou2",value:"0",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座番号",width:150,align:"right"},
-                    {view:"text", id:"post_office_kouza_no", name:"post_office_kouza_no", label:" ",  labelWidth:0, width:150},
+                    {view:"text", id:"post_office_kouza_no", name:"post_office_kouza_no",batch:0, label:" ",  labelWidth:0, width:150},
                     {view:"text",id:"kouza_no",value:"1",labelWidth:0, width:40,disabled:true},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　口座名義フリガナ",width:150,align:"right"},
-                    {view:"text", id:"post_office_kouza_meigi_furigana", name:"post_office_kouza_meigi_furigana", label:" ",  labelWidth:0, width:300},
+                    {view:"text", id:"post_office_kouza_meigi_furigana", name:"post_office_kouza_meigi_furigana",batch:0, label:" ",  labelWidth:0, width:300},
                 ]},
                 {cols:[
                     {view:"label",label:"◎　顧客コード",width:150,align:"right"},
-                    {view:"text", id:"post_office_kokyaku_code", name:"post_office_kokyaku_code", label:" ",  labelWidth:0, width:250},
+                    {view:"text", id:"post_office_kokyaku_code", name:"post_office_kokyaku_code",batch:0, label:" ",  labelWidth:0, width:250},
                 ]},
                 {view:"label", label: "<div class='subTitle'>振込データ「新規コード」初期設定</div>"},
                 {cols:[
@@ -339,8 +338,8 @@
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
-            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.show);
-        //  $$("furikomisaki_kubun").setValue($$("form").getValue(show));
+            $$("furikomisaki_kubun").setValue($$("form").getValue(show));
+
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -369,9 +368,9 @@
         },
         show:function(){
             if($$("furikomisaki_kubun").getValue() == 1){
-                $$("form").show();
+                $$("form").showBatch("batch:1");
             } else {
-                $$("form").show(false);
+                $$("form").showBatch("batch:0");
             }
         },  
         register:function() {
@@ -397,7 +396,6 @@
             }
             return true;
         },
-
         toMenu:function() {
             AUNG.pageMove("StaffManage");
         },
