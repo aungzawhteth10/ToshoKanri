@@ -24,6 +24,8 @@ class ApiStaffFix extends ApiBase
         $dmKinmuKubun = new \App\model\DmKinmuKubun;
         $dmKinmuKubun->staff_id   = $this->session->staff_id;
         $kinmuKubun = $dbKinmuKubunMapper->find($dmKinmuKubun); 
+
+        
         $result['kihon'] = [
             'staff_id'               => $staff[0]['staff_id'], //スタッフID
             'staff_code'             => $staff[0]['staff_code'],   //利用者ID

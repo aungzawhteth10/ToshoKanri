@@ -237,16 +237,17 @@
                         {id:"0",youbi:"日", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
                     ],
                 },
-                            
                 {cols:[
                    {view:"button", id:"btn_Staff_sinki", value:"新規追加" , css:"webix_primary", height:40,width:350},
                 ]},
+                //振込口座情報
                 {cols:[
                     {view:"label", label: "<div class='subTitle'>振込口座情報</div>" },
                 ]},
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
                 ]},
+                
                 {view:"radio", id:"furikomisaki_kubun", name:"furikomisaki_kubun", value:"1", label:"支払い方法", options:[{id:"1",value:"銀行口座振込"}, {id:"2",value:"郵便局口座振込" }]},
                 {view:"label", label: "<div class='subTitle'>銀行口座振込</div>" },
                 {cols:[
@@ -329,14 +330,15 @@
     var logic = {
         init:function() {
             logic.dataLoad();
-            $$("btn_register").attachEvent("onItemClick", logic.register);  
+            $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
             $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
-        //  $$("btn_jyufuku_check").attachEvent("onItemClick",logic.check1)
+            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.show);
+            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.hide);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -362,16 +364,22 @@
                 $$("yuukyuukyuuka_month").enable();
                 $$("yuukyuukyuuka_day").enable();
             }
-        },      
- /*      check1:function(){
-            if($$("staff_code").getValue() == 0){
-                 console.log("0");
-                webix.message("重複していない"); 
+        },
+        show:function(){
+            if($$("furikomisaki_kubun").getValue() == 1){
+                $$("form").show();
             } else {
-                console.log("1");
-                webix.message("重複している");
+                $$("form").hide();
             }
-        },  */
+        },  
+        hide:function(){
+            if($$("furikomisaki_kubun").getValue() == 0){
+                $$("form").show();
+            } else {
+                $$("form").hide();
+            }
+        },  
+
         register:function() {
             $$("ichiran").editStop();
             if(!logic.validate()) {
