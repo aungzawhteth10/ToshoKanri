@@ -24,7 +24,6 @@
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
-              //      {view:"button", id:"btn_jyufuku_check", value:"重複チェック" , css:"webix_primary",width:120},
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -242,8 +241,16 @@
                 ]},
                 //振込口座情報
 
+          //    {      
+         //       view:"form",
+           //     id:"ginkou_furikomi",
+          //              {cols:[
+          //                  {view:"label", label: "<div class='subTitle'>振込口座情報</div>"},
+          //              ]},
+           //   },
+
                 {cols:[
-                {view:"label", label: "<div class='subTitle'>振込口座情報</div>" },
+                        {view:"label", label: "<div class='subTitle'>振込口座情報</div>"},
                 ]},
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
@@ -340,7 +347,7 @@
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.show);
-
+            $$("furikomisaki_kubun").attachEvent("onItemClick",logic.hide);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -368,12 +375,19 @@
             }
         },
         show:function(){
-            if($$("furikomisaki_kubun").getValue() == 1){
+            if($$("furikomisaki_kubun").getValue() == 0){
                 $$("form").show();
+            } else {
+                $$("form").hide();
+            }
+        }, 
+        hide:function(){
+            if($$("furikomisaki_kubun").getValue() == 0){
+                $$("form").hide();
             } else {
                 $$("form").show();
             }
-        },  
+        },   
         register:function() {
             $$("ichiran").editStop();
             if(!logic.validate()) {
