@@ -30,7 +30,7 @@ class ApiRentalRegister extends ApiBase
             'publisher' => $book[0]['publisher'],
             'ryoukinn'  => $book[0]['ryoukinn'],
             //利用者情報
-          //  'riyousya_id'  => $riyousya[0]['riyousya_id'],
+            'riyousya_id'  => $riyousya[0]['riyousya_id'],
             //社員の情報
             'syainn_id'    => $syainn[0]['syainn_id'] ?? '', //スタッフコード
             'syainn_name'  => $syainn[0]['syainn_name'] ?? '', //社員名

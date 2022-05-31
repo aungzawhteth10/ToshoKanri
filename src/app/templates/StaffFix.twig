@@ -337,13 +337,16 @@
             logic.dataLoad();
             $$("btn_register").attachEvent("onItemClick", logic.register);
             $$("btn_back").attachEvent("onItemClick", logic.toMenu);
-            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
             $$("btn_staff_kihonjyouhoutoonaji").attachEvent("onItemClick", logic.tokihonjyouhou);
-            $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
-            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
+            
+            $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
+            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
+            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
+            $$("btn_staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_furikomikouzajyouhou")});
+            
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
