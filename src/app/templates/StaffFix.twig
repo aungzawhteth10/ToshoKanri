@@ -23,6 +23,7 @@
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
+                    {view:"button", id:"btn_tyoufuku_check", value:"重複チェック" , css:"webix_primary", height:40,width:140},
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -342,6 +343,7 @@
             $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
+            $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
         },
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
@@ -351,6 +353,15 @@
                 $$("ichiran").parse(json.ichiran);
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
             });
+        },
+        checkSimilar:function(){
+            console.log("check");
+            if ($$("staff_code").getValue() == 1){
+                AUNG.errorMessage("重複していません");
+            } else {
+                AUNG.errorMessage("重複しています");
+                     
+            } 
         },
         check:function(){
             console.log("check");
