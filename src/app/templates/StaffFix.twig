@@ -98,7 +98,7 @@
                     {view:"datepicker", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:0, width:150}, 
                 ]},
                 {cols:[
-                    {view:"label", label: "<div class='subTitle'>緊急連絡先</div>" },
+                    {view:"label",id:"staff_kinnkyuurenrakusaki", label: "<div class='subTitle'>緊急連絡先</div>" },
                 ]},
                 {cols:[
                     {view:"button", id:"btn_staff_kihonjyouhoutoonaji", name:"btn_staff_kihonjyouhoutoonaji", label:"基本情報と同じ", css:"webix_primary", width:250},
@@ -137,7 +137,7 @@
                 ]},
                 {},
                  {cols:[
-                    {view:"label", label: "<div class='subTitle'>勤務形態</div>" },
+                    {view:"label",id:"staff_kyoumukeitai", label: "<div class='subTitle'>勤務形態</div>" },
                 ]},
                 {cols:[
                     {view:"label", label:"入社日元号", width:178,align:"right"}, 
@@ -240,7 +240,7 @@
                 ]},
                 //振込口座情報
                 {cols:[
-                    {view:"label", label: "<div class='subTitle'>振込口座情報</div>"},
+                    {view:"label",id:"staff_furikomikouzajyouhou", label: "<div class='subTitle'>振込口座情報</div>"},
                 ]},
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
@@ -343,8 +343,8 @@
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
             
             $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
-            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinkyuurenrakusaki")}); 
-            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinmukeitai")});
+            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
+            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});
             $$("btn_staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_furikomikouzajyouhou")});
             
         },
@@ -413,7 +413,7 @@
             AUNG.pageMove("StaffManage");
         },
         scrollTo:function(id){
-            $$("form").scrollTo(0, $$(id).$subTitle.offsetTop);
+            $$("form").scrollTo(0, $$(id).$view.offsetTop);
         },
         tokihonjyouhou:function(){
             var msg = "[電話番号][住所]に基本情報内容を複写します。処理を続行してもよろしいですか？";
