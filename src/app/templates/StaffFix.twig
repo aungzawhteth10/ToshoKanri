@@ -1,5 +1,19 @@
 {% include 'base.html' %}
 <script >
+var tabbar = webix.ui({
+    view:"tabbar", 
+    id:"tabbar", 
+    scroll:true,
+    autoheight:true,
+    multiview:true, 
+    value:"listView", 
+    options: [
+            {id:"staff_kihonjyouhou", value:"基本情報" , css:"webix_primary", height:40,width:350},
+            {id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
+            {id:"staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
+            {id:"staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
+    ]
+});
  var form = {
         view:"form",
         id:"form",
@@ -9,13 +23,7 @@
         align:"absolute",
         elements:[
             {rows:[
-                {cols:[
-                    {},
-                    {view:"button", id:"btn_staff_kihonjyouhou", value:"基本情報" , css:"webix_primary", height:40,width:350},
-                    {view:"button", id:"btn_staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
-                    {view:"button", id:"btn_staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
-                    {view:"button", id:"btn_staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
-                ]},
+                
                 {cols:[
                    {view:"label",id:"staff_kihonjyouhou", label: "<div class='subTitle'>基本情報</div>"},
                 ]},
@@ -327,11 +335,11 @@
         rules:{
         }
   };
-    var footer = {cols:[
-        {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:50},
+var footer = {cols:[
+        {view:"button", id:"btn_back", name:"btn_back", value:"一覧に戻る", css:"webix_primary", width:200,height:110},
         {},
-        {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:50}, 
-    ]};
+        {view:"button", id:"btn_register", name:"btn_register", value:"登録", css:"webix_primary",width:200,height:110}, 
+]};
     var logic = {
         init:function() {
             logic.dataLoad();
@@ -342,10 +350,10 @@
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
             
-            $$("btn_staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
-            $$("btn_staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
-            $$("btn_staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});
-            $$("btn_staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_furikomikouzajyouhou")});
+            $$("staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
+            $$("staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
+            $$("staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});
+            $$("staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_furikomikouzajyouhou")});
             
         },
         dataLoad:function() {
