@@ -3,13 +3,12 @@
 var tabbar = webix.ui({
     view:"tabbar", 
     id:"tabbar", 
-    scroll:true,
-    autoheight:true,
+    multiview:true, 
     options: [
-            {id:"staff_kihonjyouhou", value:"基本情報" , css:"webix_primary", height:40,width:350},
-            {id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , css:"webix_primary", height:40,width:350},
-            {id:"staff_kyoumukeitai", value:"勤務形態" , css:"webix_primary", height:40,width:350},
-            {id:"staff_furikomikouzajyouhou", value:"振込口座情報" , css:"webix_primary", height:40,width:350},
+            {id:"staff_kihonjyouhou", value:"基本情報" ,  height:40,width:350},
+            {id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , height:40,width:350},
+            {id:"staff_kyoumukeitai", value:"勤務形態" ,  height:40,width:350},
+            {id:"staff_furikomikouzajyouhou", value:"振込口座情報" , height:40,width:350},
     ]
 });
 var form = {
@@ -17,11 +16,10 @@ var form = {
         id:"form",
         scroll:true,
         autoheight:true,
-        multiview:true, 
+        multiview:true,
         align:"absolute",
         elements:[
             {rows:[
-                
                 {cols:[
                    {view:"label",id:"staff_kihonjyouhou", label: "<div class='subTitle'>基本情報</div>"},
                 ]},
@@ -29,7 +27,7 @@ var form = {
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
-                    {view:"button", id:"btn_tyoufuku_check", value:"重複チェック" , css:"webix_primary", height:40,width:140},
+              //    {view:"button", id:"btn_tyoufuku_check", value:"重複チェック" , css:"webix_primary", height:40,width:140},    
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -231,7 +229,7 @@ var form = {
                         {id:"start_time_5",	header:[{text:"時間帯⑤",  colspan:2}, "開始"], editor:"text"},
                         {id:"end_time_5",header:[" ","終了"], editor:"text"},
                     ],
-                    data: [
+                    data:[
                         {id:"1",youbi:"月", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
                         {id:"2",youbi:"火", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
                         {id:"3",youbi:"水", kinmu_kubun_id:"", start_time_1:"",end_time_1:"",start_time_2:"",end_time_2:"",start_time_3:"",end_time_3:"",start_time_4:"",end_time_4:"",start_time_5:"",end_time_5:""},
@@ -347,7 +345,6 @@ var footer = {cols:[
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
-            
             $$("staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
             $$("staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});
@@ -363,13 +360,13 @@ var footer = {cols:[
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
             });
         },
-        checkSimilar:function($staff_code){
+     /*   checkSimilar:function($staff_code){
             if ($$("staff_code").getValue() == ($$("staff_code"))){
                 AUNG.Message("重複しています");
             } else {
                 AUNG.Message("重複していません");
             }
-        },
+        },*/
         check:function(){
             if ($$("kijunbi_henkou").getValue() == 0){
                 $$("yuukyuukyuuka_gengou").disable();
