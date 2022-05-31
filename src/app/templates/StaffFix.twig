@@ -354,25 +354,20 @@
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
             });
         },
-        checkSimilar:function(){
-            console.log("check");
-            if ($$("staff_code").getValue() == 1){
-                AUNG.errorMessage("重複していません");
+        checkSimilar:function($staff_code){
+            if ($$("staff_code").getValue() == ($$("staff_code"))){
+                AUNG.Message("重複しています");
             } else {
-                AUNG.errorMessage("重複しています");
-                     
-            } 
+                AUNG.Message("重複していません");
+            }
         },
         check:function(){
-            console.log("check");
             if ($$("kijunbi_henkou").getValue() == 0){
-                console.log("0");
                 $$("yuukyuukyuuka_gengou").disable();
                 $$("yuukyuukyuuka_year").disable();
                 $$("yuukyuukyuuka_month").disable();
                 $$("yuukyuukyuuka_day").disable();
             }  else {
-                console.log("1");
                 $$("yuukyuukyuuka_gengou").enable();
                 $$("yuukyuukyuuka_year").enable();
                 $$("yuukyuukyuuka_month").enable();
