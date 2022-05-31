@@ -25,7 +25,7 @@ class DmStaff extends DataModel
         'fax_no'               => 'string', //FAX番号
         'mail_address'         => 'string', //メールアドレス
         'bikou'                => 'string', //備考
-        'sakujo_day'           => 'string', //削除日
+        'sakujo_day'           => 'date', //削除日
         //緊急連絡先
         'kinkyuuji_name'         => 'string', //緊急氏名
         'kinkyuuji_post_on'      => 'string', //緊急郵便番号
@@ -72,8 +72,8 @@ class DmStaff extends DataModel
         'post_office_kouza_meigi_furigana'  => 'string',    //郵便局口座名義フリガナ
         'post_office_kokyaku_code'          => 'string',    //郵便局顧客コード
         //振込データ「新規コード」初期設定
-        'touroku_month'             => 'string',    //登録年月
-        'modification_month'        => 'string',    //更新年月
+        'touroku_month'             => 'date',    //登録年月
+        'modification_month'        => 'date',    //更新年月
     ];  
     public static $primary_key = [
         'staff_id',//スタッフID

@@ -261,11 +261,11 @@
                         ]},
                         {cols:[
                             {view:"label",label:"◎　銀行コード",width:150,align:"right"},
-                            {view:"text",id:"bank_bank_code", name:"bank_bank_code",label:" ", width:150, labelWidth:0},
+                            {view:"text",id:"bank_bank_code", name:"bank_bank_code",pattern:{ mask:"####", allow:/[0-9]/g},label:" ", width:150, labelWidth:0},
                         ]},
                         {cols:[
                             {view:"label",label:"◎　支店コード",width:150,align:"right"},
-                            {view:"text", id:"bank_shiten_code", name:"bank_shiten_code", label:" ", width:150, labelWidth:0},
+                            {view:"text", id:"bank_shiten_code", name:"bank_shiten_code", label:" ",pattern:{ mask:"###", allow:/[0-9]/g}, width:150, labelWidth:0},
                         ]},
                         {cols:[
                             {view:"label",label:"◎　口座種別",width:150,align:"right"},
@@ -273,7 +273,7 @@
                         ]},
                         {cols:[
                             {view:"label",label:"◎　口座番号",width:150,align:"right"},
-                            {view:"text", id:"bank_kouza_no", name:"bank_kouza_no", label:" ",  labelWidth:0, width:200},
+                            {view:"text", id:"bank_kouza_no", name:"bank_kouza_no",pattern:{ mask:"#######", allow:/[0-9]/g}, label:" ",  labelWidth:0, width:200},
                         ]},
                         {cols:[
                             {view:"label",label:"◎　口座名義フリガナ",width:150,align:"right"},
@@ -294,12 +294,12 @@
                         {cols:[
                         {view:"label",label:"◎　口座記号",width:150,align:"right"},
                         {view:"text",id:"kouza_kigou1",value:"1",labelWidth:0, width:40,disabled:true},
-                        {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", label:" ",  labelWidth:0, width:80},
+                        {view:"text", id:"post_office_kouza_kigou", name:"post_office_kouza_kigou", pattern:{ mask:"###", allow:/[0-9]/g},label:" ",  labelWidth:0, width:80},
                         {view:"text",id:"kouza_kigou2",value:"0",labelWidth:0, width:40,disabled:true},
                         ]},
                         {cols:[
                             {view:"label",label:"◎　口座番号",width:150,align:"right"},
-                            {view:"text", id:"post_office_kouza_no", name:"post_office_kouza_no", label:" ",  labelWidth:0, width:150},
+                            {view:"text", id:"post_office_kouza_no", name:"post_office_kouza_no",pattern:{ mask:"#######", allow:/[0-9]/g}, label:" ",  labelWidth:0, width:150},
                             {view:"text",id:"kouza_no",value:"1",labelWidth:0, width:40,disabled:true},
                         ]},
                         {cols:[
