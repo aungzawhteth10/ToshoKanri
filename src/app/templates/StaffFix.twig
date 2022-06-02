@@ -5,11 +5,11 @@ var tabbar = webix.ui({
     id:"tabbar", 
     multiview:true, 
     options: [
-            {id:"staff_kihonjyouhou", value:"基本情報" ,  height:40,width:350},
-            {id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , height:40,width:350},
-            {id:"staff_kyoumukeitai", value:"勤務形態" ,  height:40,width:350},
-            {id:"staff_furikomikouzajyouhou", value:"振込口座情報" , height:40,width:350},
-    ]
+            {view:"button",id:"staff_kihonjyouhou", value:"基本情報" ,  height:40,width:350},
+            {view:"button",id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , height:40,width:350},
+            {view:"button",id:"staff_kyoumukeitai", value:"勤務形態" ,  height:40,width:350},
+            {view:"button",id:"staff_furikomikouzajyouhou", value:"振込口座情報" , height:40,width:350},
+    ],
 });
 var form = {
         view:"form",
@@ -20,8 +20,14 @@ var form = {
         align:"absolute",
         elements:[
             {rows:[
+               /* {cols:[
+                {view:"button",id:"staff_kihonjyouhou", value:"基本情報" ,  height:40,width:350},
+                {view:"button",id:"staff_kinnkyuurenrakusaki", value:"緊急連絡先" , height:40,width:350},
+                {view:"button",id:"staff_kyoumukeitai", value:"勤務形態" ,  height:40,width:350},
+                {view:"button",id:"staff_furikomikouzajyouhou", value:"振込口座情報" , height:40,width:350},
+                ]},*/
                 {cols:[
-                   {view:"label",id:"staff_kihonjyouhou", label: "<div class='subTitle'>基本情報</div>"},
+                   {view:"label",id:"kihonjyouhou", label: "<div class='subTitle'>基本情報</div>"},
                 ]},
                 {view:"text", id:"staff_id", name:"staff_id", label:"スタッフID", width:200,hidden:true},
                 {cols:[
@@ -102,7 +108,7 @@ var form = {
                     {view:"datepicker", id:"sakujo_day", name:"sakujo_day", label:" ", labelWidth:0, width:150}, 
                 ]},
                 {cols:[
-                    {view:"label",id:"staff_kinnkyuurenrakusaki", label: "<div class='subTitle'>緊急連絡先</div>" },
+                    {view:"label",id:"kinnkyuurenrakusaki", label: "<div class='subTitle'>緊急連絡先</div>" },
                 ]},
                 {cols:[
                     {view:"button", id:"btn_staff_kihonjyouhoutoonaji", name:"btn_staff_kihonjyouhoutoonaji", label:"基本情報と同じ", css:"webix_primary", width:250},
@@ -141,7 +147,7 @@ var form = {
                 ]},
                 {},
                  {cols:[
-                    {view:"label",id:"staff_kyoumukeitai", label: "<div class='subTitle'>勤務形態</div>" },
+                    {view:"label",id:"kyoumukeitai", label: "<div class='subTitle'>勤務形態</div>" },
                 ]},
                 {cols:[
                     {view:"label", label:"入社日元号", width:178,align:"right"}, 
@@ -166,7 +172,7 @@ var form = {
                 ]},
                 {cols:[
                     {view:"label", label:"種別", width:150,align:"right"},  
-                    {view:"select", id:"syubetu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_syubetu_category')|raw}}, labelWidth:0, width:150}, 
+                    {view:"select", id:"3betu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_syubetu_category')|raw}}, labelWidth:0, width:200}, 
                 ]}, 
                  {cols:[
                     {view:"label", label:"契約日数", width:150,align:"right"},
@@ -244,7 +250,7 @@ var form = {
                 ]},
                 //振込口座情報
                 {cols:[
-                    {view:"label",id:"staff_furikomikouzajyouhou", label: "<div class='subTitle'>振込口座情報</div>"},
+                    {view:"label",id:"furikomikouzajyouhou", label: "<div class='subTitle'>振込口座情報</div>"},
                 ]},
                 {cols:[
                     {view:"label", label:"支払方法", width:150,align:"right"}, 
@@ -345,13 +351,12 @@ var footer = {cols:[
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
-
-            $$("staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
-            $$("staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
-            $$("staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});
-            $$("staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_furikomikouzajyouhou")});
-            
-        },
+            //タブ
+            $$("staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("kihonjyouhou")});
+            $$("staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("kinnkyuurenrakusaki")}); 
+            $$("staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("kyoumukeitai")});
+            $$("staff_furikomikouzajyouhou").attachEvent("onItemClick", function(){logic.scrollTo("furikomikouzajyouhou")});    
+        },  
         dataLoad:function() {
             AUNG.GET("Api/ApiStaffFix", {}, function(text, xml, data) {
                 if(AUNG.isAjaxError()) return false;
@@ -361,11 +366,11 @@ var footer = {cols:[
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
             });
         },
-        checkSimilar:function($staff_code){
-            if ($$("staff_code").getValue() == $staff_code){
-                AUNG.Message("重複しています");
+        checkSimilar:function(){
+            if ($$("staff_code").getValue() == 1){
+                AUNG.errorMessage("重複しています");
             } else {
-                AUNG.Message("重複していません");
+                AUNG.errorMessage("重複していません");
             }
         },
         check:function(){
@@ -411,7 +416,7 @@ var footer = {cols:[
                 AUNG.errorMessage("必須項目が不足しています。");
                 return false;
             }
-            return true;
+                return true;
         },
         toMenu:function() {
             AUNG.pageMove("StaffManage");

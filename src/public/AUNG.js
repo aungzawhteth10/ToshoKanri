@@ -20,15 +20,6 @@ AUNG.pageMove = function(page, session = {}) {
         location.href= "/" + page + "?auth_key=" + _authKey;
     }
 };
-AUNG.Message = function(message) {
-    webix.alert({
-    title:"",
-    ok:"OK",
-    type:"alert",
-    width:350,
-    text:message
-    });
-};
 AUNG.errorMessage = function(message) {
     webix.alert({
     title:"",
