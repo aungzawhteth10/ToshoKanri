@@ -27,7 +27,7 @@ var form = {
                 {cols:[
                     {view:"label", label:"スタッフコード", width:150,align:"right"},
                     {view:"text", id:"staff_code", name:"staff_code", label:"", width:150, labelWidth:0},
-              //    {view:"button", id:"btn_tyoufuku_check", value:"重複チェック" , css:"webix_primary", height:40,width:140},    
+                    {view:"button", id:"btn_tyoufuku_check", value:"重複チェック" , css:"webix_primary", height:40,width:140},    
                 ]},
                 {cols:[
                     {view:"label",label:"氏名",width:150,align:"right"},
@@ -79,11 +79,11 @@ var form = {
                 ]},
                 {cols:[
                     {view:"label", label:"電話番号", width:150,align:"right"},   
-                    {view:"text", id:"tel_no", name:"tel_no", label:" ",  labelWidth:0, width:150}, 
+                    {view:"text", id:"tel_no", name:"tel_no", label:" ", pattern:{ mask:"###-#####-####"}, labelWidth:0, width:150}, 
                 ]},
                 {cols:[
                     {view:"label", label:"携帯番号", width:150,align:"right"},  
-                    {view:"text", id:"moblie_no", name:"moblie_no", label:" ", labelWidth:0, width:150}, 
+                    {view:"text", id:"moblie_no", name:"moblie_no", label:" ",pattern:{ mask:"###-#####-####"}, labelWidth:0, width:150}, 
                 ]},
                 {cols:[
                     {view:"label", label:"FAX番号", width:150,align:"right"},  
@@ -166,7 +166,7 @@ var form = {
                 ]},
                 {cols:[
                     {view:"label", label:"種別", width:150,align:"right"},  
-                    {view:"select", id:"syubetu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_staff_category')|raw}}, labelWidth:0, width:150}, 
+                    {view:"select", id:"syubetu_bikou", name:"syubetu_bikou", label:" ", options:{{HtmlHelper.getJsonKara('cm_syubetu_category')|raw}}, labelWidth:0, width:150}, 
                 ]}, 
                  {cols:[
                     {view:"label", label:"契約日数", width:150,align:"right"},
@@ -360,13 +360,13 @@ var footer = {cols:[
                 {# AUNG.datatable.parse("ichiran", json.ichiran); #}
             });
         },
-     /*   checkSimilar:function($staff_code){
-            if ($$("staff_code").getValue() == ($$("staff_code"))){
+        checkSimilar:function($staff_code){
+            if ($$("staff_code").getValue() == $staff_code){
                 AUNG.Message("重複しています");
             } else {
                 AUNG.Message("重複していません");
             }
-        },*/
+        },
         check:function(){
             if ($$("kijunbi_henkou").getValue() == 0){
                 $$("yuukyuukyuuka_gengou").disable();

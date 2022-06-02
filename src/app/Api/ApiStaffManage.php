@@ -11,7 +11,7 @@ class ApiStaffManage extends ApiBase
         $DbStaffMapper = new \App\db\DbStaffMapper;
         $staff = $DbStaffMapper->find();
         $staff = array_column($staff, null, 'staff_id') ;   
-        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_staff_seibetsu')), 'value', 'id');
+        $category = array_column(json_decode($this->HtmlHelper->getJson('cm_syubetu_category')), 'value', 'id');
         error_log(print_r($category, true));
         $result = [];
         foreach ($staff as $key => $value) {
@@ -22,7 +22,7 @@ class ApiStaffManage extends ApiBase
                 'name'                   => $value['name'] ?? '', //社員名
                 'furigana'               => $value['furigana'] ?? '',    //フリガナ
                 'hyouji_ryakushou'       => $value['hyouji_ryakushou'] ?? '', //表示略称
-                'seibetsu'               => $category[$value['seibetsu']]?? '' ,//性別
+                'seibetsu'               => $value['seibetsu'] ,//性別
                 'seinengappi_gengou'     => $value['seinengappi_gengou'] ,//生年月日　元号
                 'seinengappi_year'       => $value['seinengappi_year'] ?? '', //生年月日　年
                 'seinengappi_month'      => $value['seinengappi_month'] ?? '', //生年月日　月
@@ -57,7 +57,7 @@ class ApiStaffManage extends ApiBase
                 'yuukyuukyuuka_year'     => $value['yuukyuukyuuka_year']?? '',   //有給休暇の基準日 年
                 'yuukyuukyuuka_month'    => $value['yuukyuukyuuka_month']?? '',  //有給休暇の基準日 月
                 'yuukyuukyuuka_day'      => $value['yuukyuukyuuka_day']?? '',    //有給休暇の基準日 日
-                'syubetu_bikou'          => $value['syubetu_bikou']?? '',        //種別
+                'syubetu_bikou'          => $category[$value['syubetu_bikou']]?? '',        //種別
                 'keiyaku_nissuu'         => $value['keiyaku_nissuu']?? '',       //契約日数
                 'keiyaku_jikan'          => $value['keiyaku_jikan']?? '',        //契約時間
                 'kinmu_kubun'            => $value['kinmu_kubun']?? '',          //勤務区分
