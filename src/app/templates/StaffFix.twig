@@ -79,11 +79,11 @@ var form = {
                 ]},
                 {cols:[
                     {view:"label", label:"電話番号", width:150,align:"right"},   
-                    {view:"text", id:"tel_no", name:"tel_no", label:" ", pattern:{ mask:"###-#####-####"}, labelWidth:0, width:150}, 
+                    {view:"text", id:"tel_no", name:"tel_no", label:" ",  labelWidth:0, width:150}, 
                 ]},
                 {cols:[
                     {view:"label", label:"携帯番号", width:150,align:"right"},  
-                    {view:"text", id:"moblie_no", name:"moblie_no", label:" ",pattern:{ mask:"###-#####-####"}, labelWidth:0, width:150}, 
+                    {view:"text", id:"moblie_no", name:"moblie_no", label:" ", labelWidth:0, width:150}, 
                 ]},
                 {cols:[
                     {view:"label", label:"FAX番号", width:150,align:"right"},  
@@ -345,6 +345,7 @@ var footer = {cols:[
             $$("kijunbi_henkou").attachEvent("onItemClick",logic.check);
             $$("furikomisaki_kubun").attachEvent("onItemClick",logic.shiharaihouhou);
             $$("btn_tyoufuku_check").attachEvent("onItemClick",logic.checkSimilar);
+
             $$("staff_kihonjyouhou").attachEvent("onItemClick", function(){logic.scrollTo("staff_kihonjyouhou")});
             $$("staff_kinnkyuurenrakusaki").attachEvent("onItemClick", function(){logic.scrollTo("staff_kinnkyuurenrakusaki")}); 
             $$("staff_kyoumukeitai").attachEvent("onItemClick", function(){logic.scrollTo("staff_kyoumukeitai")});

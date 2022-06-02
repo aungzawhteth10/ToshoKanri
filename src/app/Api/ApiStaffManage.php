@@ -12,7 +12,6 @@ class ApiStaffManage extends ApiBase
         $staff = $DbStaffMapper->find();
         $staff = array_column($staff, null, 'staff_id') ;   
         $category = array_column(json_decode($this->HtmlHelper->getJson('cm_syubetu_category')), 'value', 'id');
-        error_log(print_r($category, true));
         $result = [];
         foreach ($staff as $key => $value) {
             $result[] = [

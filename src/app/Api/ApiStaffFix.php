@@ -201,7 +201,6 @@ class ApiStaffFix extends ApiBase
         $dmKinmuKubun = new \App\model\DmKinmuKubun;   
         $dmKinmuKubun->staff_id = $kihon['staff_id'];//スタッフID
         $count += $dbKinmuKubunMapper->delete($dmKinmuKubun);
-       
         foreach ($postData['ichiran'] as $key => $value) {
             $dmKinmuKubun = new \App\model\DmKinmuKubun;   
             $dmKinmuKubun->staff_id          = $kihon['staff_id'];//スタッフID
